@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">AntPlay</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email or mobile</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="letsGo">Let’s Go</string>
+    <string name="resetPass">Reset Password</string>
+    <string name="termsAndC"><u>Terms and Conditions</u></string>
+    <string name="forgotPass"><u>Forgot Password?</u></string>
+    <string name="signupHere"><u>Sign up here</u></string>
+    <string name="emailOrMobile">E-mail or Mobile Number</string>
+    <string name="termsCondition">I agree with the terms of user agreement</string>
+    <string name="alreadyRegister"><u>Already have an account? Sign in here.</u></string>
+
+    <string name="error_email">Email is required</string>
+    <string name="error_username">Username is required</string>
+    <string name="error_password">Password is required</string>
+    <string name="error_checkbox">Please check the checkbox</string>
+    <string name="error_invalidEmail">Invalid email address</string>
+    <string name="error_pass_minimum">Password must be minimum 8 characters</string>
+    <string name="choose_new_pc">CHOOSE A NEW PC</string>
+    <string name="next_in_queue">You are next in queue </string>
+    <string name="speed_test">Speed test</string>
+    <string name="back">Back</string>
+    <string name="mbTS">MB|T/S</string>
+    <string name="discord">Discord</string>
+    <string name="vkontakte">Vkontakte</string>
+    <string name="website">website</string>
+    <string name="change_pass">Change password</string>
+    <string name="user_agreement">User agreement</string>
+    <string name="logout">Log out</string>
+    <string name="delete_your_pc">Delete Virtual PC</string>
+    <string name="your_data_saved">Your data will be saved for</string>
+    <string name="current_virtual_pc">Current virtual PC</string>
+    <string name="manage_subscription">Manage Subscription</string>
+
+</resources>

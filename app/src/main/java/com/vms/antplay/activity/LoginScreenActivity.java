@@ -1,0 +1,85 @@
+package com.vms.antplay.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.vms.antplay.R;
+
+public class LoginScreenActivity extends AppCompatActivity {
+
+    Button btnLetsGo;
+    TextView tvForgetPass, tvSignupHere;
+    EditText etEmail,etPass;
+    boolean isAllFieldsChecked = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_login_screen);
+        tvForgetPass =(TextView) findViewById(R.id.tv_forgetPass);
+        tvSignupHere =(TextView) findViewById(R.id.tv_signupHere);
+        etEmail =(EditText) findViewById(R.id.et_email);
+        etPass =(EditText) findViewById(R.id.et_password);
+        btnLetsGo =(Button) findViewById(R.id.btn_signup);
+
+        tvForgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginScreenActivity.this, ForgetPassword.class);
+                startActivity(i);
+            }
+        });
+        tvSignupHere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginScreenActivity.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });
+        btnLetsGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isAllFieldsChecked = CheckAllLoginFields();
+
+                if (isAllFieldsChecked) {
+                    // we can call Api here
+                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
+
+    }
+
+    private boolean CheckAllLoginFields() {
+       // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String emailPattern = "^(?:\\d{10}|\\w+@\\w+\\.\\w{2,3})$";
+
+        if (etEmail.length() == 0) {
+            etEmail.setError(getString(R.string.error_email));
+            return false;
+        } else if (!etEmail.getText().toString().matches(emailPattern)) {
+            etEmail.setError(getString(R.string.error_invalidEmail));
+            return false;
+        }
+
+        if (etPass.length() == 0) {
+            etPass.setError(getString(R.string.error_password));
+            return false;
+        } else if (etPass.length() < 8) {
+            etPass.setError(getString(R.string.error_pass_minimum));
+            return false;
+        }
+        return true;
+    }
+}
