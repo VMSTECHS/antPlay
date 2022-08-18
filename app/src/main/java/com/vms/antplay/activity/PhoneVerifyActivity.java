@@ -189,6 +189,7 @@ public class PhoneVerifyActivity extends AppCompatActivity implements View.OnCli
 
                 rlProgress.setVisibility(View.GONE);
                 llOTP.setVisibility(View.VISIBLE);
+
                 txtResendOtp.setVisibility(View.VISIBLE);
                 verifyPhoneNumber.setVisibility(View.INVISIBLE);
                 btnVerifyOTP.setVisibility(View.VISIBLE);
