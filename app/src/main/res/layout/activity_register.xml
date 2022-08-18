@@ -16,45 +16,229 @@
         android:layout_marginRight="20dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_email"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/btnshape"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:fontFamily="sans-serif"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <EditText
+                android:id="@+id/et_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/firstname"
+                android:inputType="text"
+                android:padding="15dp"
+                android:maxLength="20"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/lastname"
+                android:inputType="text"
+                android:maxLength="20"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:padding="15dp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:padding="15dp"
+                android:maxLength="10"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:maxLength="20"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:maxLength="20"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_confirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/confirm_pass"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:maxLength="20"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/age"
+                android:inputType="number"
+                android:padding="15dp"
+                android:maxLength="2"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/address"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/et_state"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/state"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:maxLength="20"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_city"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btnshape"
+                android:fontFamily="sans-serif"
+                android:hint="@string/city"
+                android:inputType="text"
+                android:padding="15dp"
+                android:maxLength="20"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:textColorHint="@color/gray"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
 
         <EditText
-            android:id="@+id/et_username"
+            android:id="@+id/et_pinCode"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/btnshape"
-            android:hint="@string/username"
-            android:inputType="text"
-            android:padding="15dp"
             android:fontFamily="sans-serif"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btnshape"
-            android:hint="@string/password"
-            android:inputType="textPassword"
+            android:hint="@string/pinCode"
+            android:imeOptions="actionDone"
+            android:inputType="number"
             android:padding="15dp"
-            android:fontFamily="sans-serif"
+            android:maxLength="7"
             android:textColorHint="@color/gray"
             android:textSize="15sp" />
 
@@ -66,19 +250,20 @@
             android:buttonTint="@color/gray"
             android:checked="false"
             android:fontFamily="sans-serif"
+            android:imeOptions="actionDone"
             android:text="@string/termsCondition"
             android:textColor="@color/gray" />
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/linearBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:id="@+id/linearBottom"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
@@ -87,21 +272,26 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/btngradient"
-            android:text="@string/signup"
             android:fontFamily="sans-serif"
-            android:textColor="@color/white">
-        </Button>
+            android:text="@string/signup"
+            android:textColor="@color/white"></Button>
 
         <TextView
+            android:id="@+id/tv_alreadyRegister"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:gravity="left"
-            android:textSize="14sp"
-            android:id="@+id/tv_alreadyRegister"
-            android:fontFamily="sans-serif"
             android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="left"
             android:text="@string/alreadyRegister"
             android:textColor="@color/textColor"
-            />
+            android:textSize="14sp" />
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/loading_progress_xml"
+        style="?android:attr/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true" />
 </RelativeLayout>
