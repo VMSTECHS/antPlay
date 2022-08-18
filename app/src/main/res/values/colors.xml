@@ -12,4 +12,5 @@
     <color name="textColor">#F5F5F5</color>
     <color name="background">#4DD59E</color>
     <color name="colorAccentDark_light">#FC90FBD0</color>
+    <color name="transparent_green">#A60D100F</color>
 </resources>

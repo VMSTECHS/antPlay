@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "734848644696",
+    "project_id": "antplay-4c045",
+    "storage_bucket": "antplay-4c045.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734848644696:android:8e6dca3dc25de03e0f3c2d",
+        "android_client_info": {
+          "package_name": "com.vms.antplay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734848644696-e1rjl0j4th98effgj765edqma61vo1p7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vms.antplay",
+            "certificate_hash": "d5e0c61e5f603639b68d3d729079c04f914b1ee9"
+          }
+        },
+        {
+          "client_id": "734848644696-etsfjbsropcnu1bbu7hh12tr3c021hqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6oT1We5ETvkypA5vgMVNMkwOE6IC6rBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734848644696-etsfjbsropcnu1bbu7hh12tr3c021hqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

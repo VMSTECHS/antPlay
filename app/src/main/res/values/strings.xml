@@ -37,5 +37,11 @@
     <string name="your_data_saved">Your data will be saved for</string>
     <string name="current_virtual_pc">Current virtual PC</string>
     <string name="manage_subscription">Manage Subscription</string>
+    <string name="verify_phone_number">Verify Phone Number</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="continue_phone">Continue</string>
+    <string name="you_will_receive_otp">You will receive 6 digit OTP to verify your phone number</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="verify_otp">Verify OTP</string>
 
 </resources>
