@@ -12,6 +12,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.vms.antplay.R;
+import com.vms.antplay.api.APIClient;
+import com.vms.antplay.api.RetrofitAPI;
+import com.vms.antplay.model.requestModal.LoginRequestModal;
+import com.vms.antplay.model.responseModal.LoginResponseModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginScreenActivity extends AppCompatActivity {
 
@@ -19,6 +27,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     TextView tvForgetPass, tvSignupHere;
     EditText etEmail,etPass;
     boolean isAllFieldsChecked = false;
+    String st_email, st_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +62,33 @@ public class LoginScreenActivity extends AppCompatActivity {
 
                 if (isAllFieldsChecked) {
                     // we can call Api here
+                    st_email = etEmail.getText().toString();
+                    st_password = etPass.getText().toString();
+                    callLoginAPI( st_email, st_password);
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);
                 }
+            }
+        });
+
+    }
+
+    private void callLoginAPI(String email, String password) {
+
+        RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
+        LoginRequestModal loginRequestModal = new LoginRequestModal(email,password);
+        Call<LoginResponseModel> call = retrofitAPI.loginUser(loginRequestModal);
+        call.enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                if (response.isSuccessful() && response.body()!=null){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+
             }
         });
 

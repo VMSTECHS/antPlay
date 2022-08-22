@@ -16,11 +16,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.vms.antplay.R;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.requestModal.RegisterRequestModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
+import com.vms.antplay.model.responseModal.RegisterResponseModal;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +33,12 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etEmail, etFirstname, etLastname, etPhone, etPassword,  etConfirmPass, etAge, etAddress, etCity, etState, etPincode;
+    EditText etEmail, etFirstname, etLastname, etPhone, etPassword, etConfirmPass, etAge, etAddress, etCity, etState, etPincode;
     Button btnSignup;
     TextView tvAlreadyRegister;
     CheckBox checkBox;
-    String st_fname,st_lastname,st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address;
-    Long st_phone;
+    String st_fname, st_lastname, st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address;
+    String st_phone;
     boolean isAllFieldsChecked = false;
     Boolean checkBoxState;
     private ProgressBar loadingPB;
@@ -81,14 +86,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 isAllFieldsChecked = CheckAllFields();
-              //  Integer intValue = myLong.intValue();
+                //  Integer intValue = myLong.intValue();
                 if (isAllFieldsChecked) {
                     // we can call Api here
                     st_fname = etFirstname.getText().toString();
                     st_lastname = etLastname.getText().toString();
                     st_email = etEmail.getText().toString();
-                    st_phone = Long.valueOf(etPhone.getText().toString());
-                    Integer intValues = st_phone.intValue();
+                    st_phone = etPhone.getText().toString();
+
                     st_password = etConfirmPass.getText().toString();
                     st_address = etAddress.getText().toString();
                     st_age = etAge.getText().toString();
@@ -96,7 +101,11 @@ public class RegisterActivity extends AppCompatActivity {
                     st_city = etCity.getText().toString();
                     st_pincode = etPincode.getText().toString();
 
-                    callRegisterApi(st_fname,st_lastname,st_email,intValues,st_password,st_address,st_age,st_state,st_city,st_pincode);
+
+                    Log.e("Request Params", "" + st_fname + ", " + st_lastname + "," + st_email + "," + st_phone + "," +
+                            st_password + "," + st_address + "," + st_age + "," + st_state + "," + st_city + "," + st_pincode);
+
+                    callRegisterApi(st_fname, st_lastname, st_email, st_phone, st_password, st_address, st_age, st_state, st_city, st_pincode);
 
                 }
             }
@@ -105,25 +114,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void callRegisterApi(String st_fname, String st_lastname, String st_email,
-                                 Integer intValues, String st_password, String st_address,
+                                 String st_phone, String st_password, String st_address,
                                  String st_age, String st_state, String st_city, String st_pincode) {
 
         loadingPB.setVisibility(View.VISIBLE);
 
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
-        RegisterRequestModal modal = new RegisterRequestModal(st_fname, st_lastname, st_email, intValues,st_password,st_address,st_age,st_state,st_city,Integer.parseInt(st_pincode));
-        Log.e("hello modal", String.valueOf(modal));
-        Call<LoginResponseModel> call = retrofitAPI.registerUser(modal);
-        call.enqueue(new Callback<LoginResponseModel>() {
+        RegisterRequestModal modal = new RegisterRequestModal(st_fname, st_lastname, st_email, st_phone, st_password, st_address, st_age, st_state, st_city, st_pincode);
+        Call<RegisterResponseModal> call = retrofitAPI.registerUser(modal);
+        call.enqueue(new Callback<RegisterResponseModal>() {
             @Override
-            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+            public void onResponse(Call<RegisterResponseModal> call, Response<RegisterResponseModal> response) {
 
                 loadingPB.setVisibility(View.GONE);
 
                 // LoginResponseModel responseFromAPI = response.body();
                 if (response.isSuccessful() && response.body() != null) {
 
-                    if (response.body().getFirstName()!=null) {
+                    if (response.body().getMessage() == "User Register Succussfully") {
 //                        et_name.setText("");
 //                        et_mobile.setText("");
 //                        et_date.setText("");
@@ -136,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                        SharedPreferences.Editor editor = shared.edit();
 //                        editor.putString(Const.USERS_ID, userid);
 //                        editor.commit();
-                     //   Log.e("Hello Userid register", "" + userid);
+                        //   Log.e("Hello Userid register", "" + userid);
 
                         Intent i = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(i);
@@ -145,9 +153,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                     } else {
                         loadingPB.setVisibility(View.GONE);
-                       Log.e("hello else", "Error Failure");
+                        Log.e("hello else", "Error Failure");
 //                        Log.e("hello params", "" + "name-" + name + " -dob-" + dob + "mobile-" + mobile);
-                       // Toast.makeText(RegisterActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -155,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+            public void onFailure(Call<RegisterResponseModal> call, Throwable t) {
                 // responseTV.setText("Error found is : " + t.getMessage());
                 loadingPB.setVisibility(View.GONE);
                 Toast.makeText(RegisterActivity.this, R.string.something_wrong, Toast.LENGTH_SHORT).show();
@@ -198,14 +206,13 @@ public class RegisterActivity extends AppCompatActivity {
         if (etConfirmPass.length() == 0) {
             etConfirmPass.setError(getString(R.string.error_confirmPass));
             return false;
-        }
-        else if (etConfirmPass.length() < 8) {
+        } else if (etConfirmPass.length() < 8) {
             etConfirmPass.setError(getString(R.string.error_Confirmpass_minimum));
             return false;
         }
-        if(!etPassword.getText().toString().equals(etConfirmPass.getText().toString())){
+        if (!etPassword.getText().toString().equals(etConfirmPass.getText().toString())) {
             etConfirmPass.setError(getString(R.string.error_password_not_match));
-            return  false;
+            return false;
         }
         if (etAge.length() == 0) {
             etAge.setError(getString(R.string.error_age));

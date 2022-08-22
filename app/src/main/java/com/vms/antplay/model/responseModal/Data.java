@@ -1,9 +1,10 @@
-package com.vms.antplay.model.requestModal;
+package com.vms.antplay.model.responseModal;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterRequestModal {
+public class Data {
+
     @SerializedName("first_name")
     @Expose
     private String firstName;
@@ -15,16 +16,13 @@ public class RegisterRequestModal {
     private String email;
     @SerializedName("phone_number")
     @Expose
-    private String phoneNumber;
-    @SerializedName("password")
-    @Expose
-    private String password;
+    private Long phoneNumber;
     @SerializedName("address")
     @Expose
     private String address;
     @SerializedName("age")
     @Expose
-    private String age;
+    private Integer age;
     @SerializedName("state")
     @Expose
     private String state;
@@ -33,21 +31,7 @@ public class RegisterRequestModal {
     private String city;
     @SerializedName("pincode")
     @Expose
-    private String pincode;
-
-
-    public RegisterRequestModal(String firstName, String lastName, String email, String phoneNumber, String password, String address, String age, String state, String city, String pincode) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.address = address;
-        this.age = age;
-        this.state = state;
-        this.city = city;
-        this.pincode = pincode;
-    }
+    private Integer pincode;
 
     public String getFirstName() {
         return firstName;
@@ -73,20 +57,12 @@ public class RegisterRequestModal {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAddress() {
@@ -97,11 +73,11 @@ public class RegisterRequestModal {
         this.address = address;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -121,12 +97,11 @@ public class RegisterRequestModal {
         this.city = city;
     }
 
-    public String getPincode() {
+    public Integer getPincode() {
         return pincode;
     }
 
-    public void setPincode(String pincode) {
+    public void setPincode(Integer pincode) {
         this.pincode = pincode;
     }
-
 }
