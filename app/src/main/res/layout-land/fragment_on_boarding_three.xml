@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/walkthrough_1">
+    android:background="@drawable/walkthrough_land_3">
 
     <View
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
         android:id="@+id/txtPlayPC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_70sdp"
         android:layout_marginEnd="@dimen/_20sdp"
-        android:text="@string/play_pc_game"
+        android:text="@string/run_remote_pc"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/_24sdp" />
@@ -29,9 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtPlayPC"
         android:layout_centerHorizontal="true"
-        android:text="@string/by_using_smartphone"
+        android:text="@string/from_smart_phone"
         android:textColor="@color/gray"
         android:textSize="@dimen/_16sdp" />
-
 
 </RelativeLayout>

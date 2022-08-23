@@ -87,5 +87,8 @@
     <string name="any_source">from any source in the internet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <!--Preference Keys-->
+    <string name="is_first_time">IS_FIRST_TIME</string>
 
 </resources>
