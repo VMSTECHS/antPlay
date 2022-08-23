@@ -8,7 +8,6 @@
         android:name="com.google.android.gms.permission.AD_ID"
         tools:node="remove" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AntPlay"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.OnBoardingActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.PhoneVerifyActivity"
             android:exported="false" />
@@ -54,11 +56,9 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
-        ...
 
         <activity
             android:name="com.facebook.FacebookActivity"
