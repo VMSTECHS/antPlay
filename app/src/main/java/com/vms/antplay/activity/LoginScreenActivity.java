@@ -64,7 +64,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                     // we can call Api here
                     st_email = etEmail.getText().toString();
                     st_password = etPass.getText().toString();
-                    callLoginAPI( st_email, st_password);
+                   // callLoginAPI( st_email, st_password);
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);
                 }

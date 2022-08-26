@@ -71,6 +71,19 @@
     <string name="you_will_receive_otp">You will receive 6 digit OTP to verify your phone number</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="verify_otp">Verify OTP</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="computer_not_available">You have no computers available right now</string>
+    <string name="computer_available">Computers available right now</string>
+    <string name="reload"><u>Reload</u></string>
+    <string name="computer">Computers</string>
+    <string name="connect_computer">Connect to your computer or a friend’s computer in low latency desktop mode.</string>
+
+    <string name="agreement">A non-disclosure agreement, also known as a confidentiality agreement, details what information should not be shared outside of the parties in the agreement. It may cover information or materials (such as photos) that cannot be shared with third parties</string>
+
 
     <!--OnBoarding Screens-->
 
@@ -87,5 +100,20 @@
     <string name="any_source">from any source in the internet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="control_tips">Home screen control tips</string>
+    <string name="tips">Tips</string>
+    <string name="stream_quality">Stream Quality</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="extraHigh">Extra high</string>
+    <string name="fps">FPS</string>
+    <string name="fps_text">We advise you to choose 60 FPS only with reliable Internet, and then you risk missing a fatal headshot due to lag</string>
+    <string name="fps_30">30</string>
+    <string name="fps_60">60</string>
+    <string name="stream_quality_text">Very high quality requires fast internet and a lot of traffic. if you often hang up the game - it is better to reduce the quality for while</string>
+    <string name="touch_screen_mode">Touch Screen Mode</string>
+    <string name="trackpad">Trackpad</string>
+    <string name="single_tap">Single tap</string>
+    <string name="invert">Invert the left stick by Y</string>
 </resources>

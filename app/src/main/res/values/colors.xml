@@ -13,7 +13,11 @@
     <color name="background">#4DD59E</color>
     <color name="colorAccentDark_light">#FC90FBD0</color>
     <color name="transparent_green">#A60D100F</color>
+    <color name="line_color">#646464</color>
+
     <color name="transparent">#0D040303</color>
     <color name="black_trans">#C90B0A0A</color>
+
+
 
 </resources>
