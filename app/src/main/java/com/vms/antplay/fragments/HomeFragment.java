@@ -1,66 +1,83 @@
 package com.vms.antplay.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.vms.antplay.R;
+import com.vms.antplay.activity.MainActivity;
+import com.vms.antplay.activity.ProfileActivity;
+import com.vms.antplay.activity.SpeedTestActivity;
+import com.vms.antplay.adapter.ImageAdapter;
+import com.vms.antplay.model.ImageModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class HomeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ArrayList<ImageModel> imageModelArrayList;
+    ImageView imagePlay;
+    CardView profile_card;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
+        imagePlay = (ImageView) view.findViewById(R.id.img_play);
+        profile_card = (CardView) view.findViewById(R.id.card_profile);
+        imagePlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), SpeedTestActivity.class);
+                startActivity(i);
+
+            }
+        });
+        profile_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        imageModelArrayList = new ArrayList<>();
+        imageModelArrayList.add(new ImageModel("Alexa", R.drawable.game_one));
+        imageModelArrayList.add(new ImageModel("TFS", R.drawable.game_three));
+        imageModelArrayList.add(new ImageModel("Cinp", R.drawable.game_two));
+        imageModelArrayList.add(new ImageModel("Cinp", R.drawable.loginwithlogo));
+        imageModelArrayList.add(new ImageModel("Cinp", R.drawable.game_one));
+        imageModelArrayList.add(new ImageModel("Cinp", R.drawable.game_two));
+        imageModelArrayList.add(new ImageModel("Cinp", R.drawable.game_two));
+        imageModelArrayList.add(new ImageModel("Cinp", R.drawable.game_two));
+
+        ImageAdapter imageAdapter = new ImageAdapter(requireContext(), imageModelArrayList);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(imageAdapter);
+
+
+        return view;
     }
 }

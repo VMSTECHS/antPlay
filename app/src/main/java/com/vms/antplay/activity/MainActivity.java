@@ -1,22 +1,26 @@
 package com.vms.antplay.activity;
 
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
+
+import com.google.android.material.tabs.TabLayout;
 import com.vms.antplay.R;
-import com.vms.antplay.adapter.ImageAdapter;
+import com.vms.antplay.adapter.PagerAdapter;
+import com.vms.antplay.fragments.ComputerFragment;
+import com.vms.antplay.fragments.FaqFargment;
+import com.vms.antplay.fragments.HomeFragment;
+import com.vms.antplay.fragments.SettingsFragment;
 import com.vms.antplay.model.ImageModel;
 
 import java.util.ArrayList;
@@ -24,9 +28,10 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-   private ArrayList<ImageModel> imageModelArrayList;
-   ImageView imagePlay;
-   CardView profile_card;
+
+    ViewPager simpleViewPager;
+    FrameLayout simpleFrameLayout;
+    TabLayout tabLayout;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -34,42 +39,75 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccentDark_light, this.getTheme()));
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        simpleFrameLayout = (FrameLayout) findViewById(R.id.simpleFrameLayout);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        //  simpleViewPager = (ViewPager) findViewById(R.id.viewPager);
+        loadFragment(new HomeFragment());
 
-        imagePlay = (ImageView) findViewById(R.id.img_play);
-        profile_card = (CardView) findViewById(R.id.card_profile);
-        imagePlay.setOnClickListener(new View.OnClickListener() {
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SpeedTestActivity.class);
-                startActivity(i);
-                finish();
+            public void onTabSelected(TabLayout.Tab tab) {
+                // get the current selected tab's position and replace the fragment accordingly
+                Fragment fragment = null;
+                switch (tab.getPosition()) {
+                    case 0:
+                        fragment = new HomeFragment();
+                        break;
+                    case 1:
+                        fragment = new ComputerFragment();
+                        break;
+                    case 2:
+                        fragment = new SettingsFragment();
+                        break;
+                    case  3:
+                        fragment = new FaqFargment();
+                        break;
+                    case 4:
+                        fragment = new FaqFargment();
+                        break;
+                    case 5:
+                        logout();
+
+                    default:
+                        fragment = new HomeFragment();
+                }
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.simpleFrameLayout, fragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.commit();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        profile_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
-        imageModelArrayList = new ArrayList<>();
-        imageModelArrayList.add(new ImageModel("Alexa",  R.drawable.game_one));
-        imageModelArrayList.add(new ImageModel("TFS",  R.drawable.game_three));
-        imageModelArrayList.add(new ImageModel("Cinp",  R.drawable.game_two));
-        imageModelArrayList.add(new ImageModel("Cinp",  R.drawable.loginwithlogo));
-        imageModelArrayList.add(new ImageModel("Cinp",  R.drawable.game_one));
-        imageModelArrayList.add(new ImageModel("Cinp",  R.drawable.game_two));
-        imageModelArrayList.add(new ImageModel("Cinp",  R.drawable.game_two));
-        imageModelArrayList.add(new ImageModel("Cinp",  R.drawable.game_two));
 
-        ImageAdapter imageAdapter = new ImageAdapter(this, imageModelArrayList);
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(imageAdapter);
     }
+
+    private void logout() {
+        Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+    }
+
+
+    private boolean loadFragment(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.simpleFrameLayout, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
+    }
+
 }
