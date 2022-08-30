@@ -23,7 +23,7 @@ public class PCSettingFragment extends Fragment {
 
     SwitchCompat switchCompat;
     RadioButton low, high, medium, extraHigh;
-    RadioGroup radioGroup;
+    RadioGroup radioGroup, radioGroup_fps, radioGroup_touch;
 
     public PCSettingFragment() {
         // Required empty public constructor
@@ -43,6 +43,8 @@ public class PCSettingFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_p_c_setting, container, false);
         radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
+        radioGroup_fps = (RadioGroup) view.findViewById(R.id.radioGroup_fps);
+        radioGroup_touch = (RadioGroup) view.findViewById(R.id.radioGroup_touchscreen);
         switchCompat = (SwitchCompat) view.findViewById(R.id.switchButton);
         low = (RadioButton) view.findViewById(R.id.radio_low);
         high = (RadioButton) view.findViewById(R.id.radio_high);
@@ -63,8 +65,68 @@ public class PCSettingFragment extends Fragment {
                 RadioButton radioButton = (RadioButton) radioGroup.findViewById(checkedId);
                 int selectedId = radioGroup.getCheckedRadioButtonId();
 
-                Snackbar.make(radioGroup, "Switch state checked " + selectedId, Snackbar.LENGTH_LONG)
+                if (selectedId == -1) {
+                    Toast.makeText(getApplicationContext(),
+                                    "No answer has been selected",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else {
+
+                    RadioButton radioButton1 = (RadioButton)radioGroup.findViewById(selectedId);
+
+                    Snackbar.make(radioGroup, "Switch state checked " + radioButton1.getText(), Snackbar.LENGTH_LONG)
                         .setAction("ACTION", null).show();
+                }
+
+
+
+            }
+        });
+        radioGroup_fps.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton radioButton = (RadioButton) radioGroup.findViewById(checkedId);
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                if (selectedId == -1) {
+                    Toast.makeText(getApplicationContext(),
+                                    "No answer has been selected",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else {
+
+                    RadioButton radioButton1 = (RadioButton)radioGroup.findViewById(selectedId);
+
+                    Snackbar.make(radioGroup, "Switch state checked " + radioButton1.getText(), Snackbar.LENGTH_LONG)
+                        .setAction("ACTION", null).show();
+                }
+
+
+
+            }
+        });
+        radioGroup_touch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton radioButton = (RadioButton) radioGroup.findViewById(checkedId);
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                if (selectedId == -1) {
+                    Toast.makeText(getApplicationContext(),
+                                    "No answer has been selected",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else {
+
+                    RadioButton radioButton1 = (RadioButton)radioGroup.findViewById(selectedId);
+
+                    Snackbar.make(radioGroup, "Switch state checked " + radioButton1.getText(), Snackbar.LENGTH_LONG)
+                        .setAction("ACTION", null).show();
+                }
+
 
 
             }
@@ -73,29 +135,6 @@ public class PCSettingFragment extends Fragment {
 
         return view;
     }
-    public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-        String str = "";
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radio_low:
-                if (checked)
-                    str = "Low Selected";
-                break;
-            case R.id.radio_high:
-                if (checked)
-                    str = "High Selected";
-                break;
-            case R.id.radio_medium:
-                if (checked)
-                    str = "Medium Selected";
-                break;
-            case R.id.radio_extraHigh:
-                if (checked)
-                    str = "Extra High Selected";
-                break;
-        }
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
-    }
+
 
 }
