@@ -3,6 +3,7 @@ package com.vms.antplay.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -13,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vms.antplay.R;
 import com.vms.antplay.activity.MainActivity;
 import com.vms.antplay.activity.ProfileActivity;
 import com.vms.antplay.activity.SpeedTestActivity;
 import com.vms.antplay.adapter.ImageAdapter;
+import com.vms.antplay.dialog.BottomSheetDialog;
 import com.vms.antplay.model.ImageModel;
 
 import java.util.ArrayList;
@@ -28,6 +31,8 @@ public class HomeFragment extends Fragment {
     private ArrayList<ImageModel> imageModelArrayList;
     ImageView imagePlay;
     CardView profile_card;
+    LinearLayoutCompat llTimer;
+    TextView txtTimer;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -43,6 +48,10 @@ public class HomeFragment extends Fragment {
 
         imagePlay = (ImageView) view.findViewById(R.id.img_play);
         profile_card = (CardView) view.findViewById(R.id.card_profile);
+
+        llTimer = (LinearLayoutCompat) view.findViewById(R.id.llTimer);
+        txtTimer = view.findViewById(R.id.txtTimer);
+
         imagePlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +86,13 @@ public class HomeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(imageAdapter);
 
+        llTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog();
+                bottomSheetDialog.show(getActivity().getSupportFragmentManager(), "BackgrountSheet");
+            }
+        });
 
         return view;
     }

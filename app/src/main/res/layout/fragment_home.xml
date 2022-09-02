@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -98,6 +99,7 @@
                                 app:cardCornerRadius="@dimen/_5sdp">
 
                                 <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/llTimer"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@color/white"
@@ -113,6 +115,7 @@
                                         android:src="@drawable/timerwatch" />
 
                                     <TextView
+                                        android:id="@+id/txtTimer"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"

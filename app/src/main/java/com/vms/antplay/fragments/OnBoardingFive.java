@@ -1,4 +1,4 @@
-package com.vms.antplay.activity;
+package com.vms.antplay.fragments;
 
 import android.os.Bundle;
 

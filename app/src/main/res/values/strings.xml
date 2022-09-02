@@ -128,4 +128,14 @@
     <string name="minmax">Min/Max</string>
     <string name="raw">Raw</string>
     <string name="action">Actions</string>
+    <string name="two_hours">2</string>
+    <string name="eight_hours">8</string>
+    <string name="twentyFour_hours">24</string>
+    <string name="additional_time">Additional Time</string>
+    <string name="purchase_2_hours">Purchase 2 hours</string>
+    <string name="purchase_8_hours">Purchase 8 hours</string>
+    <string name="purchase_24_hours">Purchase 24 hours</string>
+    <string name="rupees">₹</string>
+    <string name="arcade">Arcade</string>
+    <string name="arcade_message">Explore, host, and share games with everyone around the world.</string>
 </resources>

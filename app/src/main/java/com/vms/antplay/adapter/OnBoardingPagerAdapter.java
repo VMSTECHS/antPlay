@@ -4,14 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.vms.antplay.activity.OnBoardingFive;
-import com.vms.antplay.activity.OnBoardingFour;
-import com.vms.antplay.activity.OnBoardingOne;
-import com.vms.antplay.activity.OnBoardingSix;
-import com.vms.antplay.activity.OnBoardingThree;
-import com.vms.antplay.activity.OnBoardingTwo;
+import com.vms.antplay.fragments.OnBoardingFive;
+import com.vms.antplay.fragments.OnBoardingFour;
+import com.vms.antplay.fragments.OnBoardingOne;
+import com.vms.antplay.fragments.OnBoardingSix;
+import com.vms.antplay.fragments.OnBoardingThree;
+import com.vms.antplay.fragments.OnBoardingTwo;
 
 public class OnBoardingPagerAdapter extends FragmentStatePagerAdapter {
 
