@@ -516,15 +516,7 @@
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@color/black" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/logout"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_13sdp" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

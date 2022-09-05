@@ -41,6 +41,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         etPass =(EditText) findViewById(R.id.et_password);
         btnLetsGo =(Button) findViewById(R.id.btn_signup);
 
+        etEmail.setText("rakesh@gmail.com");
+        etPass.setText("123456788");
+
+
         tvForgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,12 +62,15 @@ public class LoginScreenActivity extends AppCompatActivity {
         btnLetsGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 isAllFieldsChecked = CheckAllLoginFields();
 
                 if (isAllFieldsChecked) {
                     // we can call Api here
-                    st_email = etEmail.getText().toString();
-                    st_password = etPass.getText().toString();
+                   // st_email = etEmail.getText().toString();
+                   // st_password = etPass.getText().toString();
+
+
                    // callLoginAPI( st_email, st_password);
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);

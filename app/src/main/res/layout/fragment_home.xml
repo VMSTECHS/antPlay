@@ -23,6 +23,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/background"
+            android:alpha="0.9"
             android:orientation="vertical">
 
             <ScrollView
@@ -87,7 +89,6 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
-                                android:background="@drawable/custom_spn_background"
                                 app:cardCornerRadius="@dimen/_5sdp">
 
                                 <ImageView
