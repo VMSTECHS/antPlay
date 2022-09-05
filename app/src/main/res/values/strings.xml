@@ -124,4 +124,14 @@
     <string name="minmax">Min/Max</string>
     <string name="raw">Raw</string>
     <string name="action">Actions</string>
+
+
+    <!--    //&#45;&#45;&#45;&#45; FAQ -->
+    <string name="question1">What is Ant Play?</string>
+    <string name="question2">What purpose can I use Ant Play for?</string>
+    <string name="question3">Will I be able to use Ant Play right after purchasing the plan?</string>
+    <string name="question4">On what types of devices is Ant Play available?</string>
+    <string name="answer1">Steven Rogers was born in the Lower East Side of Manhattan, New York City, in 1925 to poor Irish immigrants, Sarah and Joseph Rogers.[54] Joseph died when Steve was a child, and Sarah died of pneumonia while Steve was a teen. By early 1940, before Americas entry into World War II, Rogers is a tall, scrawny fine arts student specializing in illustration and a comic book writer and artist.</string>
+
+
 </resources>
