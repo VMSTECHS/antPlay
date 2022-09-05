@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginwithlogo"
+    android:background="@drawable/login_bg_new"
     tools:context=".activity.LoginScreenActivity">
 
     <ScrollView
@@ -73,7 +73,7 @@
                     android:layout_height="52dp"
                     android:background="@drawable/btngradient"
                     android:text="@string/letsGo"
-                    android:textColor="@color/white"></Button>
+                    android:textColor="@color/white"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -18,10 +18,11 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
+        android:fontFamily="sans-serif"
         android:text="@string/play_pc_game"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/_24sdp" />
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,8 +30,9 @@
         android:layout_below="@id/txtPlayPC"
         android:layout_centerHorizontal="true"
         android:text="@string/by_using_smartphone"
+        android:fontFamily="sans-serif"
         android:textColor="@color/gray"
-        android:textSize="@dimen/_16sdp" />
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

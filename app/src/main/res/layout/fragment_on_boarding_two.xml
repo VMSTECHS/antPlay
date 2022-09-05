@@ -21,20 +21,22 @@
         android:layout_marginEnd="@dimen/_20sdp"
         android:text="@string/connect_a_gamepad"
         android:textAlignment="center"
+        android:fontFamily="sans-serif"
         android:textColor="@color/white"
-        android:textSize="@dimen/_24sdp" />
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtPlayPC"
         android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:gravity="center"
         android:text="@string/more_professional"
         android:textColor="@color/gray"
-        android:textSize="@dimen/_16sdp" />
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

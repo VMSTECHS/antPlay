@@ -11,7 +11,6 @@
         android:background="@color/black_trans" />
 
 
-
     <TextView
         android:id="@+id/txtPlayPC"
         android:layout_width="match_parent"
@@ -20,17 +19,19 @@
         android:layout_marginTop="@dimen/_70sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:text="@string/run_remote_pc"
+        android:fontFamily="sans-serif"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/_24sdp" />
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtPlayPC"
         android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
         android:text="@string/from_smart_phone"
         android:textColor="@color/gray"
-        android:textSize="@dimen/_16sdp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

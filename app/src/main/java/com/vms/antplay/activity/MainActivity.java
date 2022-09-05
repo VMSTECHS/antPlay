@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.vms.antplay.R;
 import com.vms.antplay.adapter.PagerAdapter;
+import com.vms.antplay.fragments.ArcadeFragment;
 import com.vms.antplay.fragments.ComputerFragment;
 import com.vms.antplay.fragments.FaqFargment;
 import com.vms.antplay.fragments.HomeFragment;
@@ -64,10 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new FaqFargment();
                         break;
                     case 4:
-                        fragment = new FaqFargment();
+                        fragment = new ArcadeFragment();
                         break;
                     case 5:
                         logout();
+                        //fragment = new ArcadeFragment();
+                        break;
 
                     default:
                         fragment = new HomeFragment();

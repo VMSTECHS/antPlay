@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -19,7 +20,8 @@ import com.vms.antplay.adapter.ZoomOutPageTransformer;
 public class OnBoardingActivity extends AppCompatActivity implements View.OnClickListener {
     ViewPager viewPager;
     TabLayout tabLayout;
-    TextView txtSkip, txtNext;
+    TextView txtSkip;
+    Button txtNext;
     int currentItem;
     Context context;
 

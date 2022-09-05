@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/_100sdp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_90sdp"
+    android:layout_margin="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_height="@dimen/_75sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_5sdp">
 
@@ -20,18 +18,88 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/backgroundimage" />
+
+        <RelativeLayout
+            android:id="@+id/rlSelection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:background="@drawable/black_cornered_bg">
+
+            <RelativeLayout
+                android:id="@+id/rlSelectedFace"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/white_circle"
+                android:padding="@dimen/_3sdp">
+
+                <ImageView
+                    android:id="@+id/imgSelectedFace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selected_arcade_face" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp"
+                android:layout_toEndOf="@id/rlSelectedFace"
+                android:text="Danald"/>
+
+                <ImageView
+                    android:id="@+id/imgSelectedSeats"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/available_seats_arcade"
+                    android:layout_below="@id/rlSelectedFace"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp"
+                android:layout_below="@id/rlSelectedFace"
+                android:layout_toEndOf="@id/imgSelectedSeats"
+                android:text="2/20 Seat"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/_3sdp"
+                android:background="@drawable/btngradient"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:text="@string/join"/>
+
+
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/txtArcadeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_10sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:layout_below="@id/cardView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:text="arcade name" />
+        android:layout_marginBottom="5dp"
+        android:text="arcade name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_6sdp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

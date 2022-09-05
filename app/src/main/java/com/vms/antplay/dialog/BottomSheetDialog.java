@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +18,8 @@ import com.vms.antplay.R;
 
 public class BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     SeekBar priceSeekbar;
-    TextView txtPrice, txtPurchase,txt2hours,txt8Hours,txt22Hours;
+    TextView txtPrice,txt2hours,txt8Hours,txt22Hours;
+    Button txtPurchase;
     float discountPctFor8Hours = 0.05f;
     float discountPctFor24Hours = 0.10f;
     int perHourPrice = 32;

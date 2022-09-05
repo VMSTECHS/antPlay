@@ -50,6 +50,7 @@
         <activity
             android:name=".activity.LoginScreenActivity"
             android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity

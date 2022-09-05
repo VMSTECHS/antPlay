@@ -138,4 +138,5 @@
     <string name="rupees">₹</string>
     <string name="arcade">Arcade</string>
     <string name="arcade_message">Explore, host, and share games with everyone around the world.</string>
+    <string name="join">Join</string>
 </resources>

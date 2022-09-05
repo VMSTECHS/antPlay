@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -15,11 +15,14 @@
         android:orientation="vertical"
         tools:context=".activity.MainActivity">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent_green" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background"
-            android:alpha="0.9"
             android:orientation="vertical">
 
             <ScrollView
@@ -38,17 +41,19 @@
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/card_profile"
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
                             android:layout_marginLeft="@dimen/_1sdp"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:id="@+id/card_profile"
+                            android:background="@drawable/custom_spn_background"
+                            android:elevation="@dimen/_5sdp"
                             app:cardCornerRadius="@dimen/_5sdp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@color/white"
+                                android:background="@drawable/custom_spn_background"
                                 android:padding="@dimen/_5sdp"
                                 android:src="@drawable/person" />
                         </androidx.cardview.widget.CardView>
@@ -66,12 +71,13 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginLeft="@dimen/_70sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/custom_spn_background"
                                 app:cardCornerRadius="@dimen/_5sdp">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@color/white"
+                                    android:background="@drawable/custom_spn_background"
                                     android:padding="@dimen/_5sdp"
                                     android:src="@drawable/equalizer" />
                             </androidx.cardview.widget.CardView>
@@ -81,12 +87,13 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/custom_spn_background"
                                 app:cardCornerRadius="@dimen/_5sdp">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@color/white"
+                                    android:background="@drawable/custom_spn_background"
                                     android:padding="@dimen/_5sdp"
                                     android:src="@drawable/headset" />
                             </androidx.cardview.widget.CardView>
@@ -96,13 +103,14 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/custom_spn_background"
                                 app:cardCornerRadius="@dimen/_5sdp">
 
                                 <androidx.appcompat.widget.LinearLayoutCompat
                                     android:id="@+id/llTimer"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:background="@color/white"
+                                    android:background="@drawable/custom_spn_background"
                                     android:orientation="horizontal">
 
                                     <ImageView
@@ -110,7 +118,7 @@
                                         android:layout_height="@dimen/_25sdp"
                                         android:layout_gravity="left"
                                         android:layout_marginLeft="@dimen/_2sdp"
-                                        android:background="@color/white"
+                                        android:background="@drawable/custom_spn_background"
                                         android:padding="@dimen/_5sdp"
                                         android:src="@drawable/timerwatch" />
 
@@ -137,7 +145,7 @@
                                         android:layout_height="@dimen/_25sdp"
                                         android:layout_gravity="left"
                                         android:layout_marginLeft="@dimen/_2sdp"
-                                        android:background="@color/white"
+                                        android:background="@drawable/custom_spn_background"
                                         android:padding="@dimen/_5sdp"
                                         android:src="@drawable/plus" />
 
@@ -281,6 +289,6 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
