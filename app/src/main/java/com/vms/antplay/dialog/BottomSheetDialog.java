@@ -15,10 +15,11 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.vms.antplay.R;
+import com.vms.antplay.interfaces.PaymentInitiationInterface;
 
 public class BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     SeekBar priceSeekbar;
-    TextView txtPrice,txt2hours,txt8Hours,txt22Hours;
+    TextView txtPrice, txt2hours, txt8Hours, txt22Hours;
     Button txtPurchase;
     float discountPctFor8Hours = 0.05f;
     float discountPctFor24Hours = 0.10f;
@@ -28,6 +29,14 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
     int chargesFor2Hours = 64;
     int chargesFor8Hours = 450;
     int chargesFor24Hours = 850;
+
+    int hours = 0, amount = 0;
+
+    PaymentInitiationInterface paymentInitiationInterface;
+
+    public BottomSheetDialog(PaymentInitiationInterface paymentInitiationInterface) {
+        this.paymentInitiationInterface = paymentInitiationInterface;
+    }
 
     @Nullable
     @Override
@@ -102,6 +111,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 
     private String priceCalculation(int hours) {
         float totalPrice;
+        this.hours = hours;
+
         String strTotalPrice;
         switch (hours) {
             case 0: {
@@ -110,6 +121,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
                 float priceWithServiceCharges = totalPrice + (totalPrice * googleChargesInPct);
                 // totalPrice = totalPrice+(totalPrice*googleChargesInPct);
                 int roundedPrice = Math.round(priceWithServiceCharges);
+                amount = roundedPrice;
                 strTotalPrice = String.valueOf(roundedPrice);
                 Log.d("PRICE", "Price: " + totalPrice + ", Discount: No Discount, Service Charges: " + priceWithServiceCharges + " : " + strTotalPrice);
                 return strTotalPrice;
@@ -123,6 +135,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
                 float priceWithServiceCharges = totalPrice + (totalPrice * googleChargesInPct);
                 // totalPrice = totalPrice+(totalPrice*googleChargesInPct);
                 int roundedPrice = Math.round(priceWithServiceCharges);
+                amount = roundedPrice;
                 strTotalPrice = String.valueOf(roundedPrice);
                 Log.d("PRICE", "Price: " + totalPrice + ", Discount: No Discount, Service Charges: " + priceWithServiceCharges + " : " + strTotalPrice);
                 return strTotalPrice;
@@ -135,6 +148,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
                 float priceWithServiceCharges = totalPrice + (totalPrice * googleChargesInPct);
                 // totalPrice = totalPrice+(totalPrice*googleChargesInPct);
                 int roundedPrice = Math.round(priceWithServiceCharges);
+                amount = roundedPrice;
                 strTotalPrice = String.valueOf(roundedPrice);
                 Log.d("PRICE", "Price: " + totalPrice + ", Discount: No Discount, Service Charges: " + priceWithServiceCharges + " : " + strTotalPrice);
                 return strTotalPrice;
@@ -170,7 +184,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 
                 break;
             case R.id.txtPurchase:
-                Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
+                paymentInitiationInterface.onPaymentInitiated(hours,amount);
+               // Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
                 break;
 
         }

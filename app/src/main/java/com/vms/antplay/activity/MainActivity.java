@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,6 +16,10 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.google.android.material.tabs.TabLayout;
+import com.razorpay.ExternalWalletListener;
+import com.razorpay.PaymentData;
+import com.razorpay.PaymentResultListener;
+import com.razorpay.PaymentResultWithDataListener;
 import com.vms.antplay.R;
 import com.vms.antplay.adapter.PagerAdapter;
 import com.vms.antplay.fragments.ArcadeFragment;
@@ -27,12 +32,13 @@ import com.vms.antplay.model.ImageModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  PaymentResultWithDataListener, ExternalWalletListener {
 
 
     ViewPager simpleViewPager;
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
+    private AlertDialog.Builder alertDialogBuilder;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -44,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         //  simpleViewPager = (ViewPager) findViewById(R.id.viewPager);
         loadFragment(new HomeFragment());
+
+        alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setTitle("Payment Result");
+        alertDialogBuilder.setPositiveButton("Ok", (dialog, which) -> {
+            //do nothing
+        });
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -113,4 +126,33 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void onExternalWalletSelected(String s, PaymentData paymentData) {
+        try{
+            alertDialogBuilder.setMessage("External Wallet Selected:\nPayment Data: "+paymentData.getData());
+            alertDialogBuilder.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onPaymentSuccess(String razorpayPaymentID, PaymentData paymentData) {
+        try{
+            alertDialogBuilder.setMessage("Payment Successful :\nPayment ID: "+razorpayPaymentID+"\nPayment Data: "+paymentData.getData());
+            alertDialogBuilder.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onPaymentError(int code, String response, PaymentData paymentData) {
+        try{
+            alertDialogBuilder.setMessage("Payment Failed:\nPayment Data: "+paymentData.getData());
+            alertDialogBuilder.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -30,6 +30,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+
 }
 
 dependencies {
@@ -73,7 +75,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0-beta04'
 
-
+    /*RazorPay*/
+    implementation 'com.razorpay:checkout:1.6.24'
 
 
 
