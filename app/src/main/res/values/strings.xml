@@ -49,9 +49,10 @@
     <string name="back">Back</string>
     <string name="mbTS">MB|T/S</string>
     <string name="discord">Discord</string>
-    <string name="vkontakte">Vkontakte</string>
-    <string name="website">website</string>
+    <string name="instagram">Instagram</string>
+    <string name="website">AntPlay.Tech</string>
     <string name="change_pass">Change password</string>
+    <string name="upadte_pass">Update password</string>
     <string name="user_agreement">User agreement</string>
     <string name="logout">Log out</string>
     <string name="delete_your_pc">Delete Virtual PC</string>
@@ -59,6 +60,14 @@
     <string name="current_virtual_pc">Current virtual PC</string>
     <string name="manage_subscription">Manage Subscription</string>
     <string name="something_wrong">Something went wrong</string>
+    <string name="old_pass">Old Password</string>
+    <string name="new_pass">New Password</string>
+    <string name="payment_history">Payment History</string>
+    <string name="about">About Us</string>
+    <string name="version">Version</string>
+    <string name="version_name">1.0</string>
+
+
 
     <!--    Facebook-->
     <string name="facebook_app_id">735046784449617</string>
