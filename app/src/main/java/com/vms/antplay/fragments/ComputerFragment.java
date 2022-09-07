@@ -38,15 +38,15 @@ public class ComputerFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_computer, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_computers);
-        linearAgree = ( LinearLayout) view.findViewById(R.id.linear_agreement);
-
-        linearAgree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), Agreement_User.class);
-                getContext().startActivity(i);
-            }
-        });
+//        linearAgree = ( LinearLayout) view.findViewById(R.id.linear_agreement);
+//
+//        linearAgree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(getActivity(), Agreement_User.class);
+//                getContext().startActivity(i);
+//            }
+//        });
 
         computer_availableModals = new ArrayList<>();
         computer_availableModals.add(new Computer_availableModal("Dex-70f5","Rakesh Computer", R.drawable.computers_pc));

@@ -4,16 +4,19 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vms.antplay.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    LinearLayout backLinear, logoutLinear;
+    LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout;
+    TextView tv_changePassword;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         backLinear =(LinearLayout) findViewById(R.id.back_linear);
         logoutLinear =(LinearLayout) findViewById(R.id.logout_linear);
+        linearAgree =(LinearLayout) findViewById(R.id.linear_agreements);
+        linear_Change = (LinearLayout) findViewById(R.id.linear_changePassword);
+        linearWebsite = (LinearLayout) findViewById(R.id.linear_website);
+        linearAbout = (LinearLayout) findViewById(R.id.linear_aboutUs);
+
+
         backLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +46,41 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        linear_Change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfileActivity.this, ChangePassword.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        linearAgree = ( LinearLayout) findViewById(R.id.linear_agreements);
+
+        linearAgree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProfileActivity.this, Agreement_User.class);
+               startActivity(i);
+
+            }
+        });
+
+        linearWebsite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://antplay.tech/"));
+                startActivity(browserIntent);
+            }
+        });
+        linearAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProfileActivity.this, AboutUs.class);
+                startActivity(i);
             }
         });
     }
