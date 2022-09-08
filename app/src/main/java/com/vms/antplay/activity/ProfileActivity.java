@@ -15,7 +15,7 @@ import com.vms.antplay.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout;
+    LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout, linearPayment, linearEdit;
     TextView tv_changePassword;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -30,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
         linear_Change = (LinearLayout) findViewById(R.id.linear_changePassword);
         linearWebsite = (LinearLayout) findViewById(R.id.linear_website);
         linearAbout = (LinearLayout) findViewById(R.id.linear_aboutUs);
+        linearPayment = (LinearLayout) findViewById(R.id.linear_paymentHistory);
+        linearEdit = (LinearLayout) findViewById(R.id.linear_edit);
 
 
         backLinear.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +82,20 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ProfileActivity.this, AboutUs.class);
+                startActivity(i);
+            }
+        });
+        linearPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProfileActivity.this, PaymentHistory.class);
+                startActivity(i);
+            }
+        });
+        linearEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProfileActivity.this, EditProfileActivity.class);
                 startActivity(i);
             }
         });
