@@ -19,10 +19,15 @@
         android:theme="@style/Theme.AntPlay"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PaymentPlanActivity"
+            android:exported="false"
+            android:label="@string/title_activity_payment_plan"
+            android:theme="@style/Theme.AntPlay.NoActionBar" />
+        <activity
             android:name=".activity.AboutUs"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".activity.ChangePassword"
             android:exported="false"

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundimage"
+    tools:context=".activity.PaymentPlanActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_green" />
+
+    <RelativeLayout
+        android:id="@+id/rlHeaderPayment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp">
+
+        <ImageView
+            android:id="@+id/imgBackPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:src="@drawable/backarrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imgBackPayment"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="normal" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgPaymentHead"
+        android:layout_width="@dimen/_13sdp"
+        android:layout_height="@dimen/_13sdp"
+        android:layout_below="@id/rlHeaderPayment"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:src="@drawable/plan"
+
+        />
+
+    <TextView
+        android:id="@+id/txtPaymentHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlHeaderPayment"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@id/imgPaymentHead"
+        android:text="@string/subscription_plan"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPaymentPlans"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txtPaymentHead"
+        android:layout_marginTop="@dimen/_15sdp"/>
+
+
+</RelativeLayout>

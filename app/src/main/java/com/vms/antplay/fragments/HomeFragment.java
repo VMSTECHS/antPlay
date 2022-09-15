@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.razorpay.Checkout;
 import com.vms.antplay.R;
+import com.vms.antplay.activity.PaymentPlanActivity;
 import com.vms.antplay.activity.ProfileActivity;
 import com.vms.antplay.activity.SpeedTestActivity;
 import com.vms.antplay.adapter.ImageAdapter;
@@ -35,9 +36,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class HomeFragment extends Fragment implements PaymentInitiationInterface{
+public class HomeFragment extends Fragment implements PaymentInitiationInterface {
     private ArrayList<ImageModel> imageModelArrayList;
-    ImageView imagePlay;
+    ImageView imagePlay, imgTimer, imgAddTimer;
     CardView profile_card;
     LinearLayoutCompat llTimer;
     TextView txtTimer;
@@ -62,6 +63,8 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
 
         llTimer = (LinearLayoutCompat) view.findViewById(R.id.llTimer);
         txtTimer = view.findViewById(R.id.txtTimer);
+        imgTimer = view.findViewById(R.id.img_timer);
+        imgAddTimer = view.findViewById(R.id.imgAddTimer);
 
         /*RazorPay Checkout*/
 
@@ -108,11 +111,27 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(imageAdapter);
 
-        llTimer.setOnClickListener(new View.OnClickListener() {
+        imgTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(HomeFragment.this);
                 bottomSheetDialog.show(getActivity().getSupportFragmentManager(), "BackgrountSheet");
+            }
+        });
+
+        txtTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(HomeFragment.this);
+                bottomSheetDialog.show(getActivity().getSupportFragmentManager(), "BackgrountSheet");
+            }
+        });
+
+        imgAddTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PaymentPlanActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -123,14 +142,14 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
     @Override
     public void onPaymentInitiated(int hours, int amount) {
 
-        startPayment(hours,amount);
+        startPayment(hours, amount);
     }
 
     public void startPayment(int hours, int amount) {
         /*
           You need to pass current activity in order to let Razorpay create CheckoutActivity
          */
-        int amountInPaise = amount*100;
+        int amountInPaise = amount * 100;
         final Activity activity = getActivity();
 
         final Checkout checkout = new Checkout();
