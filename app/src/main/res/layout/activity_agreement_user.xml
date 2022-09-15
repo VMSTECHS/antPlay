@@ -35,8 +35,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:fontFamily="sans-serif"
-                android:text="Agreement"
-                android:gravity="center"
+                android:text="@string/back"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="normal" />
@@ -48,6 +47,7 @@
             android:layout_height="wrap_content"
             android:text="@string/agreement"
             android:textColor="@color/white"
+            android:fontFamily="sans-serif"
             android:layout_margin="@dimen/_15sdp"
             />
     </LinearLayout>

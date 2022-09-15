@@ -1,7 +1,9 @@
 package com.vms.antplay.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +18,7 @@ import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.requestModal.LoginRequestModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
+import com.vms.antplay.utils.TcpClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +31,10 @@ public class LoginScreenActivity extends AppCompatActivity {
     EditText etEmail,etPass;
     boolean isAllFieldsChecked = false;
     String st_email, st_password;
+    //-----TCP
+    private TcpClient mTcpClient = null;
+    private connectTask conctTask = null;
+    private String ipAddressOfServerDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +50,9 @@ public class LoginScreenActivity extends AppCompatActivity {
 
         etEmail.setText("rakesh@gmail.com");
         etPass.setText("123456788");
-
+        //---------TCP---------
+        new connectTask().execute();
+        //-----------------
 
         tvForgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +73,17 @@ public class LoginScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 isAllFieldsChecked = CheckAllLoginFields();
+
+                //-----TCP--
+                String message = etEmail.getText().toString();
+
+                //sends the message to the server
+                if (mTcpClient != null)
+                {
+                    mTcpClient.sendMessage(message);
+                }
+
+                //----------------------
 
                 if (isAllFieldsChecked) {
                     // we can call Api here
@@ -122,4 +142,68 @@ public class LoginScreenActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    //----------------------TCP CLIENT
+    private class connectTask extends AsyncTask<String, String, TcpClient> {
+        @Override
+        protected TcpClient doInBackground(String... strings) {
+            //create a TCPClient object and
+            mTcpClient = new TcpClient(new TcpClient.OnMessageReceived() {
+                @Override
+                //here the messageReceived method is implemented
+                public void messageReceived(String message) {
+                    try {
+                        //this method calls the onProgressUpdate
+                        publishProgress(message);
+                        if (message != null) {
+                            System.out.println("Return Message from Socket::::: >>>>> " + message);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, ipAddressOfServerDevice);
+            mTcpClient.run();
+            if (mTcpClient != null) {
+                mTcpClient.sendMessage("Initial Message when connected with Socket Server");
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+
+            Log.e("Hello OnProgressUpdate","Hello Update");
+
+            //in the arrayList we add the messaged received from server
+            //  arrayList.add(values[0]);
+
+            // notify the adapter that the data set has changed. This means that new message received
+            // from server was added to the list
+            //  mAdapter.notifyDataSetChanged();
+        }
+
+
+    }
+    @Override
+    protected void onDestroy()
+    {
+        try
+        {
+            Log.e("Hello On Destroy","On Destroy");
+            System.out.println("onDestroy.");
+            mTcpClient.sendMessage("bye");
+            mTcpClient.stopClient();
+            conctTask.cancel(true);
+            conctTask = null;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        super.onDestroy();
+    }
+
+    //---------------------
 }

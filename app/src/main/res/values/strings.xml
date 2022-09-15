@@ -9,6 +9,7 @@
     <string name="signup">Sign Up</string>
     <string name="letsGo">Let’s Go</string>
     <string name="firstname">First Name</string>
+    <string name="name">Name</string>
     <string name="lastname">Last Name</string>
     <string name="phone">Phone Number</string>
     <string name="address">Address</string>
@@ -66,7 +67,12 @@
     <string name="about">About Us</string>
     <string name="version">Version</string>
     <string name="version_name">1.0</string>
-
+    <string name="edit">Edit</string>
+    <string name="edit_profile">Edit Profile Details</string>
+    <string name="transactionId">Transaction Id</string>
+    <string name="planName">Plan Name</string>
+    <string name="status">Status</string>
+    <string name="Amount">Amount</string>
 
     <!--    Facebook-->
     <string name="facebook_app_id">735046784449617</string>

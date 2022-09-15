@@ -24,10 +24,20 @@
             android:label="@string/title_activity_payment_plan"
             android:theme="@style/Theme.AntPlay.NoActionBar" />
         <activity
-            android:name=".activity.AboutUs"
+            android:name=".activity.PaymentHistory"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activity.EditProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activity.AboutUs"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".activity.ChangePassword"
             android:exported="false"
