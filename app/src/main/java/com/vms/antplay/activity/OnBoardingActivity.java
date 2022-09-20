@@ -42,6 +42,18 @@ public class OnBoardingActivity extends AppCompatActivity implements View.OnClic
         tabLayout.setupWithViewPager(viewPager);
         setOnClickListener();
         onPageChangeListener();
+
+       // mathscalculation();
+
+
+    }
+
+    private void mathscalculation() {
+        int num1 = 10/3;
+        float num2 = 10f/3;
+        double num3 = 10d/3;
+
+        Log.d("DOUBLE_NUM","Int : "+num1+" Float : "+num2+" Double : "+num3);
     }
 
     private void onPageChangeListener() {

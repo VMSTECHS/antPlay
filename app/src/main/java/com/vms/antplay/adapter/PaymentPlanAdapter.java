@@ -10,19 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
+import com.vms.antplay.interfaces.PaymentInitiationInterface;
 import com.vms.antplay.model.PaymentPlansModel;
 
 import java.util.ArrayList;
 
 
-public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.PaymentPlanViewHolder> {
+public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.PaymentPlanViewHolder> implements View.OnClickListener {
     ArrayList<PaymentPlansModel> paymentPlansList;
     Context context;
+    int hours = 0, amount = 0;
+
+    PaymentInitiationInterface paymentInitiationInterface;
 
 
-    public PaymentPlanAdapter(Context context, ArrayList<PaymentPlansModel> paymentPlansList) {
+    public PaymentPlanAdapter(Context context, ArrayList<PaymentPlansModel> paymentPlansList, PaymentInitiationInterface paymentInitiationInterface) {
         this.paymentPlansList = paymentPlansList;
         this.context = context;
+        this.paymentInitiationInterface = paymentInitiationInterface;
     }
 
     @NonNull
@@ -35,15 +40,26 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
     @Override
     public void onBindViewHolder(@NonNull PaymentPlanViewHolder holder, int position) {
         holder.txtPlanName.setText(paymentPlansList.get(position).getPlanName());
-        holder.txtPlaneAmount.setText("₹ "+paymentPlansList.get(position).getAmount());
+        holder.txtPlaneAmount.setText("₹ " + paymentPlansList.get(position).getAmount());
         holder.txtDurationInHours.setText(paymentPlansList.get(position).getDurationInHours() + " Hours");
-        holder.txtValidity.setText(paymentPlansList.get(position).getValidityInDays()+" Days");
+        holder.txtValidity.setText(paymentPlansList.get(position).getValidityInDays() + " Days");
+        holder.txtSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getAmount(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getDurationInHours());
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
         return paymentPlansList.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     public class PaymentPlanViewHolder extends RecyclerView.ViewHolder {
@@ -65,6 +81,8 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
             txtSpacLine5 = itemView.findViewById(R.id.txtSpacLine5);
 
             txtSubscribe = itemView.findViewById(R.id.txtSubscribe);
+
+
         }
     }
 }
