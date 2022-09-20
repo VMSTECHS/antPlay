@@ -1,6 +1,7 @@
 package com.vms.antplay.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -31,6 +32,14 @@ public class ForgetPassword extends AppCompatActivity {
         etEmailForget =(EditText) findViewById(R.id.et_emailForget);
         btnForgetPass =(Button) findViewById(R.id.btn_resetPass);
         tvTermsCondition =(TextView) findViewById(R.id.tv_termsAndCondition_forget);
+
+        tvTermsCondition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForgetPassword.this, TermsAndCondition.class);
+                startActivity(intent);
+            }
+        });
 
         btnForgetPass.setOnClickListener(new View.OnClickListener() {
             @Override

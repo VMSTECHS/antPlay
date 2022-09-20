@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 1001;
+    TextView tv_tandC;
 
 
     @Override
@@ -41,8 +43,19 @@ public class LoginActivity extends AppCompatActivity {
         btnGoogleLogin = (Button) findViewById(R.id.continueWithGoogle);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnRegister = (Button) findViewById(R.id.btn_register);
+        tv_tandC = (TextView) findViewById(R.id.tv_termsandc_login);
+
+
 
         setSignInClient();
+
+        tv_tandC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, TermsAndCondition.class);
+                startActivity(intent);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

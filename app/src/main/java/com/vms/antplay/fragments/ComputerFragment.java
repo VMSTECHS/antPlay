@@ -12,7 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vms.antplay.R;
 import com.vms.antplay.activity.Agreement_User;
@@ -37,6 +40,10 @@ public class ComputerFragment extends Fragment {
     private ArrayList<Computer_availableModal> computer_availableModals;
     LinearLayout linearAgree;
 
+    ImageView img_reload;
+    TextView tv_reload;
+    private ProgressBar loadingPB;
+
     public ComputerFragment() {
         // Required empty public constructor
     }
@@ -48,8 +55,30 @@ public class ComputerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_computer, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_computers);
+        img_reload = (ImageView) view.findViewById(R.id.img_reload);
+        tv_reload = (TextView) view.findViewById(R.id.tv_reload);
+      //  loadingPB = (ProgressBar) view.findViewById(R.id.loading_progress_computer);
 
         callGetVmApi();
+
+        tv_reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                loadingPB.setVisibility(View.VISIBLE);
+                Log.e("Hello","Hello reload");
+                callGetVmApi();
+            }
+        });
+        img_reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  loadingPB.setVisibility(View.VISIBLE);
+                callGetVmApi();
+            }
+        });
+
+
+
 //        linearAgree = ( LinearLayout) view.findViewById(R.id.linear_agreement);
 //
 //        linearAgree.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +115,7 @@ public class ComputerFragment extends Fragment {
             public void onResponse(Call<GetVMResponseModal> call, Response<GetVMResponseModal> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.e("Hello Get VM", "" + response.body().getVmname());
-
+                    loadingPB.setVisibility(View.GONE);
                     computer_availableModals = new ArrayList<>();
                     computer_availableModals.add(
                             new Computer_availableModal(
@@ -107,6 +136,7 @@ public class ComputerFragment extends Fragment {
             @Override
             public void onFailure(Call<GetVMResponseModal> call, Throwable t) {
                 Log.e("Hello Get VM", "Failure");
+//                loadingPB.setVisibility(View.GONE);
             }
         });
     }

@@ -189,6 +189,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="sans-serif"
                             android:text="@string/manage_subscription"
+                            android:id="@+id/tv_manageSubscription"
                             android:textColor="@color/white" />
                     </LinearLayout>
 

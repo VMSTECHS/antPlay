@@ -48,8 +48,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         etPass =(EditText) findViewById(R.id.et_password);
         btnLetsGo =(Button) findViewById(R.id.btn_signup);
 
-        etEmail.setText("rakesh@gmail.com");
-        etPass.setText("123456788");
+//        etEmail.setText("rakesh@gmail.com");
+//        etPass.setText("123456788");
+        etEmail.setText("royv");
+        etPass.setText("Antplay@123");
         //---------TCP---------
         new connectTask().execute();
         //-----------------
@@ -83,6 +85,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                     mTcpClient.sendMessage(message);
                 }
 
+
                 //----------------------
 
                 if (isAllFieldsChecked) {
@@ -91,9 +94,9 @@ public class LoginScreenActivity extends AppCompatActivity {
                    // st_password = etPass.getText().toString();
 
 
-                   // callLoginAPI( st_email, st_password);
-                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
-                    startActivity(i);
+                    callLoginAPI( st_email, st_password);
+//                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+//                    startActivity(i);
                 }
             }
         });
@@ -108,14 +111,20 @@ public class LoginScreenActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponseModel>() {
             @Override
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                if (response.isSuccessful() && response.body()!=null){
+                if (response.isSuccessful()){
+                    Log.e("Hello--Success",""+response.body().getAccess());
+                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+                   startActivity(i);
 
+                } else{
+                    Log.e("Hello--Success","Else condition");
+//                    Log.e("Hello--Success",""+response.body().getAccess());
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-
+                Log.e("Hello--Failure",""+t);
             }
         });
 

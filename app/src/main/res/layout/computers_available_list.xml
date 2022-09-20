@@ -64,7 +64,7 @@
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/btngradient"
-                    android:text="Share"
+                    android:text="Connect"
                     android:id="@+id/comp_btn"
                     android:textAllCaps="false"
                     android:textColor="@color/black" />

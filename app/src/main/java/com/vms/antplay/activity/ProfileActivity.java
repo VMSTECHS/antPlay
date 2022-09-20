@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import com.vms.antplay.R;
 
+import org.w3c.dom.Text;
+
 public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout, linearPayment, linearEdit;
-    TextView tv_changePassword;
+    TextView tv_changePassword, tv_manageSubs;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,17 @@ public class ProfileActivity extends AppCompatActivity {
         linearAbout = (LinearLayout) findViewById(R.id.linear_aboutUs);
         linearPayment = (LinearLayout) findViewById(R.id.linear_paymentHistory);
         linearEdit = (LinearLayout) findViewById(R.id.linear_edit);
+        tv_manageSubs = (TextView) findViewById(R.id.tv_manageSubscription);
+
+
+        tv_manageSubs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfileActivity.this, PaymentPlanActivity.class);
+                startActivity(i);
+
+            }
+        });
 
 
         backLinear.setOnClickListener(new View.OnClickListener() {

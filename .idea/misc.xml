@@ -15,7 +15,6 @@
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/googlebtn.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/gradient_pcsetting.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/gradienttext.xml" value="0.2365" />
-        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/payment_button_bg.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/selected_dot.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/tab_selector.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/thumb.xml" value="0.121" />
@@ -44,9 +43,7 @@
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_login_screen.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_on_boarding.xml" value="0.25" />
-        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_payment_plan.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_phone_verify.xml" value="0.25" />
-        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_speed_test.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_splash.xml" value="0.25" />
@@ -68,16 +65,37 @@
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/gamepad_rawdata.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/imageadapterlayout.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/item_arcade.xml" value="0.24895833333333334" />
-        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/item_payment_plan.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/simple_spinner_dropdown.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/spinner_item.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/spinner_text.xml" value="0.25" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/drawable/btnshape.xml" value="0.227" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/drawable/gradient_pcsetting.xml" value="0.227" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_about_us.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_agreement_user.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_edit_profile.xml" value="0.2932877297990594" />
         <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_forget_password.xml" value="0.1" />
         <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_login_screen.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_main.xml" value="0.2941427960666952" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_payment_history.xml" value="0.2932877297990594" />
         <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_phone_verify.xml" value="0.3625" />
-        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_profile.xml" value="0.33" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_splash.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/activity_terms_and_condition.xml" value="0.1" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/computers_available_list.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/fag_adapter.xml" value="0.28957365977205574" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/fragment_computer.xml" value="0.15006412997007268" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/fragment_faq_fargment.xml" value="0.28957365977205574" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/fragment_game_pad.xml" value="0.28957365977205574" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/fragment_p_c_setting.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/imageadapterlayout.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/paymenthistory_adapter.xml" value="0.33" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/simple_spinner_dropdown.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/layout/spinner_item.xml" value="0.2932877297990594" />
+        <entry key="..\:/Users/rakes/OneDrive/Desktop/Rakesh/Rakesh/AndroidStudioProjects/AndroidStudioProjects/AntPlay/app/src/main/res/xml/network_security_config.xml" value="0.1496365968362548" />
       </map>
     </option>
   </component>

@@ -67,6 +67,7 @@
         android:layout_height="20dp"
         android:gravity="center"
         android:textSize="14sp"
+        android:id="@+id/tv_termsandc_login"
         android:fontFamily="sans-serif"
         android:layout_marginTop="10dp"
         android:text="@string/termsAndC"
