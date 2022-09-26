@@ -36,8 +36,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/_12sdp"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_width="@dimen/_8sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_20sdp"
                             android:src="@drawable/backarrow" />
@@ -50,7 +50,7 @@
                             android:fontFamily="sans-serif"
                             android:text="@string/back"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/tab_header_text"
                             android:textStyle="normal" />
 
                     </LinearLayout>
@@ -70,8 +70,8 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="@dimen/_10sdp"
-                                android:layout_height="@dimen/_10sdp"
+                                android:layout_width="@dimen/_8sdp"
+                                android:layout_height="@dimen/_8sdp"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_2sdp"
                                 android:src="@drawable/editprofile" />
@@ -85,7 +85,7 @@
                                 android:fontFamily="sans-serif"
                                 android:text="@string/edit"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_13sdp"
+                                android:textSize="@dimen/tab_header_text"
                                 android:textStyle="normal" />
                         </LinearLayout>
                     </LinearLayout>
@@ -105,8 +105,8 @@
                         android:fontFamily="sans-serif"
                         android:text="user@gmail.com"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="normal" />
 
 
                 </LinearLayout>
@@ -127,7 +127,7 @@
                         android:fontFamily="sans-serif"
                         android:text="Current Plan"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_11sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -287,8 +287,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/discord" />
 
@@ -299,7 +299,7 @@
                         android:text="@string/discord"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -310,7 +310,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -334,8 +334,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/instagram" />
 
@@ -346,7 +346,7 @@
                         android:text="@string/instagram"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -357,7 +357,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -382,8 +382,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/website" />
 
@@ -394,7 +394,7 @@
                         android:text="@string/website"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -405,7 +405,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -430,8 +430,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/paymenthistory" />
 
@@ -442,7 +442,7 @@
                         android:text="@string/payment_history"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -453,7 +453,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -478,8 +478,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/about" />
 
@@ -490,7 +490,7 @@
                         android:text="@string/about"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -501,7 +501,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -526,8 +526,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/lock" />
 
@@ -539,7 +539,7 @@
                         android:text="@string/change_pass"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -550,7 +550,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -575,8 +575,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/user_agreement" />
 
@@ -587,7 +587,7 @@
                         android:text="@string/user_agreement"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -598,7 +598,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />
@@ -623,8 +623,8 @@
                     android:paddingBottom="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_12sdp"
                         android:src="@drawable/logouts" />
 
@@ -635,7 +635,7 @@
                         android:text="@string/logout"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_6sdp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -646,7 +646,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_12sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_12sdp"
                             android:layout_marginRight="@dimen/_15sdp"
                             android:src="@drawable/forward" />

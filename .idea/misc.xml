@@ -9,6 +9,7 @@
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/circleshape.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/custom_seekbar.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/custom_spn_background.xml" value="0.2365" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/custom_spn_bg.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/default_dot.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/dropdown.xml" value="0.2365" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/drawable/forward.xml" value="0.2365" />
@@ -28,7 +29,9 @@
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw1024dp/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw1024dp/fragment_on_boarding_one.xml" value="0.1" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/activity_on_boarding.xml" value="0.536" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/activity_profile.xml" value="0.1875" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/activity_splash.xml" value="0.1875" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/fragment_home.xml" value="0.1875" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/fragment_on_boarding_five.xml" value="0.1875" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/fragment_on_boarding_four.xml" value="0.1875" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout-sw600dp/fragment_on_boarding_one.xml" value="0.1875" />
@@ -42,16 +45,23 @@
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_login.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_login_screen.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_notification.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_on_boarding.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_payment_plan.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_phone_verify.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_profile.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_speed_test.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/activity_terms_and_condition.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.20512820512820512" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/computers_available_list.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/content_payment_plan.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fag_adapter.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_arcade.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_computer.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_faq_fargment.xml" value="0.25" />
+        <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_game_pad.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/admin/StudioProjects/antPlay/app/src/main/res/layout/fragment_on_boarding_five.xml" value="0.25" />

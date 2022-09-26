@@ -28,7 +28,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     Button btnLetsGo;
     TextView tvForgetPass, tvSignupHere;
-    EditText etEmail,etPass;
+    EditText etEmail, etPass;
     boolean isAllFieldsChecked = false;
     String st_email, st_password;
     //-----TCP
@@ -42,16 +42,16 @@ public class LoginScreenActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login_screen);
-        tvForgetPass =(TextView) findViewById(R.id.tv_forgetPass);
-        tvSignupHere =(TextView) findViewById(R.id.tv_signupHere);
-        etEmail =(EditText) findViewById(R.id.et_email);
-        etPass =(EditText) findViewById(R.id.et_password);
-        btnLetsGo =(Button) findViewById(R.id.btn_signup);
+        tvForgetPass = (TextView) findViewById(R.id.tv_forgetPass);
+        tvSignupHere = (TextView) findViewById(R.id.tv_signupHere);
+        etEmail = (EditText) findViewById(R.id.et_email);
+        etPass = (EditText) findViewById(R.id.et_password);
+        btnLetsGo = (Button) findViewById(R.id.btn_signup);
 
-//        etEmail.setText("rakesh@gmail.com");
-//        etPass.setText("123456788");
-        etEmail.setText("royv");
-        etPass.setText("Antplay@123");
+        etEmail.setText("rakesh@gmail.com");
+        etPass.setText("123456788");
+      /*  etEmail.setText("royv");
+        etPass.setText("Antplay@123");*/
         //---------TCP---------
         new connectTask().execute();
         //-----------------
@@ -80,8 +80,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 String message = etEmail.getText().toString();
 
                 //sends the message to the server
-                if (mTcpClient != null)
-                {
+                if (mTcpClient != null) {
                     mTcpClient.sendMessage(message);
                 }
 
@@ -90,13 +89,13 @@ public class LoginScreenActivity extends AppCompatActivity {
 
                 if (isAllFieldsChecked) {
                     // we can call Api here
-                   // st_email = etEmail.getText().toString();
-                   // st_password = etPass.getText().toString();
+                    // st_email = etEmail.getText().toString();
+                    // st_password = etPass.getText().toString();
 
 
-                    callLoginAPI( st_email, st_password);
-//                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
-//                    startActivity(i);
+                    // callLoginAPI( st_email, st_password);
+                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+                    startActivity(i);
                 }
             }
         });
@@ -106,32 +105,32 @@ public class LoginScreenActivity extends AppCompatActivity {
     private void callLoginAPI(String email, String password) {
 
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
-        LoginRequestModal loginRequestModal = new LoginRequestModal(email,password);
+        LoginRequestModal loginRequestModal = new LoginRequestModal(email, password);
         Call<LoginResponseModel> call = retrofitAPI.loginUser(loginRequestModal);
         call.enqueue(new Callback<LoginResponseModel>() {
             @Override
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                if (response.isSuccessful()){
-                    Log.e("Hello--Success",""+response.body().getAccess());
+                if (response.isSuccessful()) {
+                    Log.e("Hello--Success", "" + response.body().getAccess());
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
-                   startActivity(i);
+                    startActivity(i);
 
-                } else{
-                    Log.e("Hello--Success","Else condition");
+                } else {
+                    Log.e("Hello--Success", "Else condition");
 //                    Log.e("Hello--Success",""+response.body().getAccess());
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-                Log.e("Hello--Failure",""+t);
+                Log.e("Hello--Failure", "" + t);
             }
         });
 
     }
 
     private boolean CheckAllLoginFields() {
-       // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         String emailPattern = "^(?:\\d{10}|\\w+@\\w+\\.\\w{2,3})$";
 
         if (etEmail.length() == 0) {
@@ -183,7 +182,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
 
-            Log.e("Hello OnProgressUpdate","Hello Update");
+            Log.e("Hello OnProgressUpdate", "Hello Update");
 
             //in the arrayList we add the messaged received from server
             //  arrayList.add(values[0]);
@@ -195,20 +194,17 @@ public class LoginScreenActivity extends AppCompatActivity {
 
 
     }
+
     @Override
-    protected void onDestroy()
-    {
-        try
-        {
-            Log.e("Hello On Destroy","On Destroy");
+    protected void onDestroy() {
+        try {
+            Log.e("Hello On Destroy", "On Destroy");
             System.out.println("onDestroy.");
             mTcpClient.sendMessage("bye");
             mTcpClient.stopClient();
             conctTask.cancel(true);
             conctTask = null;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         super.onDestroy();
