@@ -28,7 +28,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     Button btnLetsGo;
     TextView tvForgetPass, tvSignupHere;
-    EditText etEmail, etPass;
+    EditText etEmail,etPass;
     boolean isAllFieldsChecked = false;
     String st_email, st_password;
     //-----TCP
