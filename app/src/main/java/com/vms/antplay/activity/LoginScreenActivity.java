@@ -48,10 +48,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         etPass =(EditText) findViewById(R.id.et_password);
         btnLetsGo =(Button) findViewById(R.id.btn_signup);
 
-//        etEmail.setText("rakesh@gmail.com");
-//        etPass.setText("123456788");
-        etEmail.setText("royv");
-        etPass.setText("Antplay@123");
+        etEmail.setText("rakesh@gmail.com");
+        etPass.setText("123456788");
+      //  etEmail.setText("royv");
+      //  etPass.setText("Antplay@1234");
         //---------TCP---------
         new connectTask().execute();
         //-----------------
@@ -94,9 +94,9 @@ public class LoginScreenActivity extends AppCompatActivity {
                    // st_password = etPass.getText().toString();
 
 
-                    callLoginAPI( st_email, st_password);
-//                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
-//                    startActivity(i);
+                   // callLoginAPI( st_email, st_password);
+                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+                    startActivity(i);
                 }
             }
         });
