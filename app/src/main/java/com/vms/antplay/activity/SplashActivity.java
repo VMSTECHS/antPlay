@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.vms.antplay.R;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import java.util.prefs.Preferences;
 
@@ -23,8 +24,9 @@ public class SplashActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-        SharedPreferences sharedPreferences = this.getSharedPreferences("com.vms.antplay", Context.MODE_PRIVATE);
-        boolean isNotFirstTime = sharedPreferences.getBoolean(getString(R.string.is_first_time), false);
+        boolean isNotFirstTime=  SharedPreferenceUtils.getBoolean(SplashActivity.this,getString(R.string.is_first_time));
+        /*SharedPreferences sharedPreferences = this.getSharedPreferences("com.vms.antplay", Context.MODE_PRIVATE);
+        boolean isNotFirstTime = sharedPreferences.getBoolean(getString(R.string.is_first_time), false);*/
 
         new Handler().postDelayed(new Runnable() {
             @Override

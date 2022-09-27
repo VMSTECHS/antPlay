@@ -18,6 +18,8 @@ import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.requestModal.LoginRequestModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
+import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 import com.vms.antplay.utils.TcpClient;
 
 import retrofit2.Call;
@@ -26,6 +28,7 @@ import retrofit2.Response;
 
 public class LoginScreenActivity extends AppCompatActivity {
 
+    private String TAG = "ANT_PLAY";
     Button btnLetsGo;
     TextView tvForgetPass, tvSignupHere;
     EditText etEmail,etPass;
@@ -48,10 +51,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         etPass = (EditText) findViewById(R.id.et_password);
         btnLetsGo = (Button) findViewById(R.id.btn_signup);
 
-        etEmail.setText("rakesh@gmail.com");
-        etPass.setText("123456788");
-      /*  etEmail.setText("royv");
-        etPass.setText("Antplay@123");*/
+       // etEmail.setText("rakesh@gmail.com");
+       // etPass.setText("123456788");
+        etEmail.setText("AntplayOrchestrator");
+        etPass.setText("Acro@#208a");
         //---------TCP---------
         new connectTask().execute();
         //-----------------
@@ -74,7 +77,8 @@ public class LoginScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                isAllFieldsChecked = CheckAllLoginFields();
+               // isAllFieldsChecked = CheckAllLoginFields();
+                isAllFieldsChecked = true;
 
                 //-----TCP--
                 String message = etEmail.getText().toString();
@@ -89,13 +93,12 @@ public class LoginScreenActivity extends AppCompatActivity {
 
                 if (isAllFieldsChecked) {
                     // we can call Api here
-                    // st_email = etEmail.getText().toString();
-                    // st_password = etPass.getText().toString();
+                     st_email = etEmail.getText().toString();
+                     st_password = etPass.getText().toString();
 
-
-                    // callLoginAPI( st_email, st_password);
-                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
-                    startActivity(i);
+                     callLoginAPI( st_email, st_password);
+                   /* Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+                    startActivity(i);*/
                 }
             }
         });
@@ -111,19 +114,20 @@ public class LoginScreenActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
                 if (response.isSuccessful()) {
-                    Log.e("Hello--Success", "" + response.body().getAccess());
+                    Log.d(TAG, "" + response.body().getAccess());
+                    SharedPreferenceUtils.saveString(LoginScreenActivity.this, Const.ACCESS_TOKEN,response.body().getAccess());
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);
 
                 } else {
-                    Log.e("Hello--Success", "Else condition");
+                    Log.e(TAG, "Else condition");
 //                    Log.e("Hello--Success",""+response.body().getAccess());
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-                Log.e("Hello--Failure", "" + t);
+                Log.e(TAG, "" + t);
             }
         });
 

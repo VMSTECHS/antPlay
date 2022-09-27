@@ -3,6 +3,7 @@ package com.vms.antplay.utils;
 public class Const {
     public static String razorPayMerchantId = "KEVxW3g3K0GfQr";
 
+    public static String ACCESS_TOKEN;
     /****
      * RazorPay Test Credentials
      * ****/

@@ -26,6 +26,7 @@ import com.vms.antplay.utils.Const;
 
 import org.json.JSONObject;
 import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import java.util.ArrayList;
 
@@ -68,14 +69,15 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
     }
 
     private void callGetPlanAPI() {
+        String access_token = SharedPreferenceUtils.getString(PaymentPlanActivity.this, Const.ACCESS_TOKEN);
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
         GetBillingPlanResponseModal getVMResponseModal = new GetBillingPlanResponseModal();
-        Call<GetBillingPlanResponseModal> call = retrofitAPI.getBillingPlan("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMzA1MTc4LCJpYXQiOjE2NjMyMTg3NzgsImp0aSI6ImE4ZmU1YTIwZTg4NzRlZjc5MjdmNzE3Nzg1ZjljYTIwIiwidXNlcl9pZCI6MjY3fQ.7Aunx1A4d33cywl8Fxlk_YhKM58uu1kBfUhHwcuuDWk");
+        Call<GetBillingPlanResponseModal> call = retrofitAPI.getBillingPlan(access_token);
         call.enqueue(new Callback<GetBillingPlanResponseModal>() {
             @Override
             public void onResponse(Call<GetBillingPlanResponseModal> call, Response<GetBillingPlanResponseModal> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.e("Hello Get VM", "" + response.body().getPlanName());
+                    Log.d("BILLING_PLAN", "" + response.body().getPlanName());
 
 
                 }
@@ -83,7 +85,7 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
 
             @Override
             public void onFailure(Call<GetBillingPlanResponseModal> call, Throwable t) {
-                Log.e("Hello Get VM", "Failure");
+                Log.d("BILLING_PLAN", "Failure");
             }
         });
     }

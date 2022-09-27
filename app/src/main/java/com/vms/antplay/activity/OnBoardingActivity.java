@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.vms.antplay.R;
 import com.vms.antplay.adapter.OnBoardingPagerAdapter;
 import com.vms.antplay.adapter.ZoomOutPageTransformer;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 public class OnBoardingActivity extends AppCompatActivity implements View.OnClickListener {
     ViewPager viewPager;
@@ -123,10 +124,11 @@ public class OnBoardingActivity extends AppCompatActivity implements View.OnClic
 
     private void updateSharedPreferences(boolean isNotFirstTime) {
 
-        SharedPreferences preferences = context.getSharedPreferences("com.vms.antplay",Context.MODE_PRIVATE);
+        SharedPreferenceUtils.saveBoolean(OnBoardingActivity.this,getString(R.string.is_first_time),isNotFirstTime);
+       /* SharedPreferences preferences = context.getSharedPreferences("com.vms.antplay",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(getString(R.string.is_first_time),isNotFirstTime);
-        editor.apply();
+        editor.apply();*/
     }
 
 }
