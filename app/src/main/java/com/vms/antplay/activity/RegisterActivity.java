@@ -37,8 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnSignup;
     TextView tvAlreadyRegister;
     CheckBox checkBox;
-    String st_fname, st_lastname, st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address;
-    String st_phone;
+    String st_fname, st_lastname, st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address, st_middleName,st_isNewUser, st_isSubscribed;
+    String st_phone, st_LastLogin;
     boolean isAllFieldsChecked = false;
     Boolean checkBoxState;
     private ProgressBar loadingPB;
@@ -93,7 +93,10 @@ public class RegisterActivity extends AppCompatActivity {
                     st_lastname = etLastname.getText().toString();
                     st_email = etEmail.getText().toString();
                     st_phone = etPhone.getText().toString();
-
+                    st_middleName = etFirstname.getText().toString();
+                    st_isSubscribed = "true";
+                    st_isNewUser ="true";
+                    st_LastLogin = "";
                     st_password = etConfirmPass.getText().toString();
                     st_address = etAddress.getText().toString();
                     st_age = etAge.getText().toString();
@@ -105,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.e("Request Params", "" + st_fname + ", " + st_lastname + "," + st_email + "," + st_phone + "," +
                             st_password + "," + st_address + "," + st_age + "," + st_state + "," + st_city + "," + st_pincode);
 
-                    callRegisterApi(st_fname, st_lastname, st_email, st_phone, st_password, st_address, st_age, st_state, st_city, st_pincode);
+                    callRegisterApi(st_fname, st_lastname, st_email, st_phone, st_middleName, st_LastLogin, st_isNewUser,st_isSubscribed,st_password, st_address, st_age, st_state, st_city, st_pincode);
 
                 }
             }
@@ -114,30 +117,35 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void callRegisterApi(String st_fname, String st_lastname, String st_email,
-                                 String st_phone, String st_password, String st_address,
+                                 String st_phone,String st_middleName,String st_LastLogin, String st_isNewUser, String st_isSubscribed, String st_password, String st_address,
                                  String st_age, String st_state, String st_city, String st_pincode) {
 
         loadingPB.setVisibility(View.VISIBLE);
 
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
-        RegisterRequestModal modal = new RegisterRequestModal(st_fname, st_lastname, st_email, st_phone, st_password, st_address, st_age, st_state, st_city, st_pincode);
+        RegisterRequestModal modal = new RegisterRequestModal(st_fname, st_lastname, st_email, st_phone,st_LastLogin, st_isNewUser,st_isSubscribed, st_address, st_age, st_state,st_middleName, st_password,st_city, st_pincode);
         Call<RegisterResponseModal> call = retrofitAPI.registerUser(modal);
         call.enqueue(new Callback<RegisterResponseModal>() {
             @Override
             public void onResponse(Call<RegisterResponseModal> call, Response<RegisterResponseModal> response) {
 
                 loadingPB.setVisibility(View.GONE);
+                Log.e("Hello in",""+response.body());
 
                 // LoginResponseModel responseFromAPI = response.body();
-                if (response.isSuccessful() && response.body() != null) {
-
-                    if (response.body().getMessage() == "User Register Succussfully") {
-//                        et_name.setText("");
-//                        et_mobile.setText("");
-//                        et_date.setText("");
-//                        et_month.setText("");
-//                        et_year.setText("");
-//                        et_city.setText("");
+                if (response.isSuccessful()) {
+                    Log.e("Hello in2222","Hello innnn2222");
+                    if (response.body().getMessage().equals("User Register Successfully")) {
+                        etFirstname.setText("");
+                        etLastname.setText("");
+                        etEmail.setText("");
+                        etPhone.setText("");
+                        etConfirmPass.setText("");
+                        etAddress.setText("");
+                        etAge.setText("");
+                        etState.setText("");
+                        etCity.setText("");
+                        etPincode.setText("");
                         Toast.makeText(RegisterActivity.this, "Successfully Register", Toast.LENGTH_SHORT).show();
 //                        String userid = String.valueOf(response.body().getData().getId());
 //                        SharedPreferences shared = getSharedPreferences("Login", MODE_PRIVATE);
@@ -151,7 +159,9 @@ public class RegisterActivity extends AppCompatActivity {
                         finish();
 
 
-                    } else {
+                    }
+                    else {
+                        Log.e("Hello in33333","Hello innnn33333");
                         loadingPB.setVisibility(View.GONE);
                         Log.e("hello else", "Error Failure");
 //                        Log.e("hello params", "" + "name-" + name + " -dob-" + dob + "mobile-" + mobile);
