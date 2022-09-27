@@ -32,7 +32,7 @@ public interface RetrofitAPI {
     Call<LoginResponseModel> loginUser(@Body LoginRequestModal dataModal);
 
     @GET("getvm")
-    Call<GetVMResponseModal> getVM(@Header("Token") String token);
+    Call<GetVMResponseModal> getVM(@Header("authorization") String token);
 
     @GET("getbillingplan")
     Call<GetBillingPlanResponseModal> getBillingPlan(@Header("Token") String Token);

@@ -6,45 +6,70 @@ import com.google.gson.annotations.SerializedName;
 public class RegisterRequestModal {
     @SerializedName("first_name")
     @Expose
-    private String firstName;
+    public String firstName;
     @SerializedName("last_name")
     @Expose
-    private String lastName;
+    public String lastName;
     @SerializedName("email")
     @Expose
-    private String email;
+    public String email;
     @SerializedName("phone_number")
     @Expose
-    private String phoneNumber;
-    @SerializedName("password")
+    public String phoneNumber;
+    @SerializedName("last_login")
     @Expose
-    private String password;
+    public String lastLogin;
+    @SerializedName("is_newuser")
+    @Expose
+    public String isNewuser;
+    @SerializedName("is_subscribed")
+    @Expose
+    public String isSubscribed;
     @SerializedName("address")
     @Expose
-    private String address;
+    public String address;
     @SerializedName("age")
     @Expose
-    private String age;
+    public String age;
     @SerializedName("state")
     @Expose
-    private String state;
+    public String state;
+    @SerializedName("middle_name")
+    @Expose
+    public String middleName;
+    @SerializedName("password")
+    @Expose
+    public String password;
     @SerializedName("city")
     @Expose
-    private String city;
+    public String city;
     @SerializedName("pincode")
     @Expose
-    private String pincode;
+    public String pincode;
 
-
-    public RegisterRequestModal(String firstName, String lastName, String email, String phoneNumber, String password, String address, String age, String state, String city, String pincode) {
+    public RegisterRequestModal(String firstName, String lastName, String email,
+                                String phoneNumber,
+                                String lastLogin,
+                                String isNewuser,
+                                String isSubscribed,
+                                String address,
+                                String age,
+                                String state,
+                                String middleName,
+                                String password,
+                                String city, String pincode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.password = password;
+        this.lastLogin = lastLogin;
+        this.isNewuser = isNewuser;
+        this.isSubscribed = isSubscribed;
         this.address = address;
         this.age = age;
         this.state = state;
+        this.middleName = middleName;
+        this.password = password;
         this.city = city;
         this.pincode = pincode;
     }
@@ -81,12 +106,28 @@ public class RegisterRequestModal {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLastLogin() {
+        return lastLogin;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public String getIsNewuser() {
+        return isNewuser;
+    }
+
+    public void setIsNewuser(String isNewuser) {
+        this.isNewuser = isNewuser;
+    }
+
+    public String getIsSubscribed() {
+        return isSubscribed;
+    }
+
+    public void setIsSubscribed(String isSubscribed) {
+        this.isSubscribed = isSubscribed;
     }
 
     public String getAddress() {
@@ -111,6 +152,22 @@ public class RegisterRequestModal {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCity() {

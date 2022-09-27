@@ -7,19 +7,19 @@ public class RegisterResponseModal {
 
     @SerializedName("status")
     @Expose
-    private String status;
+    public Boolean status;
     @SerializedName("message")
     @Expose
-    private String message;
+    public String message;
     @SerializedName("data")
     @Expose
     private Data data;
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -38,4 +38,5 @@ public class RegisterResponseModal {
     public void setData(Data data) {
         this.data = data;
     }
+
 }
