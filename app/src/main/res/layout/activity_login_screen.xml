@@ -7,14 +7,15 @@
     android:background="@drawable/login_bg_new"
     tools:context=".activity.LoginScreenActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_alignParentBottom="true">-->
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="bottom"
             android:layout_gravity="bottom"
             android:orientation="vertical">
@@ -111,7 +112,7 @@
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
     <ProgressBar
         android:id="@+id/loadingLogin_progress_xml"
         style="?android:attr/progress"

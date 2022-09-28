@@ -14,16 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
-import com.vms.antplay.model.Computer_availableModal;
+
+import com.vms.antplay.model.responseModal.GetVMResponseModal;
 
 import java.util.ArrayList;
 
 public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_available_Adapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<Computer_availableModal> computer_availableModals;
+    private ArrayList<GetVMResponseModal> computer_availableModals;
 
-    public Computer_available_Adapter(Context context, ArrayList<Computer_availableModal> computer_availableModals) {
+    public Computer_available_Adapter(Context context, ArrayList<GetVMResponseModal> computer_availableModals) {
         this.context = context;
         this.computer_availableModals = computer_availableModals;
     }
@@ -37,10 +38,10 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
 
     @Override
     public void onBindViewHolder(@NonNull Computer_available_Adapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Computer_availableModal modal = computer_availableModals.get(position);
-        holder.computerName.setText(modal.getComName());
-        holder.computerDesc.setText(modal.getCompDesc());
-        holder.computerImage.setImageResource(modal.getImage());
+        GetVMResponseModal modal = computer_availableModals.get(position);
+        holder.computerName.setText(modal.getVmname());
+        holder.computerDesc.setText(modal.getStatus());
+      //  holder.computerImage.setImageResource(modal.getImage());
 
         holder.btn_share.setOnClickListener(new View.OnClickListener() {
             @Override

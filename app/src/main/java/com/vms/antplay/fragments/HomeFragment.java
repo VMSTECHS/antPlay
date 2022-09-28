@@ -108,6 +108,7 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.suppressLayout(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(imageAdapter);
 

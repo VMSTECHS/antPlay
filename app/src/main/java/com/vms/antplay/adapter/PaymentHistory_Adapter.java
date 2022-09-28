@@ -14,17 +14,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
-import com.vms.antplay.model.PaymentHistory_modal;
+import com.vms.antplay.model.responseModal.Payment;
+import com.vms.antplay.model.responseModal.PaymentHistory_modal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_Adapter.MyViewHolder> {
 
     private Context context;
-    ArrayList<PaymentHistory_modal> paymentHistory_modals;
+    List<Payment> paymentHistory_modals;
     private static int currentPosition = 0;
 
-    public PaymentHistory_Adapter(Context context, ArrayList<PaymentHistory_modal> paymentHistory_modals) {
+    public PaymentHistory_Adapter(Context context, List<Payment> paymentHistory_modals) {
         this.context = context;
         this.paymentHistory_modals = paymentHistory_modals;
     }
@@ -39,12 +41,14 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        PaymentHistory_modal modal = paymentHistory_modals.get(position);
-        holder.tv_planName.setText(modal.getPlanName());
-        holder.tv_plan.setText(modal.getPlanName());
-        holder.tv_transactionId.setText(modal.getTransactionId());
-        holder.tv_amount.setText(modal.getAmount());
-        holder.tv_status.setText(modal.getStatus());
+        Payment modal = paymentHistory_modals.get(position);
+
+        holder.tv_planName.setText(modal.getBillingPlan());
+        holder.tv_amountUp.setText(String.valueOf(modal.getBillingPrice()));
+        holder.tv_plan.setText(modal.getBillingPlan());
+        holder.tv_transactionId.setText(modal.getPaymentId());
+        holder.tv_amount.setText(String.valueOf(modal.getBillingPrice()));
+        holder.tv_status.setText(String.valueOf(modal.getPaymentStatus()));
         holder.linearLayout.setVisibility(View.GONE);
 
         if (currentPosition == position) {
@@ -80,7 +84,7 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_planName, tv_transactionId, tv_status, tv_amount, tv_plan;
+        TextView tv_planName, tv_transactionId, tv_status, tv_amount, tv_plan, tv_amountUp;
         LinearLayout linearLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +94,7 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
             tv_status = itemView.findViewById(R.id.status);
             tv_planName = itemView.findViewById(R.id.planName);
             tv_plan = itemView.findViewById(R.id.plan_Name);
+            tv_amountUp = itemView.findViewById(R.id.tv_amount_up);
             linearLayout = itemView.findViewById(R.id.linearLayout);
 
 

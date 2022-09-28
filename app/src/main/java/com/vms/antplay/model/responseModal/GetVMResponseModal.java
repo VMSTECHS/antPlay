@@ -6,19 +6,27 @@ import com.google.gson.annotations.SerializedName;
 public class GetVMResponseModal {
     @SerializedName("vmid")
     @Expose
-    private Integer vmid;
+    public Integer vmid;
     @SerializedName("vmname")
     @Expose
-    private String vmname;
+    public String vmname;
     @SerializedName("status")
     @Expose
-    private String status;
+    public String status;
     @SerializedName("vmip")
     @Expose
-    private String vmip;
+    public String vmip;
     @SerializedName("time_remaining")
     @Expose
-    private Integer timeRemaining;
+    public Integer timeRemaining;
+
+    public GetVMResponseModal(Integer vmid, String vmname, String status, String vmip, Integer timeRemaining) {
+        this.vmid = vmid;
+        this.vmname = vmname;
+        this.status = status;
+        this.vmip = vmip;
+        this.timeRemaining = timeRemaining;
+    }
 
     public Integer getVmid() {
         return vmid;

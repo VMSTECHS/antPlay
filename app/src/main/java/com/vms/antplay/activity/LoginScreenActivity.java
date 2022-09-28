@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.requestModal.LoginRequestModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
+import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 import com.vms.antplay.utils.TcpClient;
@@ -31,9 +33,10 @@ public class LoginScreenActivity extends AppCompatActivity {
     private String TAG = "ANT_PLAY";
     Button btnLetsGo;
     TextView tvForgetPass, tvSignupHere;
-    EditText etEmail,etPass;
+    EditText etEmail, etPass;
     boolean isAllFieldsChecked = false;
     String st_email, st_password;
+    private ProgressBar loadingPB;
     //-----TCP
     private TcpClient mTcpClient = null;
     private connectTask conctTask = null;
@@ -50,11 +53,15 @@ public class LoginScreenActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.et_email);
         etPass = (EditText) findViewById(R.id.et_password);
         btnLetsGo = (Button) findViewById(R.id.btn_signup);
+        loadingPB = (ProgressBar) findViewById(R.id.loadingLogin_progress_xml);
 
-       // etEmail.setText("rakesh@gmail.com");
-       // etPass.setText("123456788");
-        etEmail.setText("AntplayOrchestrator");
-        etPass.setText("Acro@#208a");
+        // etEmail.setText("rakesh@gmail.com");
+        // etPass.setText("123456788");
+        // etEmail.setText("AntplayOrchestrator");
+        // etPass.setText("Acro@#208a");
+        etEmail.setText("royv");
+        etPass.setText("Antplay@12345");
+
         //---------TCP---------
         new connectTask().execute();
         //-----------------
@@ -77,7 +84,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               // isAllFieldsChecked = CheckAllLoginFields();
+                // isAllFieldsChecked = CheckAllLoginFields();
                 isAllFieldsChecked = true;
 
                 //-----TCP--
@@ -93,10 +100,10 @@ public class LoginScreenActivity extends AppCompatActivity {
 
                 if (isAllFieldsChecked) {
                     // we can call Api here
-                     st_email = etEmail.getText().toString();
-                     st_password = etPass.getText().toString();
+                    st_email = etEmail.getText().toString();
+                    st_password = etPass.getText().toString();
 
-                     callLoginAPI( st_email, st_password);
+                    callLoginAPI(st_email, st_password);
                    /* Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);*/
                 }
@@ -106,7 +113,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     }
 
     private void callLoginAPI(String email, String password) {
-
+        loadingPB.setVisibility(View.VISIBLE);
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
         LoginRequestModal loginRequestModal = new LoginRequestModal(email, password);
         Call<LoginResponseModel> call = retrofitAPI.loginUser(loginRequestModal);
@@ -114,20 +121,24 @@ public class LoginScreenActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
                 if (response.isSuccessful()) {
+                    loadingPB.setVisibility(View.GONE);
                     Log.d(TAG, "" + response.body().getAccess());
-                    SharedPreferenceUtils.saveString(LoginScreenActivity.this, Const.ACCESS_TOKEN,response.body().getAccess());
+                    SharedPreferenceUtils.saveString(LoginScreenActivity.this, Const.ACCESS_TOKEN, response.body().getAccess());
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);
 
                 } else {
+                    loadingPB.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
-//                    Log.e("Hello--Success",""+response.body().getAccess());
+                    AppUtils.showToast(Const.no_records, LoginScreenActivity.this);
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponseModel> call, Throwable t) {
                 Log.e(TAG, "" + t);
+                loadingPB.setVisibility(View.GONE);
+                AppUtils.showToast(Const.something_went_wrong, LoginScreenActivity.this);
             }
         });
 

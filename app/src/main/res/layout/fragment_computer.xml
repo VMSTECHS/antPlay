@@ -101,8 +101,8 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="sans-serif"
-                        android:text="@string/computer_available"
                         android:textColor="@color/black"
+                        android:id="@+id/tv_compAvailable"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="normal" />
 
@@ -498,7 +498,13 @@
             </ScrollView>
 
         </LinearLayout>
-
+        <ProgressBar
+            android:id="@+id/loading_getcomputer"
+            style="?android:attr/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
 </FrameLayout>

@@ -12,9 +12,12 @@ import com.vms.antplay.model.responseModal.GetPaymentHistoryResponseModal;
 import com.vms.antplay.model.responseModal.GetVMResponseModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
 import com.vms.antplay.model.requestModal.RegisterRequestModal;
+import com.vms.antplay.model.responseModal.PaymentHistory_modal;
 import com.vms.antplay.model.responseModal.RegisterResponseModal;
 import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
 import com.vms.antplay.model.responseModal.UserUpdateResponseModal;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -32,13 +35,13 @@ public interface RetrofitAPI {
     Call<LoginResponseModel> loginUser(@Body LoginRequestModal dataModal);
 
     @GET("getvm")
-    Call<GetVMResponseModal> getVM(@Header("authorization") String token);
+    Call<ArrayList<GetVMResponseModal>> getVM(@Header("Authorization") String token);
 
     @GET("getbillingplan")
     Call<GetBillingPlanResponseModal> getBillingPlan(@Header("Token") String Token);
 
     @GET("getpaymenthistory")
-    Call<GetPaymentHistoryResponseModal> getPaymentHistory(@Header("Token") String Token);
+    Call<PaymentHistory_modal> getPaymentHistory(@Header("Authorization") String Token);
 
     @PUT("change_password")
     Call<ChangePasswordResponseModal> changePassword(@Body ChangePasswordRequestModal changePasswordRequestModal);
