@@ -31,7 +31,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PaymentHistory extends AppCompatActivity {
-
     RecyclerView recyclerView;
     List<Payment> paymentHistory_modals;
     LinearLayout linear_back;
