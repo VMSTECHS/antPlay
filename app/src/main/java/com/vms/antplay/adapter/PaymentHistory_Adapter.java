@@ -84,7 +84,7 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_planName, tv_transactionId, tv_status, tv_amount, tv_plan, tv_amountUp;
+        TextView tv_planName, tv_transactionId, tv_status, tv_amount, tv_plan, tv_amountUp, tv_trans_date;
         LinearLayout linearLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +95,7 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
             tv_planName = itemView.findViewById(R.id.planName);
             tv_plan = itemView.findViewById(R.id.plan_Name);
             tv_amountUp = itemView.findViewById(R.id.tv_amount_up);
+            tv_trans_date = itemView.findViewById(R.id.trans_date);
             linearLayout = itemView.findViewById(R.id.linearLayout);
 
 

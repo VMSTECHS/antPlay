@@ -189,7 +189,7 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <EditText
+            <Spinner
                 android:id="@+id/et_state"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"

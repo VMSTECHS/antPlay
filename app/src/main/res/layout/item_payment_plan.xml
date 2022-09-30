@@ -74,7 +74,7 @@
                 android:src="@drawable/arrow" />
 
             <TextView
-                android:id="@+id/txtSpacLine1"
+                android:id="@+id/tv_gpu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/viewSeparator"
@@ -95,7 +95,7 @@
                 android:src="@drawable/arrow" />
 
             <TextView
-                android:id="@+id/txtSpacLine2"
+                android:id="@+id/tv_cpu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgSpacLine1"
@@ -116,7 +116,7 @@
                 android:src="@drawable/arrow" />
 
             <TextView
-                android:id="@+id/txtSpacLine3"
+                android:id="@+id/tv_ram"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgSpacLine2"
@@ -137,7 +137,7 @@
                 android:src="@drawable/arrow" />
 
             <TextView
-                android:id="@+id/txtSpacLine4"
+                android:id="@+id/tv_ssd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgSpacLine3"
@@ -153,12 +153,13 @@
                 android:id="@+id/imgSpacLine5"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
+                android:visibility="gone"
                 android:layout_below="@id/imgSpacLine4"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:src="@drawable/arrow" />
 
             <TextView
-                android:id="@+id/txtSpacLine5"
+                android:id="@+id/tv_mbp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgSpacLine4"
@@ -166,6 +167,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@id/imgSpacLine1"
                 android:fontFamily="sans-serif"
+                android:visibility="gone"
                 android:text="Upstream 50 MBP"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_11sdp" />

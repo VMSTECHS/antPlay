@@ -71,6 +71,7 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginLeft="@dimen/_70sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:visibility="gone"
                                 android:background="@drawable/custom_spn_background"
                                 app:cardCornerRadius="@dimen/_5sdp">
 
@@ -87,6 +88,7 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:id="@+id/card_support"
                                 app:cardCornerRadius="@dimen/_5sdp">
 
                                 <ImageView
