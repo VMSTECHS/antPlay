@@ -12,19 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vms.antplay.R;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
 import com.vms.antplay.model.PaymentPlansModel;
+import com.vms.antplay.model.responseModal.BillingPlan;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.PaymentPlanViewHolder> implements View.OnClickListener {
-    ArrayList<PaymentPlansModel> paymentPlansList;
+    List<BillingPlan> paymentPlansList;
     Context context;
     int hours = 0, amount = 0;
 
     PaymentInitiationInterface paymentInitiationInterface;
 
 
-    public PaymentPlanAdapter(Context context, ArrayList<PaymentPlansModel> paymentPlansList, PaymentInitiationInterface paymentInitiationInterface) {
+    public PaymentPlanAdapter(Context context, List<BillingPlan> paymentPlansList, PaymentInitiationInterface paymentInitiationInterface) {
         this.paymentPlansList = paymentPlansList;
         this.context = context;
         this.paymentInitiationInterface = paymentInitiationInterface;
@@ -40,13 +42,19 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
     @Override
     public void onBindViewHolder(@NonNull PaymentPlanViewHolder holder, int position) {
         holder.txtPlanName.setText(paymentPlansList.get(position).getPlanName());
-        holder.txtPlaneAmount.setText("₹ " + paymentPlansList.get(position).getAmount());
-        holder.txtDurationInHours.setText(paymentPlansList.get(position).getDurationInHours() + " Hours");
-        holder.txtValidity.setText(paymentPlansList.get(position).getValidityInDays() + " Days");
+        holder.txtPlaneAmount.setText("₹ " + paymentPlansList.get(position).getPrice());
+        holder.txtDurationInHours.setText(paymentPlansList.get(position).getHourLimit() + " Hours");
+        holder.txtValidity.setText(paymentPlansList.get(position).getTerm() + " Days");
+
+        holder.tv_gpus.setText(paymentPlansList.get(position).getGpu());
+        holder.tv_cpus.setText(paymentPlansList.get(position).getCpu()+ " CPU ");
+        holder.tv_rams.setText(paymentPlansList.get(position).getRam()+ " RAM ");
+        holder.tv_ssds.setText(paymentPlansList.get(position).getSsd()+ " SSD ");
+      //  holder.tv_mbps.setText(paymentPlansList.get(position).get());
         holder.txtSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getAmount(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getDurationInHours());
+                paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getPrice(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getHourLimit());
             }
         });
 
@@ -64,7 +72,7 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
 
     public class PaymentPlanViewHolder extends RecyclerView.ViewHolder {
         private TextView txtPlanName, txtPlaneAmount, txtValidity, txtDurationInHours;
-        private TextView txtSpacLine1, txtSpacLine2, txtSpacLine3, txtSpacLine4, txtSpacLine5;
+        private TextView tv_gpus, tv_cpus, tv_rams, tv_ssds, tv_mbps;
         private TextView txtSubscribe;
 
         public PaymentPlanViewHolder(@NonNull View itemView) {
@@ -74,11 +82,11 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
             txtValidity = itemView.findViewById(R.id.txtValidity);
             txtDurationInHours = itemView.findViewById(R.id.txtDurationInHours);
 
-            txtSpacLine1 = itemView.findViewById(R.id.txtSpacLine1);
-            txtSpacLine2 = itemView.findViewById(R.id.txtSpacLine2);
-            txtSpacLine3 = itemView.findViewById(R.id.txtSpacLine3);
-            txtSpacLine4 = itemView.findViewById(R.id.txtSpacLine4);
-            txtSpacLine5 = itemView.findViewById(R.id.txtSpacLine5);
+            tv_gpus = itemView.findViewById(R.id.tv_gpu);
+            tv_cpus = itemView.findViewById(R.id.tv_cpu);
+            tv_rams = itemView.findViewById(R.id.tv_ram);
+            tv_ssds = itemView.findViewById(R.id.tv_ssd);
+            tv_mbps = itemView.findViewById(R.id.tv_mbp);
 
             txtSubscribe = itemView.findViewById(R.id.txtSubscribe);
 

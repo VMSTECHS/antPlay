@@ -38,7 +38,7 @@ public interface RetrofitAPI {
     Call<ArrayList<GetVMResponseModal>> getVM(@Header("Authorization") String token);
 
     @GET("getbillingplan")
-    Call<GetBillingPlanResponseModal> getBillingPlan(@Header("Token") String Token);
+    Call<GetBillingPlanResponseModal> getBillingPlan(@Header("Authorization") String Token);
 
     @GET("getpaymenthistory")
     Call<PaymentHistory_modal> getPaymentHistory(@Header("Authorization") String Token);
@@ -52,8 +52,8 @@ public interface RetrofitAPI {
     @PUT("userupdate/")
     Call<UserUpdateResponseModal> userUpdate(@Body UserUpdateRequestModal userUpdateRequestModal);
 
-    @GET("getbillingplan")
-    Call<BillingPlansResponse> getBillingPlans(@Header("Token") String Token);
+//    @GET("getbillingplan")
+//    Call<BillingPlansResponse> getBillingPlans(@Header("Token") String Token);
 
 
 }

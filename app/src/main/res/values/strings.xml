@@ -62,6 +62,7 @@
     <string name="current_virtual_pc">Current virtual PC</string>
     <string name="manage_subscription">Manage Subscription</string>
     <string name="something_wrong">Something went wrong</string>
+    <string name="success_register">Successfully Register</string>
     <string name="old_pass">Old Password</string>
     <string name="new_pass">New Password</string>
     <string name="payment_history">Payment History</string>

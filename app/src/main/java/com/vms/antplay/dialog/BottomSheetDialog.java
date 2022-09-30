@@ -184,7 +184,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 
                 break;
             case R.id.txtPurchase:
-                paymentInitiationInterface.onPaymentInitiated(hours,amount);
+                paymentInitiationInterface.onPaymentInitiated(Double.valueOf(Integer.valueOf(hours)),amount);
                // Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
                 break;
 

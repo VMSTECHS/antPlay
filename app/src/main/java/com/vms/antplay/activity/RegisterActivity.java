@@ -7,10 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,10 @@ import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.requestModal.RegisterRequestModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
 import com.vms.antplay.model.responseModal.RegisterResponseModal;
+import com.vms.antplay.utils.AppUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,15 +40,16 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etEmail, etFirstname, etLastname, etPhone, etPassword, etConfirmPass, etAge, etAddress, etCity, etState, etPincode;
+    EditText etEmail, etFirstname, etLastname, etPhone, etPassword, etConfirmPass, etAge, etAddress, etCity, etPincode;
     Button btnSignup;
     TextView tvAlreadyRegister;
     CheckBox checkBox;
-    String st_fname, st_lastname, st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address, st_middleName,st_isNewUser, st_isSubscribed;
+    String st_fname, st_lastname, st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address, st_middleName, st_isNewUser, st_isSubscribed;
     String st_phone, st_LastLogin;
     boolean isAllFieldsChecked = false;
     Boolean checkBoxState;
     private ProgressBar loadingPB;
+    Spinner etState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         etAge = (EditText) findViewById(R.id.et_age);
         etAddress = (EditText) findViewById(R.id.et_address);
         etPincode = (EditText) findViewById(R.id.et_pinCode);
-        etState = (EditText) findViewById(R.id.et_state);
+        etState = (Spinner) findViewById(R.id.et_state);
         etCity = (EditText) findViewById(R.id.et_city);
         loadingPB = (ProgressBar) findViewById(R.id.loading_progress_xml);
 
@@ -82,6 +90,72 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Andaman and Nicobar Islands");
+        categories.add("Andhra Pradesh");
+        categories.add("Arunachal Pradesh");
+        categories.add("Assam");
+        categories.add("Bihar");
+        categories.add("Chandigarh");
+        categories.add("Chhattisgarh");
+        categories.add("Dadra and Nagar Haveli");
+        categories.add("Daman and Diu");
+        categories.add("Delhi");
+        categories.add("Goa");
+        categories.add("Gujarat");
+        categories.add("Haryana");
+        categories.add("Himachal Pradesh");
+        categories.add("Jammu and Kashmir");
+        categories.add("Jharkhand");
+        categories.add("Karnataka");
+        categories.add("Kerala");
+        categories.add("Ladakh");
+        categories.add("Lakshadweep");
+        categories.add("Madhya Pradesh");
+        categories.add("Maharashtra");
+        categories.add("Manipur");
+        categories.add("Meghalaya");
+        categories.add("Mizoram");
+        categories.add("Nagaland");
+        categories.add("Odisha");
+        categories.add("Puducherry");
+        categories.add("Punjab");
+        categories.add("Rajasthan");
+        categories.add("Sikkim");
+        categories.add("Tamil Nadu");
+        categories.add("Telangana");
+        categories.add("Tripura");
+        categories.add("Uttar Pradesh");
+        categories.add("Uttarakhand");
+        categories.add("West Bengal");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        etState.setAdapter(dataAdapter);
+
+        etState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                st_state = parent.getItemAtPosition(position).toString();
+
+                // Showing selected spinner item
+                Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,12 +169,11 @@ public class RegisterActivity extends AppCompatActivity {
                     st_phone = etPhone.getText().toString();
                     st_middleName = etFirstname.getText().toString();
                     st_isSubscribed = "true";
-                    st_isNewUser ="true";
+                    st_isNewUser = "true";
                     st_LastLogin = "";
                     st_password = etConfirmPass.getText().toString();
                     st_address = etAddress.getText().toString();
                     st_age = etAge.getText().toString();
-                    st_state = etState.getText().toString();
                     st_city = etCity.getText().toString();
                     st_pincode = etPincode.getText().toString();
 
@@ -108,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.e("Request Params", "" + st_fname + ", " + st_lastname + "," + st_email + "," + st_phone + "," +
                             st_password + "," + st_address + "," + st_age + "," + st_state + "," + st_city + "," + st_pincode);
 
-                    callRegisterApi(st_fname, st_lastname, st_email, st_phone, st_middleName, st_LastLogin, st_isNewUser,st_isSubscribed,st_password, st_address, st_age, st_state, st_city, st_pincode);
+                    callRegisterApi(st_fname, st_lastname, st_email, st_phone, st_middleName, st_LastLogin, st_isNewUser, st_isSubscribed, st_password, st_address, st_age, st_state, st_city, st_pincode);
 
                 }
             }
@@ -117,24 +190,23 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void callRegisterApi(String st_fname, String st_lastname, String st_email,
-                                 String st_phone,String st_middleName,String st_LastLogin, String st_isNewUser, String st_isSubscribed, String st_password, String st_address,
+                                 String st_phone, String st_middleName, String st_LastLogin, String st_isNewUser, String st_isSubscribed, String st_password, String st_address,
                                  String st_age, String st_state, String st_city, String st_pincode) {
 
         loadingPB.setVisibility(View.VISIBLE);
 
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
-        RegisterRequestModal modal = new RegisterRequestModal(st_fname, st_lastname, st_email, st_phone,st_LastLogin, st_isNewUser,st_isSubscribed, st_address, st_age, st_state,st_middleName, st_password,st_city, st_pincode);
+        RegisterRequestModal modal = new RegisterRequestModal(st_fname, st_lastname, st_email, st_phone, st_LastLogin, st_isNewUser, st_isSubscribed, st_address, st_age, st_state, st_middleName, st_password, st_city, st_pincode);
         Call<RegisterResponseModal> call = retrofitAPI.registerUser(modal);
         call.enqueue(new Callback<RegisterResponseModal>() {
             @Override
             public void onResponse(Call<RegisterResponseModal> call, Response<RegisterResponseModal> response) {
 
                 loadingPB.setVisibility(View.GONE);
-                Log.e("Hello in",""+response.body());
+                Log.e("Hello in", "" + response.body());
 
-                // LoginResponseModel responseFromAPI = response.body();
                 if (response.isSuccessful()) {
-                    Log.e("Hello in2222","Hello innnn2222");
+                    Log.e("Hello in2222", "Hello innnn2222");
                     if (response.body().getMessage().equals("User Register Successfully")) {
                         etFirstname.setText("");
                         etLastname.setText("");
@@ -143,10 +215,10 @@ public class RegisterActivity extends AppCompatActivity {
                         etConfirmPass.setText("");
                         etAddress.setText("");
                         etAge.setText("");
-                        etState.setText("");
+                        // etState.setText("");
                         etCity.setText("");
                         etPincode.setText("");
-                        Toast.makeText(RegisterActivity.this, "Successfully Register", Toast.LENGTH_SHORT).show();
+                        AppUtils.showToast(getString(R.string.success_register), RegisterActivity.this);
 //                        String userid = String.valueOf(response.body().getData().getId());
 //                        SharedPreferences shared = getSharedPreferences("Login", MODE_PRIVATE);
 //                        SharedPreferences.Editor editor = shared.edit();
@@ -159,13 +231,10 @@ public class RegisterActivity extends AppCompatActivity {
                         finish();
 
 
-                    }
-                    else {
-                        Log.e("Hello in33333","Hello innnn33333");
+                    } else {
+                        Log.e("Hello in33333", "Hello innnn33333");
                         loadingPB.setVisibility(View.GONE);
-                        Log.e("hello else", "Error Failure");
-//                        Log.e("hello params", "" + "name-" + name + " -dob-" + dob + "mobile-" + mobile);
-                        Toast.makeText(RegisterActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
                     }
 
                 }
@@ -176,7 +245,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<RegisterResponseModal> call, Throwable t) {
                 // responseTV.setText("Error found is : " + t.getMessage());
                 loadingPB.setVisibility(View.GONE);
-                Toast.makeText(RegisterActivity.this, R.string.something_wrong, Toast.LENGTH_SHORT).show();
+                AppUtils.showToast(getString(R.string.something_wrong), RegisterActivity.this);
             }
         });
 
@@ -236,10 +305,10 @@ public class RegisterActivity extends AppCompatActivity {
             etPincode.setError(getString(R.string.error_pinCode));
             return false;
         }
-        if (etState.length() == 0) {
-            etState.setError(getString(R.string.error_state));
-            return false;
-        }
+//        if (etState.length() == 0) {
+//            etState.setError(getString(R.string.error_state));
+//            return false;
+//        }
         if (etEmail.length() == 0) {
             etEmail.setError(getString(R.string.error_email));
             return false;

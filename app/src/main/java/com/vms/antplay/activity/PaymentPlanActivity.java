@@ -1,15 +1,18 @@
 package com.vms.antplay.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.razorpay.Checkout;
@@ -22,13 +25,17 @@ import com.vms.antplay.adapter.PaymentPlanAdapter;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.PaymentPlansModel;
+import com.vms.antplay.model.responseModal.BillingPlan;
+import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 
 import org.json.JSONObject;
+
 import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,20 +43,23 @@ import retrofit2.Response;
 
 
 public class PaymentPlanActivity extends AppCompatActivity implements PaymentInitiationInterface, PaymentResultWithDataListener, ExternalWalletListener {
-    ArrayList<PaymentPlansModel> paymentPlansList = new ArrayList<>();
+    List<BillingPlan> paymentPlansList = new ArrayList<>();
     RecyclerView recyclerPaymentPlan;
     ImageView imgBack;
     private AlertDialog.Builder alertDialogBuilder;
+    private ProgressBar loadingPB;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_plan);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccentDark_light, this.getTheme()));
         recyclerPaymentPlan = findViewById(R.id.rvPaymentPlans);
         imgBack = findViewById(R.id.imgBackPayment);
+        loadingPB = (ProgressBar) findViewById(R.id.loading_getPaymentPlanHistory);
 
-
-        setPlanList();
+       // setPlanList();
         // setPaymentPlanAdapter();
         callGetPlanAPI();
 
@@ -69,53 +79,38 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
     }
 
     private void callGetPlanAPI() {
+        loadingPB.setVisibility(View.VISIBLE);
         String access_token = SharedPreferenceUtils.getString(PaymentPlanActivity.this, Const.ACCESS_TOKEN);
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
-        GetBillingPlanResponseModal getVMResponseModal = new GetBillingPlanResponseModal();
-        Call<GetBillingPlanResponseModal> call = retrofitAPI.getBillingPlan(access_token);
+        Call<GetBillingPlanResponseModal> call = retrofitAPI.getBillingPlan("Bearer " + access_token);
         call.enqueue(new Callback<GetBillingPlanResponseModal>() {
             @Override
             public void onResponse(Call<GetBillingPlanResponseModal> call, Response<GetBillingPlanResponseModal> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.d("BILLING_PLAN", "" + response.body().getPlanName());
+                    loadingPB.setVisibility(View.GONE);
+                    paymentPlansList = response.body().getData();
+                    PaymentPlanAdapter planAdapter = new PaymentPlanAdapter(PaymentPlanActivity.this, paymentPlansList, PaymentPlanActivity.this);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PaymentPlanActivity.this);
+                    recyclerPaymentPlan.setLayoutManager(layoutManager);
+                    recyclerPaymentPlan.setAdapter(planAdapter);
 
-
+                }
+                else {
+                    loadingPB.setVisibility(View.GONE);
+                    AppUtils.showToast(Const.no_records, PaymentPlanActivity.this);
                 }
             }
 
             @Override
             public void onFailure(Call<GetBillingPlanResponseModal> call, Throwable t) {
                 Log.d("BILLING_PLAN", "Failure");
+                loadingPB.setVisibility(View.GONE);
+                AppUtils.showToast(Const.something_went_wrong, PaymentPlanActivity.this);
             }
         });
     }
 
-
-    private void setPlanList() {
-        paymentPlansList.add(new PaymentPlansModel("Light", 1, 2, 1, "Geforce GTX 1660 6GB GPU"));
-        paymentPlansList.add(new PaymentPlansModel("Basic", 899, 30, 15, "Geforce GTX 1660 6GB GPU"));
-        paymentPlansList.add(new PaymentPlansModel("Premium", 1699, 100, 30, "Geforce GTX 1660 6GB GPU"));
-        paymentPlansList.add(new PaymentPlansModel("Ultima", 3199, 250, 30, "Geforce GTX 1660 6GB GPU"));
-        setPaymentPlanAdapter();
-    }
-
-    private void setPaymentPlanAdapter() {
-        PaymentPlanAdapter planAdapter = new PaymentPlanAdapter(PaymentPlanActivity.this, paymentPlansList, PaymentPlanActivity.this);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerPaymentPlan.setLayoutManager(layoutManager);
-        recyclerPaymentPlan.setAdapter(planAdapter);
-    }
-
-    @Override
-    public void onPaymentInitiated(int hours, int amount) {
-        startPayment(hours, amount);
-       /* String url = "https://rzp.io/i/r3CTRh6CG";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);*/
-    }
-
-    public void startPayment(int hours, int amount) {
+    public void startPayment(Double hours, int amount) {
         /*
           You need to pass current activity in order to let Razorpay create CheckoutActivity
          */
@@ -192,5 +187,19 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onPaymentInitiated(Double hours, int amount) {
+        startPayment(Double.valueOf(String.valueOf(hours)), amount);
+       /* String url = "https://rzp.io/i/r3CTRh6CG";
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);*/
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

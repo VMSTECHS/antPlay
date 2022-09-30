@@ -21,7 +21,10 @@
             android:id="@+id/imgBackPayment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="@dimen/_15sdp"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
             android:paddingStart="@dimen/_10sdp"
             android:src="@drawable/backarrow" />
 
@@ -40,8 +43,8 @@
 
     <ImageView
         android:id="@+id/imgPaymentHead"
-        android:layout_width="@dimen/_13sdp"
-        android:layout_height="@dimen/_13sdp"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
         android:layout_below="@id/rlHeaderPayment"
         android:layout_marginStart="@dimen/_20sdp"
         android:src="@drawable/plan"
@@ -57,7 +60,7 @@
         android:layout_toEndOf="@id/imgPaymentHead"
         android:text="@string/subscription_plan"
         android:textColor="@color/white"
-        android:textSize="@dimen/_10sdp" />
+        android:textSize="@dimen/_12sdp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPaymentPlans"
@@ -66,5 +69,11 @@
         android:layout_below="@id/txtPaymentHead"
         android:layout_marginTop="@dimen/_15sdp"/>
 
-
+    <ProgressBar
+        android:id="@+id/loading_getPaymentPlanHistory"
+        style="?android:attr/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true" />
 </RelativeLayout>

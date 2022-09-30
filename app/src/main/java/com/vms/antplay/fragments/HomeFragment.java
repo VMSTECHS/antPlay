@@ -4,6 +4,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
     CardView profile_card;
     LinearLayoutCompat llTimer;
     TextView txtTimer;
+    CardView card_support;
 
     private static final String TAG = HomeFragment.class.getSimpleName();
 
@@ -65,13 +67,20 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
         txtTimer = view.findViewById(R.id.txtTimer);
         imgTimer = view.findViewById(R.id.img_timer);
         imgAddTimer = view.findViewById(R.id.imgAddTimer);
+        card_support = view.findViewById(R.id.card_support);
+
+        card_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:9717844140"));
+                startActivity(intent);
+            }
+        });
 
         /*RazorPay Checkout*/
 
         Checkout.preload(getApplicationContext());
-
-
-
 
        /* Checkout checkout = new Checkout();
         checkout.setKeyID(Const.razorPayKeyId);*/
@@ -141,9 +150,9 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
 
 
     @Override
-    public void onPaymentInitiated(int hours, int amount) {
+    public void onPaymentInitiated(Double hours, int amount) {
 
-        startPayment(hours, amount);
+        startPayment(Integer.valueOf(String.valueOf(hours)), amount);
     }
 
     public void startPayment(int hours, int amount) {

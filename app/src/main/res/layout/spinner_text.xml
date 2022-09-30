@@ -5,7 +5,7 @@
     style="@style/spinnerItemStyle"
     android:singleLine="true"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:ellipsize="marquee"
     android:textSize="@dimen/_10sdp"
     android:background="@color/white"

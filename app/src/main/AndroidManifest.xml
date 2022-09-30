@@ -4,6 +4,8 @@
     package="com.vms.antplay">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-permission
         android:name="com.google.android.gms.permission.AD_ID"
         tools:node="remove" />
@@ -16,18 +18,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AntPlay"
         tools:targetApi="31">
+
+
         <activity
             android:name=".activity.NotificationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.TermsAndCondition"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AntPlay.NoActionBar" />
+            android:theme="@style/Theme.AntPlay.NoActionBar"/>
         <activity
             android:name=".activity.PaymentPlanActivity"
             android:exported="false"
-            android:label="@string/title_activity_payment_plan"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AntPlay.NoActionBar"/>
+
+        <activity
+            android:name=".activity.TermsAndCondition"
+         android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AntPlay.NoActionBar" />
         <activity
@@ -99,13 +105,16 @@
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
+            android:exported="false"
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
+            android:exported="true"
             android:value="@string/facebook_client_token" />
 
         <activity
             android:name="com.facebook.FacebookActivity"
+            android:exported="true"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:exported="false"
             android:label="@string/app_name" />
