@@ -18,7 +18,9 @@ import com.vms.antplay.R;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.requestModal.LoginRequestModal;
+import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
+import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
@@ -143,6 +145,8 @@ public class LoginScreenActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     private boolean CheckAllLoginFields() {
         // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";

@@ -1,5 +1,6 @@
 package com.vms.antplay.fragments;
 
+import static android.content.Context.TELEPHONY_SERVICE;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.app.Activity;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,14 +69,18 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
         txtTimer = view.findViewById(R.id.txtTimer);
         imgTimer = view.findViewById(R.id.img_timer);
         imgAddTimer = view.findViewById(R.id.imgAddTimer);
-        card_support = view.findViewById(R.id.card_support);
+        card_support = (CardView) view.findViewById(R.id.card_support);
 
         card_support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:9717844140"));
-                startActivity(intent);
+                try{
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:9717844140"));
+                    startActivity(intent);
+                }catch (Exception exception){
+                  exception.printStackTrace();
+                }
             }
         });
 
@@ -147,6 +153,8 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
 
         return view;
     }
+
+
 
 
     @Override

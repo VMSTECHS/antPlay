@@ -12,13 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vms.antplay.R;
+import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout, linearPayment, linearEdit;
-    TextView tv_changePassword, tv_manageSubs;
+    TextView tv_changePassword, tv_manageSubs, txtUserID;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +29,18 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccentDark_light, this.getTheme()));
 
-        backLinear =(LinearLayout) findViewById(R.id.back_linear);
-        logoutLinear =(LinearLayout) findViewById(R.id.logout_linear);
-        linearAgree =(LinearLayout) findViewById(R.id.linear_agreements);
+        backLinear = (LinearLayout) findViewById(R.id.back_linear);
+        logoutLinear = (LinearLayout) findViewById(R.id.logout_linear);
+        linearAgree = (LinearLayout) findViewById(R.id.linear_agreements);
         linear_Change = (LinearLayout) findViewById(R.id.linear_changePassword);
         linearWebsite = (LinearLayout) findViewById(R.id.linear_website);
         linearAbout = (LinearLayout) findViewById(R.id.linear_aboutUs);
         linearPayment = (LinearLayout) findViewById(R.id.linear_paymentHistory);
         linearEdit = (LinearLayout) findViewById(R.id.linear_edit);
         tv_manageSubs = (TextView) findViewById(R.id.tv_manageSubscription);
+        txtUserID = (TextView) findViewById(R.id.txtUserEmailID);
 
+        setData();
 
         tv_manageSubs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +78,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        linearAgree = ( LinearLayout) findViewById(R.id.linear_agreements);
+        linearAgree = (LinearLayout) findViewById(R.id.linear_agreements);
 
         linearAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ProfileActivity.this, Agreement_User.class);
-               startActivity(i);
+                startActivity(i);
 
             }
         });
@@ -112,5 +117,18 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void setData() {
+        String fullName = SharedPreferenceUtils.getString(ProfileActivity.this, Const.FULL_NAME);
+        String email = SharedPreferenceUtils.getString(ProfileActivity.this, Const.USER_EMAIL);
+        String phoneNumber = SharedPreferenceUtils.getString(ProfileActivity.this, Const.PHONE);
+        String address = SharedPreferenceUtils.getString(ProfileActivity.this, Const.ADDRESS);
+        String state = SharedPreferenceUtils.getString(ProfileActivity.this, Const.STATE);
+        String city = SharedPreferenceUtils.getString(ProfileActivity.this, Const.CITY);
+        String userName = SharedPreferenceUtils.getString(ProfileActivity.this, Const.USER_NAME);
+
+        txtUserID.setText(userName);
+
     }
 }

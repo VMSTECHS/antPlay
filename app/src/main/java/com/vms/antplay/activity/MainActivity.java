@@ -3,6 +3,7 @@ package com.vms.antplay.activity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -22,19 +23,29 @@ import com.razorpay.PaymentResultListener;
 import com.razorpay.PaymentResultWithDataListener;
 import com.vms.antplay.R;
 import com.vms.antplay.adapter.PagerAdapter;
+import com.vms.antplay.api.APIClient;
+import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.fragments.ArcadeFragment;
 import com.vms.antplay.fragments.ComputerFragment;
 import com.vms.antplay.fragments.FaqFargment;
 import com.vms.antplay.fragments.HomeFragment;
 import com.vms.antplay.fragments.SettingsFragment;
 import com.vms.antplay.model.ImageModel;
+import com.vms.antplay.model.responseModal.UserDetailsModal;
+import com.vms.antplay.utils.AppUtils;
+import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements  PaymentResultWithDataListener, ExternalWalletListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener, ExternalWalletListener {
 
+    private String TAG = "ANT_PLAY";
     ViewPager simpleViewPager;
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
@@ -51,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements  PaymentResultWit
         //  simpleViewPager = (ViewPager) findViewById(R.id.viewPager);
         loadFragment(new HomeFragment());
 
+        getUserDetails();
         alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setTitle("Payment Result");
@@ -74,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements  PaymentResultWit
                     case 2:
                         fragment = new SettingsFragment();
                         break;
-                    case  3:
+                    case 3:
                         fragment = new FaqFargment();
                         break;
                     case 4:
@@ -128,31 +140,65 @@ public class MainActivity extends AppCompatActivity implements  PaymentResultWit
 
     @Override
     public void onExternalWalletSelected(String s, PaymentData paymentData) {
-        try{
-            alertDialogBuilder.setMessage("External Wallet Selected:\nPayment Data: "+paymentData.getData());
+        try {
+            alertDialogBuilder.setMessage("External Wallet Selected:\nPayment Data: " + paymentData.getData());
             alertDialogBuilder.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void onPaymentSuccess(String razorpayPaymentID, PaymentData paymentData) {
-        try{
-            alertDialogBuilder.setMessage("Payment Successful :\nPayment ID: "+razorpayPaymentID+"\nPayment Data: "+paymentData.getData());
+        try {
+            alertDialogBuilder.setMessage("Payment Successful :\nPayment ID: " + razorpayPaymentID + "\nPayment Data: " + paymentData.getData());
             alertDialogBuilder.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void onPaymentError(int code, String response, PaymentData paymentData) {
-        try{
-            alertDialogBuilder.setMessage("Payment Failed:\nPayment Data: "+paymentData.getData());
+        try {
+            alertDialogBuilder.setMessage("Payment Failed:\nPayment Data: " + paymentData.getData());
             alertDialogBuilder.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void getUserDetails() {
+        String access_token = SharedPreferenceUtils.getString(MainActivity.this, Const.ACCESS_TOKEN);
+        RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
+        Call<UserDetailsModal> call = retrofitAPI.getUserDetails("Bearer " + access_token);
+        call.enqueue(new Callback<UserDetailsModal>() {
+            @Override
+            public void onResponse(Call<UserDetailsModal> call, Response<UserDetailsModal> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "" + response.body());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.FULL_NAME, response.body().getFirstName() + " " + response.body().getLastName());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.USER_EMAIL, response.body().getEmail());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.PHONE, response.body().getPhoneNumber());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.ADDRESS, response.body().getAddress());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.STATE, response.body().getState());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.CITY, response.body().getCity());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.USER_NAME, response.body().getUsername());
+
+
+                } else {
+                    Log.e(TAG, "Else condition");
+                    AppUtils.showToast(Const.no_records, MainActivity.this);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDetailsModal> call, Throwable t) {
+                Log.e(TAG, "" + t);
+                AppUtils.showToast(Const.something_went_wrong, MainActivity.this);
+            }
+        });
+
+    }
+
 }

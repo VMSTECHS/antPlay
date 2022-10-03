@@ -15,6 +15,7 @@ import com.vms.antplay.model.requestModal.RegisterRequestModal;
 import com.vms.antplay.model.responseModal.PaymentHistory_modal;
 import com.vms.antplay.model.responseModal.RegisterResponseModal;
 import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
+import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.model.responseModal.UserUpdateResponseModal;
 
 import java.util.ArrayList;
@@ -52,8 +53,8 @@ public interface RetrofitAPI {
     @PUT("userupdate/")
     Call<UserUpdateResponseModal> userUpdate(@Body UserUpdateRequestModal userUpdateRequestModal);
 
-//    @GET("getbillingplan")
-//    Call<BillingPlansResponse> getBillingPlans(@Header("Token") String Token);
+    @GET("userview")
+    Call<UserDetailsModal> getUserDetails(@Header("Authorization") String Token);
 
 
 }

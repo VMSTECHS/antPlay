@@ -98,12 +98,13 @@
 
 
                     <TextView
+                        android:id="@+id/txtUserEmailID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:fontFamily="sans-serif"
-                        android:text="user@gmail.com"
+                        android:text="alex.pinto@gmail.com"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
