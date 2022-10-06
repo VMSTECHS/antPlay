@@ -620,7 +620,7 @@
         >
 
         <Button
-            android:id="@+id/continueWithGoogle"
+            android:id="@+id/buttonUpdateProfile"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginLeft="@dimen/_10sdp"
@@ -628,7 +628,15 @@
             android:background="@drawable/gradient_pcsetting"
             android:fontFamily="sans-serif"
             android:text="@string/update_profile"
-            android:textColor="@color/white"></Button>
+            android:textColor="@color/white"/>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarEditProfile"
+        style="?android:attr/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

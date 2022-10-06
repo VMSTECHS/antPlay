@@ -79,11 +79,11 @@ public class UserUpdateRequestModal {
         this.city = city;
     }
 
-    public String getPincode() {
+    public String getPinCode() {
         return pincode;
     }
 
-    public void setPincode(String pincode) {
+    public void setPinCode(String pincode) {
         this.pincode = pincode;
     }
 }

@@ -51,7 +51,7 @@ public interface RetrofitAPI {
     Call<StartPaymentResponseModal> startPayment(@Body StartPaymentRequestModal startPaymentRequestModal);
 
     @PUT("userupdate/")
-    Call<UserUpdateResponseModal> userUpdate(@Body UserUpdateRequestModal userUpdateRequestModal);
+    Call<UserUpdateResponseModal> userUpdate(@Header("Authorization") String Token,@Body UserUpdateRequestModal userUpdateRequestModal);
 
     @GET("userview")
     Call<UserDetailsModal> getUserDetails(@Header("Authorization") String Token);
