@@ -102,7 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 edTxtState.getText().toString(),
                 edTxtCity.getText().toString(),
                 "110044");
-        Call<UserUpdateResponseModal> call = retrofitAPI.userUpdate(access_token,updateRequestModal);
+        Call<UserUpdateResponseModal> call = retrofitAPI.userUpdate("Bearer "+access_token,updateRequestModal);
         call.enqueue(new Callback<UserUpdateResponseModal>() {
             @Override
             public void onResponse(Call<UserUpdateResponseModal> call, Response<UserUpdateResponseModal> response) {
