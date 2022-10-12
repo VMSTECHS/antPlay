@@ -7,10 +7,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.vms.antplay.R;
 import com.vms.antplay.api.APIClient;
@@ -24,6 +29,9 @@ import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +42,9 @@ public class EditProfileActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     EditText edTxtName, edTxtUserName, edTxtPhoneNumber, edTxtEmail, edTxtAge, edTxtCity, edTxtAddress, edTxtState;
     Button buttonUpdateProfile;
+    Spinner spinnerStateList;
     private ProgressBar progressBar;
+    List<String> stateList = new ArrayList<String>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -50,12 +60,15 @@ public class EditProfileActivity extends AppCompatActivity {
         edTxtAge = findViewById(R.id.edTxtAge);
         edTxtCity = findViewById(R.id.edTxtCity);
         edTxtAddress = findViewById(R.id.edTxtAddress);
-        edTxtState = findViewById(R.id.edTxtState);
+
+        spinnerStateList = findViewById(R.id.spinnerStateList);
+
 
         buttonUpdateProfile = findViewById(R.id.buttonUpdateProfile);
         progressBar = (ProgressBar) findViewById(R.id.progressBarEditProfile);
 
-        setData();
+       // setData();
+        populateStateList();
         linearLayout = (LinearLayout) findViewById(R.id.back_linear_edit);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +85,77 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void populateStateList() {
+        // Spinner Drop down elements
+        stateList.add("Andaman and Nicobar Islands");
+        stateList.add("Andhra Pradesh");
+        stateList.add("Arunachal Pradesh");
+        stateList.add("Assam");
+        stateList.add("Bihar");
+        stateList.add("Chandigarh");
+        stateList.add("Chhattisgarh");
+        stateList.add("Dadra and Nagar Haveli");
+        stateList.add("Daman and Diu");
+        stateList.add("Delhi");
+        stateList.add("Goa");
+        stateList.add("Gujarat");
+        stateList.add("Haryana");
+        stateList.add("Himachal Pradesh");
+        stateList.add("Jammu and Kashmir");
+        stateList.add("Jharkhand");
+        stateList.add("Karnataka");
+        stateList.add("Kerala");
+        stateList.add("Ladakh");
+        stateList.add("Lakshadweep");
+        stateList.add("Madhya Pradesh");
+        stateList.add("Maharashtra");
+        stateList.add("Manipur");
+        stateList.add("Meghalaya");
+        stateList.add("Mizoram");
+        stateList.add("Nagaland");
+        stateList.add("Odisha");
+        stateList.add("Puducherry");
+        stateList.add("Punjab");
+        stateList.add("Rajasthan");
+        stateList.add("Sikkim");
+        stateList.add("Tamil Nadu");
+        stateList.add("Telangana");
+        stateList.add("Tripura");
+        stateList.add("Uttar Pradesh");
+        stateList.add("Uttarakhand");
+        stateList.add("West Bengal");
+
+        setStateAdopter();
+        setData();
+    }
+
+    private void setStateAdopter() {
+        // Creating adapter for spinner
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, stateList);
+
+        // Drop down layout style - list view with radio button
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerStateList.setAdapter(stateAdapter);
+        spinnerStateList.setPrompt("your state here");
+
+        spinnerStateList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+              String  st_state = parent.getItemAtPosition(position).toString();
+
+                // Showing selected spinner item
+                Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
     private void setData() {
         String fullName = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.FULL_NAME);
         String email = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.USER_EMAIL);
@@ -80,7 +164,7 @@ public class EditProfileActivity extends AppCompatActivity {
         String state = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.STATE);
         String city = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.CITY);
         String userName = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.USER_NAME);
-
+        Log.d(TAG, "" + phoneNumber+" "+email);
         edTxtName.setText(fullName);
         edTxtUserName.setText(userName);
         edTxtPhoneNumber.setText(phoneNumber);
@@ -88,7 +172,9 @@ public class EditProfileActivity extends AppCompatActivity {
         edTxtAge.setText("28");
         edTxtCity.setText(city);
         edTxtAddress.setText(address);
-        edTxtState.setText(state);
+       // spinnerStateList.setPrompt(state);
+
+        // edTxtState.setText(state);
     }
 
 
@@ -97,12 +183,12 @@ public class EditProfileActivity extends AppCompatActivity {
         String access_token = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.ACCESS_TOKEN);
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
         UserUpdateRequestModal updateRequestModal = new UserUpdateRequestModal(edTxtEmail.getText().toString(),
-                "9810000345",
+                edTxtPhoneNumber.getText().toString(),
                 edTxtAddress.getText().toString(),
                 edTxtState.getText().toString(),
                 edTxtCity.getText().toString(),
                 "110044");
-        Call<UserUpdateResponseModal> call = retrofitAPI.userUpdate("Bearer "+access_token,updateRequestModal);
+        Call<UserUpdateResponseModal> call = retrofitAPI.userUpdate("Bearer " + access_token, updateRequestModal);
         call.enqueue(new Callback<UserUpdateResponseModal>() {
             @Override
             public void onResponse(Call<UserUpdateResponseModal> call, Response<UserUpdateResponseModal> response) {
@@ -138,7 +224,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     SharedPreferenceUtils.saveString(EditProfileActivity.this, Const.STATE, response.body().getState());
                     SharedPreferenceUtils.saveString(EditProfileActivity.this, Const.CITY, response.body().getCity());
                     SharedPreferenceUtils.saveString(EditProfileActivity.this, Const.USER_NAME, response.body().getUsername());
-
+                    setData();
 
                 } else {
                     Log.e(TAG, "Else condition");

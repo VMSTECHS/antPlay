@@ -120,6 +120,8 @@
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:layout_weight="0.3"
                                 android:background="@null"
+                                android:cursorVisible="false"
+                                android:focusable="false"
                                 android:fontFamily="sans-serif"
                                 android:text="Rakesh Jha"
                                 android:textColor="@color/white" />
@@ -129,7 +131,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.8"
                                 android:gravity="right"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="invisible">
 
                                 <ImageView
                                     android:layout_width="@dimen/_20sdp"
@@ -185,6 +188,8 @@
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:layout_weight="0.3"
                                 android:background="@null"
+                                android:cursorVisible="false"
+                                android:focusable="false"
                                 android:fontFamily="sans-serif"
                                 android:text="Rakesh#213"
                                 android:textColor="@color/white" />
@@ -194,7 +199,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.8"
                                 android:gravity="right"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="invisible">
 
                                 <ImageView
                                     android:layout_width="@dimen/_20sdp"
@@ -250,6 +256,8 @@
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:layout_weight="0.3"
                                 android:background="@null"
+                                android:cursorVisible="false"
+                                android:focusable="false"
                                 android:fontFamily="sans-serif"
                                 android:text="9717844140"
                                 android:textColor="@color/white" />
@@ -259,7 +267,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.8"
                                 android:gravity="right"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="invisible">
 
                                 <ImageView
                                     android:layout_width="@dimen/_20sdp"
@@ -314,6 +323,8 @@
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:layout_weight="0.3"
                                 android:background="@null"
+                                android:cursorVisible="false"
+                                android:focusable="false"
                                 android:fontFamily="sans-serif"
                                 android:text="Rakesh@gmail.com"
                                 android:textColor="@color/white" />
@@ -323,7 +334,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.8"
                                 android:gravity="right"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="invisible">
 
                                 <ImageView
                                     android:layout_width="@dimen/_20sdp"
@@ -560,10 +572,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:visibility="visible"
                             android:weightSum="2">
 
-                            <EditText
-                                android:id="@+id/edTxtState"
+                            <Spinner
+                                android:id="@+id/spinnerStateList"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_10sdp"
@@ -572,7 +585,7 @@
                                 android:layout_weight="0.3"
                                 android:background="@null"
                                 android:fontFamily="sans-serif"
-                                android:text="Uttar Pradesh"
+                                android:autofillHints="name"
                                 android:textColor="@color/white" />
 
                             <LinearLayout
@@ -591,6 +604,8 @@
 
 
                         </LinearLayout>
+
+
 
                         <View
                             android:layout_width="match_parent"
@@ -636,7 +651,7 @@
         style="?android:attr/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

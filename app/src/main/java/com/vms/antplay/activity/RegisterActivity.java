@@ -91,48 +91,48 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Andaman and Nicobar Islands");
-        categories.add("Andhra Pradesh");
-        categories.add("Arunachal Pradesh");
-        categories.add("Assam");
-        categories.add("Bihar");
-        categories.add("Chandigarh");
-        categories.add("Chhattisgarh");
-        categories.add("Dadra and Nagar Haveli");
-        categories.add("Daman and Diu");
-        categories.add("Delhi");
-        categories.add("Goa");
-        categories.add("Gujarat");
-        categories.add("Haryana");
-        categories.add("Himachal Pradesh");
-        categories.add("Jammu and Kashmir");
-        categories.add("Jharkhand");
-        categories.add("Karnataka");
-        categories.add("Kerala");
-        categories.add("Ladakh");
-        categories.add("Lakshadweep");
-        categories.add("Madhya Pradesh");
-        categories.add("Maharashtra");
-        categories.add("Manipur");
-        categories.add("Meghalaya");
-        categories.add("Mizoram");
-        categories.add("Nagaland");
-        categories.add("Odisha");
-        categories.add("Puducherry");
-        categories.add("Punjab");
-        categories.add("Rajasthan");
-        categories.add("Sikkim");
-        categories.add("Tamil Nadu");
-        categories.add("Telangana");
-        categories.add("Tripura");
-        categories.add("Uttar Pradesh");
-        categories.add("Uttarakhand");
-        categories.add("West Bengal");
+        List<String> stateList = new ArrayList<String>();
+        stateList.add("Andaman and Nicobar Islands");
+        stateList.add("Andhra Pradesh");
+        stateList.add("Arunachal Pradesh");
+        stateList.add("Assam");
+        stateList.add("Bihar");
+        stateList.add("Chandigarh");
+        stateList.add("Chhattisgarh");
+        stateList.add("Dadra and Nagar Haveli");
+        stateList.add("Daman and Diu");
+        stateList.add("Delhi");
+        stateList.add("Goa");
+        stateList.add("Gujarat");
+        stateList.add("Haryana");
+        stateList.add("Himachal Pradesh");
+        stateList.add("Jammu and Kashmir");
+        stateList.add("Jharkhand");
+        stateList.add("Karnataka");
+        stateList.add("Kerala");
+        stateList.add("Ladakh");
+        stateList.add("Lakshadweep");
+        stateList.add("Madhya Pradesh");
+        stateList.add("Maharashtra");
+        stateList.add("Manipur");
+        stateList.add("Meghalaya");
+        stateList.add("Mizoram");
+        stateList.add("Nagaland");
+        stateList.add("Odisha");
+        stateList.add("Puducherry");
+        stateList.add("Punjab");
+        stateList.add("Rajasthan");
+        stateList.add("Sikkim");
+        stateList.add("Tamil Nadu");
+        stateList.add("Telangana");
+        stateList.add("Tripura");
+        stateList.add("Uttar Pradesh");
+        stateList.add("Uttarakhand");
+        stateList.add("West Bengal");
 
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, stateList);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

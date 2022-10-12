@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.STATE, response.body().getState());
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.CITY, response.body().getCity());
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.USER_NAME, response.body().getUsername());
-
+                    Log.d(TAG, "" + response.body().getPhoneNumber()+" "+response.body().getEmail());
 
                 } else {
                     Log.e(TAG, "Else condition");
