@@ -1040,21 +1040,93 @@ public class VncCanvasActivity extends Activity {
         }
     }
 
-    @Override
+
+/*    @Override
     public boolean onKeyDown(int keyCode, KeyEvent evt) {
         if (keyCode == KeyEvent.KEYCODE_MENU)
             return super.onKeyDown(keyCode, evt);
 
         return inputHandler.onKeyDown(keyCode, evt);
-    }
+    }*/
+
+    /*****
+     * Method Name:- onKeyDown()
+     * Arguments:- int keyCode, KeyEvent evt
+     * Return Type:- boolean
+     *
+     * Description:- This method is used for tracking the key press
+     *               and handling the events on the remote devices.
+     *
+     * Written/Modified by:- Qamar Abbas
+     *****/
+
+    boolean isCTRL_Clicked = false;
+    boolean isALT_Clicked = false;
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent evt) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_FORWARD_DEL:
+                if (isCTRL_Clicked && isALT_Clicked) {
+                    vncCanvas.sendMetaKey(MetaKeyBean.keyCtrlAltDel);
+                }
+                break;
+            case KeyEvent.KEYCODE_CTRL_LEFT:
+                isCTRL_Clicked = true;
+                break;
+            case KeyEvent.KEYCODE_ALT_LEFT:
+                isALT_Clicked = true;
+                break;
+            case KeyEvent.KEYCODE_MENU:
+                return super.onKeyDown(keyCode, evt);
+            case KeyEvent.KEYCODE_ENTER:
+                // mouse left click
+
+            default:
+        }
+
+        return inputHandler.onKeyDown(keyCode, evt);
+    }
+
+/*    @Override
     public boolean onKeyUp(int keyCode, KeyEvent evt) {
         if (keyCode == KeyEvent.KEYCODE_MENU)
             return super.onKeyUp(keyCode, evt);
 
         return inputHandler.onKeyUp(keyCode, evt);
+    }*/
+
+
+    /*****
+     * Method Name:- onKeyUp()
+     * Arguments:- int keyCode, KeyEvent evt
+     * Return Type:- boolean
+     *
+     * Description:- This method is used for tracking the key release
+     *               and handling the events on the remote devices.
+     *
+     * Written/Modified by:- Qamar Abbas
+     *****/
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent evt) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_CTRL_LEFT:
+                isCTRL_Clicked = false;
+                break;
+            case KeyEvent.KEYCODE_ALT_LEFT:
+                isALT_Clicked = false;
+                break;
+            case KeyEvent.KEYCODE_MENU:
+                return super.onKeyUp(keyCode, evt);
+            default:
+        }
+      /*  if (keyCode == KeyEvent.KEYCODE_MENU)
+            return super.onKeyUp(keyCode, evt);*/
+
+        return inputHandler.onKeyUp(keyCode, evt);
     }
+
 
     public void showPanningState() {
         Toast.makeText(this, inputHandler.getHandlerDescription(),
