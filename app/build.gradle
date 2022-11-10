@@ -45,6 +45,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-fragment:2.5.2'
     implementation 'androidx.navigation:navigation-ui:2.5.2'
+    implementation files('libs/com.antlersoft.android.contentxml.jar')
+    implementation files('libs/com.antlersoft.android.db.jar')
     testImplementation 'junit:junit:4.13.2'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'

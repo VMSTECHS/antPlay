@@ -132,6 +132,17 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity
+            android:name=".vnc.MainVNCActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+
+        <activity android:name=".vnc.VncCanvasActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>

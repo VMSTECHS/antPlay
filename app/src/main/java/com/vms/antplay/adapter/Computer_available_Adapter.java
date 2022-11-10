@@ -2,6 +2,7 @@ package com.vms.antplay.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vms.antplay.R;
 
 import com.vms.antplay.model.responseModal.GetVMResponseModal;
+import com.vms.antplay.vnc.MainVNCActivity;
 
 import java.util.ArrayList;
 
@@ -46,7 +48,9 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
         holder.btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Clicked"+position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Clicked"+position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MainVNCActivity.class);
+                context.startActivity(intent);
             }
         });
     }

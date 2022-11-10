@@ -83,7 +83,10 @@ public class ComputerFragment extends Fragment {
                 if (response.isSuccessful()) {
                     loadingPB.setVisibility(View.GONE);
                     getVMResponseModals = response.body();
-                    tv_computerAvailable.setText(getString(R.string.computer_available));
+                    if (getVMResponseModals.size()>0){
+                        tv_computerAvailable.setText(getString(R.string.computer_available));
+                    }
+
 
                     for (int i = 0; i < getVMResponseModals.size(); i++) {
                         computer_available_adapter = new Computer_available_Adapter(getContext(), getVMResponseModals);

@@ -30,6 +30,7 @@ import com.vms.antplay.model.requestModal.RegisterRequestModal;
 import com.vms.antplay.model.responseModal.LoginResponseModel;
 import com.vms.antplay.model.responseModal.RegisterResponseModal;
 import com.vms.antplay.utils.AppUtils;
+import com.vms.antplay.utils.Const;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -146,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
                 st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-                Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -168,9 +169,9 @@ public class RegisterActivity extends AppCompatActivity {
                     st_email = etEmail.getText().toString();
                     st_phone = etPhone.getText().toString();
                     st_middleName = etFirstname.getText().toString();
-                    st_isSubscribed = "true";
+                    st_isSubscribed = "false";
                     st_isNewUser = "true";
-                    st_LastLogin = "";
+                    st_LastLogin = "false";
                     st_password = etConfirmPass.getText().toString();
                     st_address = etAddress.getText().toString();
                     st_age = etAge.getText().toString();
@@ -207,7 +208,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Log.e("Hello in2222", "Hello innnn2222");
-                    if (response.body().getMessage().equals("User Register Successfully")) {
+                    if (response.code() == 200) {
                         etFirstname.setText("");
                         etLastname.setText("");
                         etEmail.setText("");
@@ -218,25 +219,29 @@ public class RegisterActivity extends AppCompatActivity {
                         // etState.setText("");
                         etCity.setText("");
                         etPincode.setText("");
-                        AppUtils.showToast(getString(R.string.success_register), RegisterActivity.this);
+                        AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
 //                        String userid = String.valueOf(response.body().getData().getId());
 //                        SharedPreferences shared = getSharedPreferences("Login", MODE_PRIVATE);
 //                        SharedPreferences.Editor editor = shared.edit();
 //                        editor.putString(Const.USERS_ID, userid);
 //                        editor.commit();
-                        //   Log.e("Hello Userid register", "" + userid);
+                        //Log.e("Hello Userid register", "" + userid);
 
-                        Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                        Intent i = new Intent(RegisterActivity.this, LoginScreenActivity.class);
                         startActivity(i);
                         finish();
 
 
-                    } else {
+                    }
+                    else {
                         Log.e("Hello in33333", "Hello innnn33333");
                         loadingPB.setVisibility(View.GONE);
                         AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
                     }
 
+                }
+                else {
+                    AppUtils.showToast(Const.no_records, RegisterActivity.this);
                 }
 
             }

@@ -2,11 +2,13 @@ package com.vms.antplay.api;
 
 
 import com.vms.antplay.model.requestModal.ChangePasswordRequestModal;
+import com.vms.antplay.model.requestModal.ForgotPassRequestModal;
 import com.vms.antplay.model.requestModal.LoginRequestModal;
 import com.vms.antplay.model.requestModal.StartPaymentRequestModal;
 import com.vms.antplay.model.requestModal.UserUpdateRequestModal;
 import com.vms.antplay.model.responseModal.BillingPlansResponse;
 import com.vms.antplay.model.responseModal.ChangePasswordResponseModal;
+import com.vms.antplay.model.responseModal.ForgotPassResponseModal;
 import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
 import com.vms.antplay.model.responseModal.GetPaymentHistoryResponseModal;
 import com.vms.antplay.model.responseModal.GetVMResponseModal;
@@ -55,6 +57,9 @@ public interface RetrofitAPI {
 
     @GET("userview")
     Call<UserDetailsModal> getUserDetails(@Header("Authorization") String Token);
+
+    @POST("request-reset-email/")
+    Call<ForgotPassResponseModal> forgotPassword(@Body ForgotPassRequestModal forgotPassRequestModal);
 
 
 }

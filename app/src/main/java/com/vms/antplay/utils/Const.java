@@ -34,6 +34,7 @@ public class Const {
     public static String something_went_wrong = "Something went wrong";
     public static String try_again = "Try Again Later";
     public static String no_records = "No Records Found";
+    public static String password_error = "No active account found with the given credentials";
 
 
 

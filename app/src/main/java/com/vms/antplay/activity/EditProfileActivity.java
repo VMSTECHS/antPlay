@@ -146,7 +146,7 @@ public class EditProfileActivity extends AppCompatActivity {
               String  st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-                Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override

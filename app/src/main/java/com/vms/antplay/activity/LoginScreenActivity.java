@@ -122,17 +122,24 @@ public class LoginScreenActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponseModel>() {
             @Override
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                if (response.isSuccessful()) {
+                if (response.code() == 200) {
                     loadingPB.setVisibility(View.GONE);
                     Log.d(TAG, "" + response.body().getAccess());
                     SharedPreferenceUtils.saveString(LoginScreenActivity.this, Const.ACCESS_TOKEN, response.body().getAccess());
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);
+                    finish();
 
-                } else {
+                }
+                else if(response.code() == 401){
                     loadingPB.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
+                    AppUtils.showToast(Const.password_error, LoginScreenActivity.this);
+                }
+                else
+                {
                     AppUtils.showToast(Const.no_records, LoginScreenActivity.this);
+
                 }
             }
 
@@ -190,7 +197,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                     }
                 }
             }, ipAddressOfServerDevice);
-            mTcpClient.run();
+           // mTcpClient.run();
             if (mTcpClient != null) {
                 mTcpClient.sendMessage("Initial Message when connected with Socket Server");
             }

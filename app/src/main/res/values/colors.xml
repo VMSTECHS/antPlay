@@ -18,7 +18,8 @@
     <color name="transparent">#0D040303</color>
     <color name="black_trans">#C90B0A0A</color>
     <color name="black_trans_50pc">#AB0B0A0A</color>
-
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#C5B993</color>
 
 
 </resources>
