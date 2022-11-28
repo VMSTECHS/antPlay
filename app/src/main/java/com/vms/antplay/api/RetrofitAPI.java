@@ -4,7 +4,9 @@ package com.vms.antplay.api;
 import com.vms.antplay.model.requestModal.ChangePasswordRequestModal;
 import com.vms.antplay.model.requestModal.ForgotPassRequestModal;
 import com.vms.antplay.model.requestModal.LoginRequestModal;
+import com.vms.antplay.model.requestModal.ShutDownVMRequestModal;
 import com.vms.antplay.model.requestModal.StartPaymentRequestModal;
+import com.vms.antplay.model.requestModal.StartVMRequestModal;
 import com.vms.antplay.model.requestModal.UserUpdateRequestModal;
 import com.vms.antplay.model.responseModal.BillingPlansResponse;
 import com.vms.antplay.model.responseModal.ChangePasswordResponseModal;
@@ -16,7 +18,9 @@ import com.vms.antplay.model.responseModal.LoginResponseModel;
 import com.vms.antplay.model.requestModal.RegisterRequestModal;
 import com.vms.antplay.model.responseModal.PaymentHistory_modal;
 import com.vms.antplay.model.responseModal.RegisterResponseModal;
+import com.vms.antplay.model.responseModal.ShutDownVMResponseModal;
 import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
+import com.vms.antplay.model.responseModal.StartVMResponseModal;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.model.responseModal.UserUpdateResponseModal;
 
@@ -60,6 +64,13 @@ public interface RetrofitAPI {
 
     @POST("request-reset-email/")
     Call<ForgotPassResponseModal> forgotPassword(@Body ForgotPassRequestModal forgotPassRequestModal);
+
+    @POST("shutdownvm/")
+    Call<ShutDownVMResponseModal> shoutDownVM(@Body ShutDownVMRequestModal shutDownVMRequestModal);
+
+    @POST("startvm/")
+    Call<StartVMResponseModal> startVM(@Body StartVMRequestModal startVMRequestModal);
+
 
 
 }

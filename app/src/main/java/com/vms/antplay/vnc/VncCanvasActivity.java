@@ -205,6 +205,8 @@ public class VncCanvasActivity extends Activity {
                 if (middleDown != mMiddleDown) {
                     // middle button pressed or released
                     mMiddleDown = middleDown;
+                    vncCanvas.processPointerEvent(e, true);
+                    Toast.makeText(VncCanvasActivity.this, "middle btn-22--"+middleDown, Toast.LENGTH_SHORT).show();
                 }
 
                 return true;
@@ -255,7 +257,7 @@ public class VncCanvasActivity extends Activity {
             } else {
                 // compute the relative movement offset on the remote screen.
                 Log.e("hello scroll 1", "Relative scrolling");
-                Toast.makeText(VncCanvasActivity.this, "Hello Relative", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(VncCanvasActivity.this, "Hello Relative", Toast.LENGTH_SHORT).show();
                 vncCanvas.scrollToAbsolute();
                 float deltaX = -distanceX * vncCanvas.getScale();
                 float deltaY = -distanceY * vncCanvas.getScale();
@@ -1079,8 +1081,6 @@ public class VncCanvasActivity extends Activity {
                 break;
             case KeyEvent.KEYCODE_MENU:
                 return super.onKeyDown(keyCode, evt);
-            case KeyEvent.KEYCODE_ENTER:
-                // mouse left click
 
             default:
         }
@@ -1156,6 +1156,17 @@ public class VncCanvasActivity extends Activity {
         // vncCanvas.warpMouse(event.getX(),event.getY());
         vncCanvas.moveMouse(event);
         // vncCanvas.scrollToAbsolute();
+        if (0 != (event.getSource() & InputDevice.SOURCE_CLASS_POINTER)) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_SCROLL:
+                    if (event.getAxisValue(MotionEvent.AXIS_VSCROLL) < 0.0f)
+//                        selectNext();
+//                    else
+//                        selectPrev();
+                    return true;
+            }
+        }
+      //  return super.onGenericMotionEvent(event);
         return super.onGenericMotionEvent(event);
     }
     @Override

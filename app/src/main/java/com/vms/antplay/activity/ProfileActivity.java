@@ -19,7 +19,9 @@ import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout, linearPayment, linearEdit;
+    LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout,
+            linearPayment, linearEdit, linearDiscord, linearInstagram;
+
     TextView tv_changePassword, tv_manageSubs, txtUserID;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -36,6 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
         linearWebsite = (LinearLayout) findViewById(R.id.linear_website);
         linearAbout = (LinearLayout) findViewById(R.id.linear_aboutUs);
         linearPayment = (LinearLayout) findViewById(R.id.linear_paymentHistory);
+        linearDiscord = (LinearLayout) findViewById(R.id.linear_discord);
+        linearInstagram = (LinearLayout) findViewById(R.id.linear_instagram);
         linearEdit = (LinearLayout) findViewById(R.id.linear_edit);
         tv_manageSubs = (TextView) findViewById(R.id.tv_manageSubscription);
         txtUserID = (TextView) findViewById(R.id.txtUserEmailID);
@@ -96,6 +100,22 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
+        linearDiscord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/vGHsh8MYXX"));
+                startActivity(browserIntent);
+            }
+        });
+        linearInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/antplay.tech/"));
+                startActivity(browserIntent);
+            }
+        });
+
+
         linearAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
