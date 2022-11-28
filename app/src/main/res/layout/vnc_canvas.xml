@@ -26,6 +26,7 @@
         android:src="@drawable/icons_keyboard"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="20dp"
+        android:visibility="gone"
         android:backgroundTint="@color/green"
         android:text="key board" />
 
