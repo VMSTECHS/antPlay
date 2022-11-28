@@ -42,7 +42,6 @@ public class VncCanvasActivity extends Activity {
     float dragX = 0, dragY = 0;
     private MouseMover mouseMover;
     private static boolean mLeftDown = false, mRightDown = false, mMiddleDown = false;
-
     /**
      * @author Michael A. MacDonald
      */
@@ -141,7 +140,7 @@ public class VncCanvasActivity extends Activity {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                float velocityY) {
-            // showZoomer(false);
+           // showZoomer(false);
             panner.start(-(velocityX / FLING_FACTOR),
                     -(velocityY / FLING_FACTOR), new Panner.VelocityUpdater() {
 
@@ -206,6 +205,8 @@ public class VncCanvasActivity extends Activity {
                 if (middleDown != mMiddleDown) {
                     // middle button pressed or released
                     mMiddleDown = middleDown;
+                    vncCanvas.processPointerEvent(e, true);
+                    Toast.makeText(VncCanvasActivity.this, "middle btn-22--"+middleDown, Toast.LENGTH_SHORT).show();
                 }
 
                 return true;
@@ -224,7 +225,7 @@ public class VncCanvasActivity extends Activity {
          */
         @Override
         public void onLongPress(MotionEvent e) {
-            // showZoomer(false);
+           // showZoomer(false);
             BCFactory.getInstance().getBCHaptic().performLongPressHaptic(
                     vncCanvas);
             dragMode = true;
@@ -256,7 +257,7 @@ public class VncCanvasActivity extends Activity {
             } else {
                 // compute the relative movement offset on the remote screen.
                 Log.e("hello scroll 1", "Relative scrolling");
-                Toast.makeText(VncCanvasActivity.this, "Hello Relative", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(VncCanvasActivity.this, "Hello Relative", Toast.LENGTH_SHORT).show();
                 vncCanvas.scrollToAbsolute();
                 float deltaX = -distanceX * vncCanvas.getScale();
                 float deltaY = -distanceY * vncCanvas.getScale();
@@ -435,7 +436,7 @@ public class VncCanvasActivity extends Activity {
         public void onLongPress(MotionEvent e) {
 
 
-            // showZoomer(true);
+           // showZoomer(true);
             BCFactory.getInstance().getBCHaptic().performLongPressHaptic(
                     vncCanvas);
             dragMode = true;
@@ -460,7 +461,7 @@ public class VncCanvasActivity extends Activity {
             if (BCFactory.getInstance().getBCMotionEvent().getPointerCount(e2) > 1) {
                 if (inScaling)
                     return false;
-                // showZoomer(false);
+               // showZoomer(false);
                 return vncCanvas.pan((int) distanceX, (int) distanceY);
             } else {
                 // compute the relative movement offset on the remote screen.
@@ -687,7 +688,7 @@ public class VncCanvasActivity extends Activity {
              */
             @Override
             public void onClick(View v) {
-                // showZoomer(true);
+               // showZoomer(true);
                 vncCanvas.scaling.zoomIn(VncCanvasActivity.this);
 
             }
@@ -702,7 +703,7 @@ public class VncCanvasActivity extends Activity {
              */
             @Override
             public void onClick(View v) {
-                // showZoomer(true);
+               // showZoomer(true);
                 vncCanvas.scaling.zoomOut(VncCanvasActivity.this);
 
             }
@@ -1118,10 +1119,13 @@ public class VncCanvasActivity extends Activity {
             case KeyEvent.KEYCODE_ALT_LEFT:
                 isALT_Clicked = false;
                 break;
-
+            case KeyEvent.KEYCODE_MENU:
+                return super.onKeyUp(keyCode, evt);
             default:
                 return inputHandler.onKeyUp(keyCode, evt);
         }
+      /*  if (keyCode == KeyEvent.KEYCODE_MENU)
+            return super.onKeyUp(keyCode, evt);*/
 
         return inputHandler.onKeyUp(keyCode, evt);
     }
@@ -1156,9 +1160,19 @@ public class VncCanvasActivity extends Activity {
         // vncCanvas.warpMouse(event.getX(),event.getY());
         vncCanvas.moveMouse(event);
         // vncCanvas.scrollToAbsolute();
+        if (0 != (event.getSource() & InputDevice.SOURCE_CLASS_POINTER)) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_SCROLL:
+                    if (event.getAxisValue(MotionEvent.AXIS_VSCROLL) < 0.0f)
+//                        selectNext();
+//                    else
+//                        selectPrev();
+                    return true;
+            }
+        }
+      //  return super.onGenericMotionEvent(event);
         return super.onGenericMotionEvent(event);
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return inputHandler.onTouchEvent(event);

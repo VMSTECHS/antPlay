@@ -896,6 +896,7 @@ public class VncCanvas extends ImageView {
 		else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP)
 		{
 			int mouseChange = keyCode == KeyEvent.KEYCODE_VOLUME_DOWN ? MOUSE_BUTTON_SCROLL_DOWN : MOUSE_BUTTON_SCROLL_UP;
+			//Toast.makeText(getContext(), "Mouse change---"+mouseChange, Toast.LENGTH_SHORT).show();
 			if (evt.getAction() == KeyEvent.ACTION_DOWN)
 			{
 				// If not auto-repeat

@@ -90,7 +90,6 @@
                             android:text="@string/reload"
                             android:id="@+id/tv_reload"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
                             android:textStyle="normal" />
 
                     </LinearLayout>
@@ -99,11 +98,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="sans-serif"
                         android:textColor="@color/black"
                         android:id="@+id/tv_compAvailable"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="normal" />
 
                     <LinearLayout
