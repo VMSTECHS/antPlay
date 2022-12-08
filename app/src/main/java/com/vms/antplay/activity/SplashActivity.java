@@ -1,15 +1,23 @@
 package com.vms.antplay.activity;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.vms.antplay.R;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
@@ -27,6 +35,25 @@ public class SplashActivity extends AppCompatActivity {
         boolean isNotFirstTime=  SharedPreferenceUtils.getBoolean(SplashActivity.this,getString(R.string.is_first_time));
         /*SharedPreferences sharedPreferences = this.getSharedPreferences("com.vms.antplay", Context.MODE_PRIVATE);
         boolean isNotFirstTime = sharedPreferences.getBoolean(getString(R.string.is_first_time), false);*/
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                       // String msg = getString(R.string.msg_token_fmt, token);
+                        Log.e(TAG, token);
+                       // Toast.makeText(SplashActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         new Handler().postDelayed(new Runnable() {
             @Override

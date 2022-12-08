@@ -61,7 +61,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         // etPass.setText("123456788");
         // etEmail.setText("AntplayOrchestrator");
         // etPass.setText("Acro@#208a");
-        etEmail.setText("royv");
+        etEmail.setText("Vikas.antplay@gmail.com");
         etPass.setText("Antplay@123");
 
         //---------TCP---------
@@ -138,6 +138,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    loadingPB.setVisibility(View.GONE);
                     AppUtils.showToast(Const.no_records, LoginScreenActivity.this);
 
                 }

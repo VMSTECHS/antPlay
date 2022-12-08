@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginRequestModal {
 
-    @SerializedName("username")
+    @SerializedName("email")
     @Expose
-    private String username;
+    private String email;
     @SerializedName("password")
     @Expose
     private String password;
 
-    public LoginRequestModal(String username, String password) {
-        this.username = username;
+    public LoginRequestModal(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
