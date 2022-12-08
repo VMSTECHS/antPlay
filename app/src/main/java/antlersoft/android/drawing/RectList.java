@@ -1,6 +1,4 @@
-/**
- * Copyright (C) 2009 Michael A. MacDonald
- */
+
 package antlersoft.android.drawing;
 
 import android.graphics.Rect;

@@ -1,12 +1,12 @@
 package com.vms.antplay.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,21 +15,27 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.razorpay.Checkout;
-import com.razorpay.ExternalWalletListener;
-import com.razorpay.PaymentData;
-import com.razorpay.PaymentResultWithDataListener;
+import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ConsumeParams;
+import com.android.billingclient.api.ConsumeResponseListener;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
 import com.vms.antplay.R;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.adapter.PaymentPlanAdapter;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
 import com.vms.antplay.api.RetrofitAPI;
-import com.vms.antplay.model.PaymentPlansModel;
 import com.vms.antplay.model.responseModal.BillingPlan;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
-
-import org.json.JSONObject;
 
 import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
 import com.vms.antplay.utils.SharedPreferenceUtils;
@@ -42,12 +48,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class PaymentPlanActivity extends AppCompatActivity implements PaymentInitiationInterface, PaymentResultWithDataListener, ExternalWalletListener {
+public class PaymentPlanActivity extends AppCompatActivity implements PaymentInitiationInterface, PurchasesUpdatedListener {
     List<BillingPlan> paymentPlansList = new ArrayList<>();
     RecyclerView recyclerPaymentPlan;
     ImageView imgBack;
-    private AlertDialog.Builder alertDialogBuilder;
     private ProgressBar loadingPB;
+
+    BillingClient billingClient;
+    BillingFlowParams billingFlowParams;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -59,16 +68,7 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
         imgBack = findViewById(R.id.imgBackPayment);
         loadingPB = (ProgressBar) findViewById(R.id.loading_getPaymentPlanHistory);
 
-       // setPlanList();
-        // setPaymentPlanAdapter();
         callGetPlanAPI();
-
-        alertDialogBuilder = new AlertDialog.Builder(PaymentPlanActivity.this);
-        alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setTitle("Payment Result");
-        alertDialogBuilder.setPositiveButton("Ok", (dialog, which) -> {
-            //do nothing
-        });
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,26 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
                 finish();
             }
         });
+
+
+        //Step 2 Started
+        PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
+            @Override
+            public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> list) {
+                // To be implemented later
+
+            }
+        };
+
+        billingClient = BillingClient.newBuilder(PaymentPlanActivity.this)
+                .setListener(purchasesUpdatedListener)
+                .enablePendingPurchases()
+                .build();
+
+        startGoogleConnection();
+        //Step 2 Ended
     }
+
 
     private void callGetPlanAPI() {
         loadingPB.setVisibility(View.VISIBLE);
@@ -94,8 +113,7 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
                     recyclerPaymentPlan.setLayoutManager(layoutManager);
                     recyclerPaymentPlan.setAdapter(planAdapter);
 
-                }
-                else {
+                } else {
                     loadingPB.setVisibility(View.GONE);
                     AppUtils.showToast(Const.no_records, PaymentPlanActivity.this);
                 }
@@ -110,96 +128,159 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
         });
     }
 
-    public void startPayment(Double hours, int amount) {
-        /*
-          You need to pass current activity in order to let Razorpay create CheckoutActivity
-         */
-        int amountInPaise = amount * 100;
-        final Activity activity = PaymentPlanActivity.this;
-
-        final Checkout checkout = new Checkout();
-
-
-        checkout.setKeyID(Const.razorPayTestKeyId);
-
-        // EditText etCustomOptions = findViewById(R.id.et_custom_options);
-       /* if (!TextUtils.isEmpty(etCustomOptions.getText().toString())){
-            try{
-                JSONObject options = new JSONObject(etCustomOptions.getText().toString());
-                checkout.open(activity, options);
-            }catch (JSONException e){
-                Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
-                        .show();
-                e.printStackTrace();
-            }
-        }else{*/
-        try {
-            JSONObject options = new JSONObject();
-            options.put("name", "Razorpay Corp");
-            options.put("description", "Demoing Charges");
-            options.put("send_sms_hash", true);
-            options.put("allow_rotation", true);
-            //You can omit the image option to fetch the image from dashboard
-            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
-            options.put("currency", "INR");
-            options.put("amount", String.valueOf(amountInPaise));
-
-            JSONObject preFill = new JSONObject();
-            preFill.put("email", "test@razorpay.com");
-            preFill.put("contact", "9876543210");
-
-            options.put("prefill", preFill);
-
-            checkout.open(activity, options);
-        } catch (Exception e) {
-            Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
-                    .show();
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    public void onExternalWalletSelected(String s, PaymentData paymentData) {
-        try {
-            alertDialogBuilder.setMessage("External Wallet Selected:\nPayment Data: " + paymentData.getData());
-            alertDialogBuilder.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onPaymentSuccess(String razorpayPaymentID, PaymentData paymentData) {
-        try {
-            alertDialogBuilder.setMessage("Payment Successful :\nPayment ID: " + razorpayPaymentID + "\nPayment Data: " + paymentData.getData());
-            alertDialogBuilder.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onPaymentError(int i, String s, PaymentData paymentData) {
-        try {
-            alertDialogBuilder.setMessage("Payment Failed:\nPayment Data: " + paymentData.getData());
-            alertDialogBuilder.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onPaymentInitiated(Double hours, int amount) {
-        startPayment(Double.valueOf(String.valueOf(hours)), amount);
-       /* String url = "https://rzp.io/i/r3CTRh6CG";
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);*/
+        // Perform click to purchase here
+        // Pass Billing flow param to billing client
+        if (billingFlowParams!=null) {
+            billingClient.launchBillingFlow(
+                    PaymentPlanActivity.this,
+                    billingFlowParams);
+        }else {
+            Toast.makeText(PaymentPlanActivity.this,"Something went wrong please try againg after sometime",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-        super.onPointerCaptureChanged(hasCapture);
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> list) {
+        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && list != null) {
+            for (Purchase purchase : list) {
+                if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED && !purchase.isAcknowledged()) {
+                    // Call Api to verify your purchase from own server.
+                    // In case of OneTime purchase product you need to consume that item as well
+                    // after getting success response from the server.
+                    Log.d("PAYMENT", "Purchased, Verify it on server");
+                    verifyPurchases(purchase);
+
+                }else if(purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED && !purchase.isAutoRenewing()){
+                    Log.d("PAYMENT", "Purchased, Auto renewable");
+                }else if(purchase.getPurchaseState() == Purchase.PurchaseState.PENDING){
+                    Log.d("PAYMENT", "Purchase pending");
+                }else {
+                    Log.d("PAYMENT", "Some error occur");
+                }
+            }
+
+        }else {
+            Log.d("PAYMENT", "Error");
+        }
     }
+
+    private void verifyPurchases(Purchase purchase) {
+        /*****
+         * call API to Verify this purchase from the own server
+         * and on success consume the product in case of OneTime payment
+         * ****/
+        ConsumeParams consumeParams = ConsumeParams.newBuilder()
+                .setPurchaseToken(purchase.getPurchaseToken())
+                .build();
+        billingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
+            @Override
+            public void onConsumeResponse(@NonNull BillingResult billingResult, @NonNull String s) {
+                if(billingResult.getResponseCode()==BillingClient.BillingResponseCode.OK){
+                 Log.d("PAYMENT", "Product Consumed");
+                }
+            }
+        });
+
+        /*****
+         * Or Acknowledge your purchase
+         * ****/
+    /*    AcknowledgePurchaseParams acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
+                .setPurchaseToken(purchase.getPurchaseToken())
+                .build();
+
+        billingClient.acknowledgePurchase(acknowledgePurchaseParams, new AcknowledgePurchaseResponseListener() {
+            @Override
+            public void onAcknowledgePurchaseResponse(@NonNull BillingResult billingResult) {
+                if (billingResult.getResponseCode()==BillingClient.BillingResponseCode.OK){
+                    Log.d("PAYMENT", "Purchase acknowledged");
+                }
+            }
+        });*/
+    }
+
+    /****
+     * Google Play Purchase
+     * Integration Started
+     ****/
+
+   /* @Override
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        // Google Play Purchase Update
+        // To be implemented in a later section.
+
+    }*/
+
+    //Step 3
+    private void startGoogleConnection() {
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+                Log.d("PAYMENT", "Server disconnected");
+                startGoogleConnection();
+
+            }
+
+            @Override
+            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
+                // Check if the result is OK
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready. You can query purchases here.
+                    getProductDetails();
+                }
+
+                Log.d("PAYMENT", "Setup finished");
+            }
+        });
+    }
+
+    private void getProductDetails() {
+        List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
+        productList.add(
+                QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(Const.BASIC_PLAN_1) //Const.BASIC_SKU,  dummy_product_1
+                        .setProductType(BillingClient.ProductType.SUBS)
+                        .build()
+        );
+        QueryProductDetailsParams queryProductDetailsParams =
+                QueryProductDetailsParams.newBuilder()
+                        .setProductList(productList)
+                        .build();
+
+        billingClient.queryProductDetailsAsync(queryProductDetailsParams,
+                new ProductDetailsResponseListener() {
+                    @Override
+                    public void onProductDetailsResponse(@NonNull BillingResult billingResult,
+                                                         @NonNull List<ProductDetails> productDetailsList) {
+                        // check billingResult
+                        // process returned productDetailsList
+
+                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && productDetailsList != null && productDetailsList.size()!=0) {
+
+
+                            List<BillingFlowParams.ProductDetailsParams> productDetailsParamsList = new ArrayList<>();
+                            // Use a forLoop to add all the element of the List
+                            productDetailsParamsList.add(BillingFlowParams.ProductDetailsParams
+                                    .newBuilder()
+                                    .setProductDetails(productDetailsList.get(0))
+                                    .build());
+
+                            // Pass ProductDetailsParamList to the Billing flow param
+                            billingFlowParams = BillingFlowParams.newBuilder()
+                                    .setProductDetailsParamsList(productDetailsParamsList)
+                                    .build();
+                        }
+                       /* // Pass Billing flow param to billing client
+                        billingClient.launchBillingFlow(
+                                PaymentPlanActivity.this,
+                                billingFlowParams);*/
+                    }
+                });
+    }
+
+
 }

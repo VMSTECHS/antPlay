@@ -14,6 +14,9 @@ public class Const {
     public static String STATE="state";
     public static String CITY="city";
     public static String USER_NAME="username";
+    public static String BASIC_SKU="antplay_30_hours";
+    public static String PREMIUM_SKU="antplay_250_hours";
+    public static String BASIC_PLAN_1="basic-plan-1";
 
     /****
      * RazorPay Test Credentials
