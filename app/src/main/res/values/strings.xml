@@ -96,7 +96,7 @@
     <string name="computer_available">Computers available right now</string>
     <string name="reload"><u>Reload</u></string>
     <string name="computer">Computers</string>
-<!--    <string name="connect_computer">Connect to your computer or a friend’s computer in low latency desktop mode.</string>-->
+    <!--    <string name="connect_computer">Connect to your computer or a friend’s computer in low latency desktop mode.</string>-->
     <string name="connect_computer">Connect to your computer in low latency desktop mode.</string>
 
     <string name="agreement">A non-disclosure agreement, also known as a confidentiality agreement, details what information should not be shared outside of the parties in the agreement. It may cover information or materials (such as photos) that cannot be shared with third parties</string>

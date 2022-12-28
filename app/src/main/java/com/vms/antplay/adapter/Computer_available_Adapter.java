@@ -20,13 +20,14 @@ import com.vms.antplay.model.responseModal.GetVMResponseModal;
 import com.vms.antplay.vnc.MainVNCActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_available_Adapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<GetVMResponseModal> computer_availableModals;
+    private List<GetVMResponseModal.Datum> computer_availableModals;
 
-    public Computer_available_Adapter(Context context, ArrayList<GetVMResponseModal> computer_availableModals) {
+    public Computer_available_Adapter(Context context, List<GetVMResponseModal.Datum> computer_availableModals) {
         this.context = context;
         this.computer_availableModals = computer_availableModals;
     }
@@ -40,7 +41,7 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
 
     @Override
     public void onBindViewHolder(@NonNull Computer_available_Adapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        GetVMResponseModal modal = computer_availableModals.get(position);
+        GetVMResponseModal.Datum modal = computer_availableModals.get(position);
         holder.computerName.setText(modal.getVmname());
         holder.computerDesc.setText(modal.getStatus());
       //  holder.computerImage.setImageResource(modal.getImage());

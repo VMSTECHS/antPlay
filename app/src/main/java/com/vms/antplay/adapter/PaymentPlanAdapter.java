@@ -1,21 +1,42 @@
 package com.vms.antplay.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
+import com.vms.antplay.activity.PaymentHistory;
+import com.vms.antplay.activity.PaymentPlanActivity;
+import com.vms.antplay.activity.Webview_forPayment;
+import com.vms.antplay.api.APIClient;
+import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
 import com.vms.antplay.model.PaymentPlansModel;
+import com.vms.antplay.model.requestModal.StartPaymentRequestModal;
 import com.vms.antplay.model.responseModal.BillingPlan;
+import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
+import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
+import com.vms.antplay.utils.AppUtils;
+import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.PaymentPlanViewHolder> implements View.OnClickListener {
@@ -40,24 +61,69 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PaymentPlanViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PaymentPlanViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtPlanName.setText(paymentPlansList.get(position).getPlanName());
         holder.txtPlaneAmount.setText("₹ " + paymentPlansList.get(position).getPrice());
         holder.txtDurationInHours.setText(paymentPlansList.get(position).getHourLimit() + " Hours");
         holder.txtValidity.setText(paymentPlansList.get(position).getTerm() + " Days");
 
         holder.tv_gpus.setText(paymentPlansList.get(position).getGpu());
-        holder.tv_cpus.setText(paymentPlansList.get(position).getCpu()+ " CPU ");
-        holder.tv_rams.setText(paymentPlansList.get(position).getRam()+ " RAM ");
-        holder.tv_ssds.setText(paymentPlansList.get(position).getSsd()+ " SSD ");
-      //  holder.tv_mbps.setText(paymentPlansList.get(position).get());
+        holder.tv_cpus.setText(paymentPlansList.get(position).getCpu() + " CPU ");
+        holder.tv_rams.setText(paymentPlansList.get(position).getRam() + " RAM ");
+        holder.tv_ssds.setText(paymentPlansList.get(position).getSsd() + " SSD ");
+        //  holder.tv_mbps.setText(paymentPlansList.get(position).get());
         holder.txtSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getPrice(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getHourLimit());
+                //  paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getPrice(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getHourLimit());
+                //  paymentInitiationInterface.onPaymentInitiated(2.00,899);
+
+                // Call api for start payment//
+                callStartPayment(String.valueOf(paymentPlansList.get(position).getId()));
+
+
             }
         });
 
+    }
+
+    private void callStartPayment(String id) {
+        String access_token = SharedPreferenceUtils.getString(context, Const.ACCESS_TOKEN);
+        RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
+        StartPaymentRequestModal startPaymentRequestModal = new StartPaymentRequestModal(id);
+        Call<StartPaymentResponseModal> call = retrofitAPI.startPayment("Bearer " + access_token, startPaymentRequestModal);
+        call.enqueue(new Callback<StartPaymentResponseModal>() {
+            @Override
+            public void onResponse(Call<StartPaymentResponseModal> call, Response<StartPaymentResponseModal> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    if (response.code() == 200) {
+                        String url = response.body().getPaymentUrl();
+                       /* Intent viewIntent =
+                                new Intent("android.intent.action.VIEW",
+                                        Uri.parse(url));
+                        context.startActivity(viewIntent);*/
+
+                        Intent i = new Intent(context, Webview_forPayment.class);
+                        i.putExtra("sendUrl", url);
+                        context.startActivity(i);
+
+                    }
+                    // loadingPB.setVisibility(View.GONE);
+
+
+                } else {
+                    //  loadingPB.setVisibility(View.GONE);
+                    AppUtils.showToast(Const.no_records, context);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StartPaymentResponseModal> call, Throwable t) {
+                Log.d("Start Payment", "Failure");
+                // loadingPB.setVisibility(View.GONE);
+                AppUtils.showToast(Const.something_went_wrong, context);
+            }
+        });
     }
 
     @Override

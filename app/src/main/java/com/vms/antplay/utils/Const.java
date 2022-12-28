@@ -17,6 +17,7 @@ public class Const {
     public static String BASIC_SKU="antplay_30_hours";
     public static String PREMIUM_SKU="antplay_250_hours";
     public static String BASIC_PLAN_1="basic-plan-1";
+    public static String SUBSCRIPTION = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjm7sjWPMIHx/i6fchZh+zftM8u3spnkb887DiEsGIh9g1d0ag6jr801i1Njfxf0iCDvNKrUeg9Bt3CSGP89YL7m3ToWtkAosM8lVetjYb9NBGazFmqZn4R2dq5WwSZRef3uMZTykJaakmV9EqBOFJkidupMr8+IHsfyDzMVG/cFnUZQA9z0e+mNi6ZDP56+ZzmBQgrlOkcmRiNBHtt2WFQjvBNBlkZWeq10KMc3iLR8t+pZapbhloVBivPAXeevZWhWq+dfIwRDlY8rjRB27+Cqq6js5aGUbgvo74fuBlC+kED7zz1uT3QdGrIBNMOpFQkMmcwwntEhj1ktq+u+fmwIDAQAB";
 
     /****
      * RazorPay Test Credentials

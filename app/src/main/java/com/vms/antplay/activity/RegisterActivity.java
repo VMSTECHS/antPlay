@@ -240,6 +240,11 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                 }
+
+                else if (response.code() == 400){
+                    AppUtils.showToast(Const.no_records, RegisterActivity.this);
+                    Log.e("Error 400--",""+response.body());
+                }
                 else {
                     AppUtils.showToast(Const.no_records, RegisterActivity.this);
                 }

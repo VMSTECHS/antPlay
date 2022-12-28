@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class ComputerFragment extends Fragment {
 
     RecyclerView recyclerView;
-    private ArrayList<GetVMResponseModal> getVMResponseModals;
+    private GetVMResponseModal getVMResponseModals;
     Computer_available_Adapter computer_available_adapter;
     ImageView img_reload;
     TextView tv_reload, tv_computerAvailable;
@@ -51,7 +51,7 @@ public class ComputerFragment extends Fragment {
         tv_computerAvailable = (TextView) view.findViewById(R.id.tv_compAvailable);
         SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN);
         Log.e("Hello get Token", "" + SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN));
-        getVMResponseModals = new ArrayList<>();
+        /*getVMResponseModals = new ArrayList<>();*/
         callGetVmApi();
 
         tv_reload.setOnClickListener(new View.OnClickListener() {
@@ -73,23 +73,24 @@ public class ComputerFragment extends Fragment {
     }
 
     private void callGetVmApi() {
+        Log.e("hello get token--",""+ SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN));
         loadingPB.setVisibility(View.VISIBLE);
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
-        Call<ArrayList<GetVMResponseModal>> call = retrofitAPI.getVM("Bearer " + SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN));
-        call.enqueue(new Callback<ArrayList<GetVMResponseModal>>() {
+        Call<GetVMResponseModal> call = retrofitAPI.getVM("Bearer " + SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN));
+        call.enqueue(new Callback<GetVMResponseModal>() {
             @Override
-            public void onResponse(Call<ArrayList<GetVMResponseModal>> call, Response<ArrayList<GetVMResponseModal>> response) {
+            public void onResponse(Call<GetVMResponseModal> call, Response<GetVMResponseModal> response) {
 
                 if (response.isSuccessful()) {
                     loadingPB.setVisibility(View.GONE);
                     getVMResponseModals = response.body();
-                    if (getVMResponseModals.size()>0){
+                    if (getVMResponseModals.getData().size()>0){
                         tv_computerAvailable.setText(getString(R.string.computer_available));
                     }
 
 
-                    for (int i = 0; i < getVMResponseModals.size(); i++) {
-                        computer_available_adapter = new Computer_available_Adapter(getContext(), getVMResponseModals);
+                    for (int i = 0; i < getVMResponseModals.getData().size(); i++) {
+                        computer_available_adapter = new Computer_available_Adapter(getContext(), getVMResponseModals.getData());
                         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
                         recyclerView.setLayoutManager(layoutManager);
                         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -103,7 +104,7 @@ public class ComputerFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<GetVMResponseModal>> call, Throwable t) {
+            public void onFailure(Call<GetVMResponseModal> call, Throwable t) {
                 Log.e("Hello Get VM", "Failure");
                 loadingPB.setVisibility(View.GONE);
                 tv_computerAvailable.setText(getString(R.string.computer_not_available));

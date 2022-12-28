@@ -3,68 +3,125 @@ package com.vms.antplay.model.responseModal;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class GetVMResponseModal {
-    @SerializedName("vmid")
+
+    @SerializedName("message")
     @Expose
-    public Integer vmid;
-    @SerializedName("vmname")
+    private String message;
+    @SerializedName("data")
     @Expose
-    public String vmname;
-    @SerializedName("status")
-    @Expose
-    public String status;
-    @SerializedName("vmip")
-    @Expose
-    public String vmip;
-    @SerializedName("time_remaining")
-    @Expose
-    public Integer timeRemaining;
+    private List<Datum> data = null;
 
-    public GetVMResponseModal(Integer vmid, String vmname, String status, String vmip, Integer timeRemaining) {
-        this.vmid = vmid;
-        this.vmname = vmname;
-        this.status = status;
-        this.vmip = vmip;
-        this.timeRemaining = timeRemaining;
+    public String getMessage() {
+        return message;
     }
 
-    public Integer getVmid() {
-        return vmid;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setVmid(Integer vmid) {
-        this.vmid = vmid;
+    public List<Datum> getData() {
+        return data;
     }
 
-    public String getVmname() {
-        return vmname;
+    public void setData(List<Datum> data) {
+        this.data = data;
     }
 
-    public void setVmname(String vmname) {
-        this.vmname = vmname;
-    }
 
-    public String getStatus() {
-        return status;
-    }
+    public class Datum {
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+        @SerializedName("id")
+        @Expose
+        private Integer id;
+        @SerializedName("vmid")
+        @Expose
+        private Integer vmid;
+        @SerializedName("node")
+        @Expose
+        private Integer node;
+        @SerializedName("vmname")
+        @Expose
+        private String vmname;
+        @SerializedName("time_remaining")
+        @Expose
+        private Integer timeRemaining;
+        @SerializedName("is_connected")
+        @Expose
+        private Boolean isConnected;
+        @SerializedName("vmip")
+        @Expose
+        private String vmip;
+        @SerializedName("status")
+        @Expose
+        private String status;
 
-    public String getVmip() {
-        return vmip;
-    }
+        public Integer getId() {
+            return id;
+        }
 
-    public void setVmip(String vmip) {
-        this.vmip = vmip;
-    }
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
-    public Integer getTimeRemaining() {
-        return timeRemaining;
-    }
+        public Integer getVmid() {
+            return vmid;
+        }
 
-    public void setTimeRemaining(Integer timeRemaining) {
-        this.timeRemaining = timeRemaining;
+        public void setVmid(Integer vmid) {
+            this.vmid = vmid;
+        }
+
+        public Integer getNode() {
+            return node;
+        }
+
+        public void setNode(Integer node) {
+            this.node = node;
+        }
+
+        public String getVmname() {
+            return vmname;
+        }
+
+        public void setVmname(String vmname) {
+            this.vmname = vmname;
+        }
+
+        public Integer getTimeRemaining() {
+            return timeRemaining;
+        }
+
+        public void setTimeRemaining(Integer timeRemaining) {
+            this.timeRemaining = timeRemaining;
+        }
+
+        public Boolean getIsConnected() {
+            return isConnected;
+        }
+
+        public void setIsConnected(Boolean isConnected) {
+            this.isConnected = isConnected;
+        }
+
+        public String getVmip() {
+            return vmip;
+        }
+
+        public void setVmip(String vmip) {
+            this.vmip = vmip;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+
     }
 }

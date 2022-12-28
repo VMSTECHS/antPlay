@@ -1,6 +1,11 @@
 package com.vms.antplay.activity;
 
+import static com.android.billingclient.api.BillingClient.SkuType.INAPP;
+import static com.android.billingclient.api.BillingClient.SkuType.SUBS;
+import static com.vms.antplay.activity.PaymentPlanActivity.ITEM_SKU_SUBSCRIBE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +16,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.vms.antplay.R;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
@@ -23,8 +42,13 @@ import com.vms.antplay.model.responseModal.LoginResponseModel;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.Security;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 import com.vms.antplay.utils.TcpClient;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,12 +81,14 @@ public class LoginScreenActivity extends AppCompatActivity {
         btnLetsGo = (Button) findViewById(R.id.btn_signup);
         loadingPB = (ProgressBar) findViewById(R.id.loadingLogin_progress_xml);
 
+
         // etEmail.setText("rakesh@gmail.com");
         // etPass.setText("123456788");
         // etEmail.setText("AntplayOrchestrator");
         // etPass.setText("Acro@#208a");
-        etEmail.setText("Vikas.antplay@gmail.com");
-        etPass.setText("Antplay@123");
+        //etEmail.setText("Vikas.antplay@gmail.com");
+        etEmail.setText("hsvm620@gmail.com");
+        etPass.setText("Abc@1234");
 
         //---------TCP---------
         new connectTask().execute();
@@ -85,7 +111,6 @@ public class LoginScreenActivity extends AppCompatActivity {
         btnLetsGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // isAllFieldsChecked = CheckAllLoginFields();
                 isAllFieldsChecked = true;
 
@@ -97,7 +122,6 @@ public class LoginScreenActivity extends AppCompatActivity {
                     mTcpClient.sendMessage(message);
                 }
 
-
                 //----------------------
 
                 if (isAllFieldsChecked) {
@@ -106,13 +130,14 @@ public class LoginScreenActivity extends AppCompatActivity {
                     st_password = etPass.getText().toString();
 
                     callLoginAPI(st_email, st_password);
-                   /* Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
-                    startActivity(i);*/
+//                    Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
+//                    startActivity(i);
                 }
             }
         });
 
     }
+
 
     private void callLoginAPI(String email, String password) {
         loadingPB.setVisibility(View.VISIBLE);
@@ -130,14 +155,11 @@ public class LoginScreenActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
 
-                }
-                else if(response.code() == 401){
+                } else if (response.code() == 401) {
                     loadingPB.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
                     AppUtils.showToast(Const.password_error, LoginScreenActivity.this);
-                }
-                else
-                {
+                } else {
                     loadingPB.setVisibility(View.GONE);
                     AppUtils.showToast(Const.no_records, LoginScreenActivity.this);
 
@@ -153,7 +175,6 @@ public class LoginScreenActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     private boolean CheckAllLoginFields() {
@@ -178,6 +199,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         return true;
     }
 
+
     //----------------------TCP CLIENT
     private class connectTask extends AsyncTask<String, String, TcpClient> {
         @Override
@@ -198,7 +220,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                     }
                 }
             }, ipAddressOfServerDevice);
-           // mTcpClient.run();
+            // mTcpClient.run();
             if (mTcpClient != null) {
                 mTcpClient.sendMessage("Initial Message when connected with Socket Server");
             }

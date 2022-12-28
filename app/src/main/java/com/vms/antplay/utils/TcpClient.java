@@ -13,8 +13,8 @@ import java.net.Socket;
 public class TcpClient {
 
     public static final String TAG = TcpClient.class.getSimpleName();
-    public static final String SERVER_IP = "103.125.201.179"; //server IP address
-    public static final int SERVER_PORT = 8000;
+    public static final String SERVER_IP = "103.182.65.3"; //server IP address
+    public static final int SERVER_PORT = 5909;
     // message to send to the server
     private String mServerMessage;
     // sends message received notifications

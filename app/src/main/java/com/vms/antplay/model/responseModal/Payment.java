@@ -13,7 +13,7 @@ public class Payment {
     private String paymentDate;
     @SerializedName("payment_status")
     @Expose
-    private Boolean paymentStatus;
+    private String paymentStatus;
     @SerializedName("billing_plan")
     @Expose
     private String billingPlan;
@@ -37,11 +37,11 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public Boolean getPaymentStatus() {
+    public String getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(Boolean paymentStatus) {
+    public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 

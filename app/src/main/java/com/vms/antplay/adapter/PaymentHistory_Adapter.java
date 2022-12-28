@@ -49,6 +49,7 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
         holder.tv_transactionId.setText(modal.getPaymentId());
         holder.tv_amount.setText(String.valueOf(modal.getBillingPrice()));
         holder.tv_status.setText(String.valueOf(modal.getPaymentStatus()));
+        holder.tv_trans_date.setText(String.valueOf(modal.getPaymentDate().split("",10)));
         holder.linearLayout.setVisibility(View.GONE);
 
         if (currentPosition == position) {

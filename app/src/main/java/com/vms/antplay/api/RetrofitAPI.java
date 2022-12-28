@@ -42,7 +42,7 @@ public interface RetrofitAPI {
     Call<LoginResponseModel> loginUser(@Body LoginRequestModal dataModal);
 
     @GET("getvm")
-    Call<ArrayList<GetVMResponseModal>> getVM(@Header("Authorization") String token);
+    Call<GetVMResponseModal> getVM(@Header("Authorization") String token);
 
     @GET("getbillingplan")
     Call<GetBillingPlanResponseModal> getBillingPlan(@Header("Authorization") String Token);
@@ -54,7 +54,7 @@ public interface RetrofitAPI {
     Call<ChangePasswordResponseModal> changePassword(@Body ChangePasswordRequestModal changePasswordRequestModal);
 
     @POST("start_payment/")
-    Call<StartPaymentResponseModal> startPayment(@Body StartPaymentRequestModal startPaymentRequestModal);
+    Call<StartPaymentResponseModal> startPayment(@Header("Authorization") String Token,@Body StartPaymentRequestModal startPaymentRequestModal);
 
     @PUT("userupdate/")
     Call<UserUpdateResponseModal> userUpdate(@Header("Authorization") String Token,@Body UserUpdateRequestModal userUpdateRequestModal);
