@@ -40,7 +40,22 @@ public class Const {
     public static String no_records = "No Records Found";
     public static String password_error = "No active account found with the given credentials";
 
+    /*****
+     * Intent Constants
+     * ****/
+    public static String REDIRECT_URL="redirectURL";
+
+    /*****
+     * Intent Values
+     * ****/
+    public static String TERMS_AND_CONDITION_URL="https://antplay.tech/termsAndConditionsForApp";
+    public static String PRIVACY_POLICY_URL="https://antplay.tech/privacyPolicyForApp";
+    public static String ABOUT_US_URL="https://antplay.tech/aboutUsForApp";
 
 
+    /*****
+     * Preference Constants
+     * ****/
+    public static String REMAINING_TIME="remainingTime";
 
 }

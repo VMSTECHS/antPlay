@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText etEmail, etFirstname, etLastname, etPhone, etPassword, etConfirmPass, etAge, etAddress, etCity, etPincode;
     Button btnSignup;
-    TextView tvAlreadyRegister;
+    TextView tvAlreadyRegister, txtUserAgreement;
     CheckBox checkBox;
     String st_fname, st_lastname, st_email, st_password, st_confirmPass, st_city, st_pincode, st_age, st_state, st_address, st_middleName, st_isNewUser, st_isSubscribed;
     String st_phone, st_LastLogin;
@@ -75,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.btn_signup);
         tvAlreadyRegister = (TextView) findViewById(R.id.tv_alreadyRegister);
         checkBox = (CheckBox) findViewById(R.id.simpleCheckBox);
+        txtUserAgreement = findViewById(R.id.txtUserAgreement);
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +89,16 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(i);
+            }
+        });
+
+        txtUserAgreement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open WebView here
+                Intent intent = new Intent(RegisterActivity.this, GeneralWebViewActivity.class);
+                intent.putExtra(Const.REDIRECT_URL,Const.TERMS_AND_CONDITION_URL);
+                startActivity(intent);
             }
         });
 
@@ -147,7 +158,7 @@ public class RegisterActivity extends AppCompatActivity {
                 st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+                // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -232,20 +243,16 @@ public class RegisterActivity extends AppCompatActivity {
                         finish();
 
 
-                    }
-                    else {
+                    } else {
                         Log.e("Hello in33333", "Hello innnn33333");
                         loadingPB.setVisibility(View.GONE);
                         AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
                     }
 
-                }
-
-                else if (response.code() == 400){
+                } else if (response.code() == 400) {
                     AppUtils.showToast(Const.no_records, RegisterActivity.this);
-                    Log.e("Error 400--",""+response.body());
-                }
-                else {
+                    Log.e("Error 400--", "" + response.body());
+                } else {
                     AppUtils.showToast(Const.no_records, RegisterActivity.this);
                 }
 

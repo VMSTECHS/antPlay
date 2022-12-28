@@ -1,7 +1,11 @@
 package com.vms.antplay.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,6 +21,7 @@ import com.vms.antplay.R;
 import com.vms.antplay.adapter.Computer_available_Adapter;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
+import com.vms.antplay.interfaces.VmTimeListener;
 import com.vms.antplay.model.responseModal.GetVMResponseModal;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
@@ -72,6 +77,7 @@ public class ComputerFragment extends Fragment {
 
     }
 
+
     private void callGetVmApi() {
         Log.e("hello get token--",""+ SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN));
         loadingPB.setVisibility(View.VISIBLE);
@@ -87,6 +93,8 @@ public class ComputerFragment extends Fragment {
                     if (getVMResponseModals.getData().size()>0){
                         tv_computerAvailable.setText(getString(R.string.computer_available));
                     }
+                    long remainingSec = getVMResponseModals.getData().get(0).getTimeRemaining();
+                    SharedPreferenceUtils.saveLong(getContext(),Const.REMAINING_TIME,remainingSec);
 
 
                     for (int i = 0; i < getVMResponseModals.getData().size(); i++) {

@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.telephony.TelephonyManager;
+import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +33,15 @@ import com.vms.antplay.activity.SpeedTestActivity;
 import com.vms.antplay.adapter.ImageAdapter;
 import com.vms.antplay.dialog.BottomSheetDialog;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
+import com.vms.antplay.interfaces.VmTimeListener;
 import com.vms.antplay.model.ImageModel;
 import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class HomeFragment extends Fragment implements PaymentInitiationInterface {
@@ -66,7 +71,7 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
         profile_card = (CardView) view.findViewById(R.id.card_profile);
 
         llTimer = (LinearLayoutCompat) view.findViewById(R.id.llTimer);
-        txtTimer = view.findViewById(R.id.txtTimer);
+        txtTimer = (TextView) view.findViewById(R.id.txtTimer);
         imgTimer = view.findViewById(R.id.img_timer);
         imgAddTimer = view.findViewById(R.id.imgAddTimer);
         card_support = (CardView) view.findViewById(R.id.card_support);
@@ -74,12 +79,12 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
         card_support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
+                try {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:9717844140"));
                     startActivity(intent);
-                }catch (Exception exception){
-                  exception.printStackTrace();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                 }
             }
         });
@@ -155,8 +160,6 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
     }
 
 
-
-
     @Override
     public void onPaymentInitiated(Double hours, int amount) {
 
@@ -211,5 +214,30 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateVmTime(SharedPreferenceUtils.getLong(getContext(),Const.REMAINING_TIME));
+    }
 
+    public void updateVmTime(long remainingSeconds) {
+        Log.d("TIME", calculateSeconds(remainingSeconds));
+        // SharedPreferenceUtils.getLong(getContext(),Const.REMAINING_TIME);
+        txtTimer.setText(calculateSeconds(remainingSeconds));
+    }
+
+    private String calculateSeconds(long remainingSeconds) {
+        long hours = 0;
+        long minutes = 0;
+        if (remainingSeconds > 0) {
+            minutes = remainingSeconds / 60;
+            if (minutes >= 60) {
+                hours = minutes / 60;
+                minutes = minutes % 60;
+            }
+        }
+
+
+        return hours + ":" + minutes;
+    }
 }

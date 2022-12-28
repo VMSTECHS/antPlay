@@ -87,8 +87,11 @@ public class LoginScreenActivity extends AppCompatActivity {
         // etEmail.setText("AntplayOrchestrator");
         // etPass.setText("Acro@#208a");
         //etEmail.setText("Vikas.antplay@gmail.com");
-        etEmail.setText("hsvm620@gmail.com");
-        etPass.setText("Abc@1234");
+       /* etEmail.setText("hsvm620@gmail.com");
+        etPass.setText("Abc@1234");*/
+
+        etEmail.setText("vikas.antplay@gmail.com");
+        etPass.setText("Antplay@123");
 
         //---------TCP---------
         new connectTask().execute();

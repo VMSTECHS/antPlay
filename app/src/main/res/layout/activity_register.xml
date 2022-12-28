@@ -242,17 +242,33 @@
             android:textColorHint="@color/gray"
             android:textSize="15sp" />
 
-        <CheckBox
-            android:id="@+id/simpleCheckBox"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:buttonTint="@color/gray"
-            android:checked="false"
-            android:fontFamily="sans-serif"
-            android:imeOptions="actionDone"
-            android:text="@string/termsCondition"
-            android:textColor="@color/gray" />
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <CheckBox
+                android:id="@+id/simpleCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/gray"
+                android:checked="false"
+                android:fontFamily="sans-serif"
+                android:imeOptions="actionDone"
+                android:text="@string/termsCondition"
+                android:textColor="@color/gray" />
+            <TextView
+                android:id="@+id/txtUserAgreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_agreements"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
 

@@ -23,8 +23,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif"
             android:background="@drawable/btnshape"
+            android:fontFamily="sans-serif"
             android:text="@string/login"
             android:textColor="@color/gray" />
 
@@ -35,44 +35,43 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif"
             android:background="@drawable/btnshape"
+            android:fontFamily="sans-serif"
             android:text="@string/register"
             android:textColor="@color/gray" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:id="@+id/linearBottom"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
-    <Button
-        android:id="@+id/continueWithGoogle"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:background="@drawable/btngradient"
-        android:text="@string/continue_with_google"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/white">
-    </Button>
+        <Button
+            android:id="@+id/continueWithGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/btngradient"
+            android:fontFamily="sans-serif"
+            android:text="@string/continue_with_google"
+            android:textColor="@color/white"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:gravity="center"
-        android:textSize="14sp"
-        android:id="@+id/tv_termsandc_login"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="10dp"
-        android:text="@string/termsAndC"
-        android:textColor="@color/white"
-        />
+        <TextView
+            android:id="@+id/tv_termsandc_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/termsAndC"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>

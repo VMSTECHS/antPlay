@@ -22,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.vms.antplay.R;
+import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.TcpClient;
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,7 +53,11 @@ public class LoginActivity extends AppCompatActivity {
         tv_tandC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, TermsAndCondition.class);
+                /*Intent intent = new Intent(LoginActivity.this, TermsAndCondition.class);
+                startActivity(intent);*/
+
+                Intent intent = new Intent(LoginActivity.this, GeneralWebViewActivity.class);
+                intent.putExtra(Const.REDIRECT_URL,Const.TERMS_AND_CONDITION_URL);
                 startActivity(intent);
             }
         });

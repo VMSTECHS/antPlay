@@ -30,6 +30,7 @@ import com.vms.antplay.fragments.ComputerFragment;
 import com.vms.antplay.fragments.FaqFargment;
 import com.vms.antplay.fragments.HomeFragment;
 import com.vms.antplay.fragments.SettingsFragment;
+import com.vms.antplay.interfaces.VmTimeListener;
 import com.vms.antplay.model.ImageModel;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.utils.AppUtils;
@@ -201,4 +202,21 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("TIME","MainActivity Resumed");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("TIME","MainActivity Stopped");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("TIME","MainActivity Destroyed");
+    }
 }

@@ -23,7 +23,8 @@
     <string name="forgotPass"><u>Forgot Password?</u></string>
     <string name="signupHere"><u>Sign up here</u></string>
     <string name="emailOrMobile">E-mail or Mobile Number</string>
-    <string name="termsCondition">I agree with the terms of user agreement</string>
+    <string name="termsCondition">I agree with the terms of </string>
+    <string name="user_agreements">user agreement</string>
     <string name="alreadyRegister"><u>Already have an account? Sign in here.</u></string>
 
     <string name="error_email">Email is required</string>
@@ -274,6 +275,7 @@
     <string name="use_wake_lock_check">Use Wake Lock</string>
     <string name="username_caption">Username</string>
     <string name="username_hint">For Windows Authentication</string>
+    <string name="privacy_policy">Privacy policy</string>
     <!--
         *****************
         VNC Strings Ends

@@ -20,7 +20,7 @@ import org.w3c.dom.Text;
 public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout,
-            linearPayment, linearEdit, linearDiscord, linearInstagram;
+            linearPayment, linearEdit, linearDiscord, linearInstagram,linearPrivacyPolicy;
 
     TextView tv_changePassword, tv_manageSubs, txtUserID;
 
@@ -43,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         linearEdit = (LinearLayout) findViewById(R.id.linear_edit);
         tv_manageSubs = (TextView) findViewById(R.id.tv_manageSubscription);
         txtUserID = (TextView) findViewById(R.id.txtUserEmailID);
+        linearPrivacyPolicy = (LinearLayout) findViewById(R.id.linear_privacyPolicy);
 
         setData();
 
@@ -82,14 +83,25 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        linearAgree = (LinearLayout) findViewById(R.id.linear_agreements);
 
         linearAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProfileActivity.this, Agreement_User.class);
-                startActivity(i);
+               /* Intent i = new Intent(ProfileActivity.this, Agreement_User.class);
+                startActivity(i);*/
+                Intent intent = new Intent(ProfileActivity.this, GeneralWebViewActivity.class);
+                intent.putExtra(Const.REDIRECT_URL,Const.TERMS_AND_CONDITION_URL);
+                startActivity(intent);
 
+            }
+        });
+
+        linearPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, GeneralWebViewActivity.class);
+                intent.putExtra(Const.REDIRECT_URL,Const.PRIVACY_POLICY_URL);
+                startActivity(intent);
             }
         });
 
@@ -119,8 +131,12 @@ public class ProfileActivity extends AppCompatActivity {
         linearAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProfileActivity.this, AboutUs.class);
-                startActivity(i);
+               /* Intent i = new Intent(ProfileActivity.this, AboutUs.class);
+                startActivity(i);*/
+
+                Intent intent = new Intent(ProfileActivity.this, GeneralWebViewActivity.class);
+                intent.putExtra(Const.REDIRECT_URL,Const.ABOUT_US_URL);
+                startActivity(intent);
             }
         });
         linearPayment.setOnClickListener(new View.OnClickListener() {
