@@ -107,7 +107,8 @@ public class ComputerFragment extends Fragment {
                 } else {
                     loadingPB.setVisibility(View.GONE);
                     tv_computerAvailable.setText(getString(R.string.computer_not_available));
-                    AppUtils.showToast(Const.no_records, getActivity());
+                   // AppUtils.showToast(Const.no_vm_found, getActivity());
+                    AppUtils.showSnack(getActivity().getWindow().getDecorView().getRootView(),R.color.black,Const.no_vm_found,getContext());
                 }
             }
 
@@ -116,7 +117,8 @@ public class ComputerFragment extends Fragment {
                 Log.e("Hello Get VM", "Failure");
                 loadingPB.setVisibility(View.GONE);
                 tv_computerAvailable.setText(getString(R.string.computer_not_available));
-                AppUtils.showToast(Const.something_went_wrong, getActivity());
+              //  AppUtils.showToast(Const.something_went_wrong, getActivity());
+                AppUtils.showSnack(getActivity().getWindow().getDecorView().getRootView(),R.color.black,Const.something_went_wrong,getContext());
 
             }
         });

@@ -39,7 +39,7 @@
                 android:fontFamily="sans-serif"
                 android:text="@string/back"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="normal" />
 
         </LinearLayout>
@@ -51,8 +51,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:tint="@color/white"
@@ -64,7 +64,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:text="@string/payment_history"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
 

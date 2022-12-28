@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,8 +50,15 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
         holder.tv_transactionId.setText(modal.getPaymentId());
         holder.tv_amount.setText(String.valueOf(modal.getBillingPrice()));
         holder.tv_status.setText(String.valueOf(modal.getPaymentStatus()));
-        holder.tv_trans_date.setText(String.valueOf(modal.getPaymentDate().split("",10)));
+
+
+        String currentString = modal.getPaymentDate();
+        String[] separated = currentString.split("T");
+        String s = separated[0];
+        holder.tv_trans_date.setText(s);
         holder.linearLayout.setVisibility(View.GONE);
+        holder.img_forward.setRotation(0);
+        holder.img_forward.setVisibility(View.VISIBLE);
 
         if (currentPosition == position) {
             //creating an animation
@@ -58,12 +66,14 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
 
             //toggling visibility
             holder.linearLayout.setVisibility(View.VISIBLE);
+            holder.img_forward.setRotation(90);
+
 
             //adding sliding effect
             holder.linearLayout.startAnimation(slideDown);
         }
 
-        holder.tv_plan.setOnClickListener(new View.OnClickListener() {
+        holder.linearLayout_upper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -86,7 +96,8 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_planName, tv_transactionId, tv_status, tv_amount, tv_plan, tv_amountUp, tv_trans_date;
-        LinearLayout linearLayout;
+        LinearLayout linearLayout, linearLayout_upper;
+        ImageView  img_forward;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -97,7 +108,9 @@ public class PaymentHistory_Adapter extends RecyclerView.Adapter<PaymentHistory_
             tv_plan = itemView.findViewById(R.id.plan_Name);
             tv_amountUp = itemView.findViewById(R.id.tv_amount_up);
             tv_trans_date = itemView.findViewById(R.id.trans_date);
-            linearLayout = itemView.findViewById(R.id.linearLayout);
+            linearLayout = itemView.findViewById(R.id.linearLayout_payment_adapter);
+            linearLayout_upper = itemView.findViewById(R.id.linearUpper_paymentHistory_adapter);
+            img_forward = itemView.findViewById(R.id.img_forward);
 
 
         }

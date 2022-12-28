@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,11 +36,13 @@ import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.vms.antplay.R;
+import com.vms.antplay.adapter.PaymentHistory_Adapter;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.adapter.PaymentPlanAdapter;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.model.responseModal.BillingPlan;
+import com.vms.antplay.model.responseModal.PaymentHistory_modal;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 
@@ -65,6 +69,7 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
     public static final String PREF_FILE = "MyPref";
     public static final String SUBSCRIBE_KEY = "subscribe";
     public static final String ITEM_SKU_SUBSCRIBE = Const.BASIC_SKU;
+    boolean isClickHistoryApi = false;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -131,14 +136,14 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
 //            subscribe.setVisibility(View.GONE);
 //            premiumContent.setVisibility(View.VISIBLE);
 //            subscriptionStatus.setText("Subscription Status : Subscribed");
-            Toast.makeText(this, "Subscription Status : Subscribed", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "Subscription Status : Subscribed", Toast.LENGTH_SHORT).show();
         }
         //item not subscribed
         else {
 //            premiumContent.setVisibility(View.GONE);
 //            subscribe.setVisibility(View.VISIBLE);
 //            subscriptionStatus.setText("Subscription Status : Not Subscribed");
-            Toast.makeText(this, "Subscription Status : Not Subscribed", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "Subscription Status : Not Subscribed", Toast.LENGTH_SHORT).show();
         }
 
         startGoogleConnection();
@@ -473,6 +478,7 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
 //                    }
 //                });
 //    }
+
 
 
 }

@@ -8,30 +8,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
-import com.vms.antplay.activity.PaymentHistory;
-import com.vms.antplay.activity.PaymentPlanActivity;
-import com.vms.antplay.activity.Webview_forPayment;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
-import com.vms.antplay.model.PaymentPlansModel;
 import com.vms.antplay.model.requestModal.StartPaymentRequestModal;
 import com.vms.antplay.model.responseModal.BillingPlan;
-import com.vms.antplay.model.responseModal.GetBillingPlanResponseModal;
 import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -77,7 +69,7 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
             public void onClick(View v) {
                 //  paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getPrice(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getHourLimit());
                 //  paymentInitiationInterface.onPaymentInitiated(2.00,899);
-
+                Log.e("hi get id--", ""+paymentPlansList.get(position).getId());
                 // Call api for start payment//
                 callStartPayment(String.valueOf(paymentPlansList.get(position).getId()));
 
@@ -98,14 +90,11 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
                 if (response.isSuccessful() && response.body() != null) {
                     if (response.code() == 200) {
                         String url = response.body().getPaymentUrl();
-                       /* Intent viewIntent =
+                        Intent viewIntent =
                                 new Intent("android.intent.action.VIEW",
                                         Uri.parse(url));
-                        context.startActivity(viewIntent);*/
+                        context.startActivity(viewIntent);
 
-                        Intent i = new Intent(context, Webview_forPayment.class);
-                        i.putExtra("sendUrl", url);
-                        context.startActivity(i);
 
                     }
                     // loadingPB.setVisibility(View.GONE);

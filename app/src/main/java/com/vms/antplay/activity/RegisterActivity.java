@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
     Boolean checkBoxState;
     private ProgressBar loadingPB;
     Spinner etState;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
                 st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-                // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -230,7 +232,9 @@ public class RegisterActivity extends AppCompatActivity {
                         // etState.setText("");
                         etCity.setText("");
                         etPincode.setText("");
-                        AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
+                        // AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
+                        AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.body().getMessage(), RegisterActivity.this);
+
 //                        String userid = String.valueOf(response.body().getData().getId());
 //                        SharedPreferences shared = getSharedPreferences("Login", MODE_PRIVATE);
 //                        SharedPreferences.Editor editor = shared.edit();
@@ -246,14 +250,24 @@ public class RegisterActivity extends AppCompatActivity {
                     } else {
                         Log.e("Hello in33333", "Hello innnn33333");
                         loadingPB.setVisibility(View.GONE);
-                        AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
-                    }
+                        //  AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
+                        AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.body().getMessage(), RegisterActivity.this);
 
                 } else if (response.code() == 400) {
                     AppUtils.showToast(Const.no_records, RegisterActivity.this);
                     Log.e("Error 400--", "" + response.body());
                 } else {
                     AppUtils.showToast(Const.no_records, RegisterActivity.this);
+                    }
+
+                } else if (response.code() == 400) {
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.check_mobile_email_not_registered, RegisterActivity.this);
+                    Log.e("Error 400--", "" + response.body());
+                } else if (response.code() == 500) {
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.check_state_city_not_correct, RegisterActivity.this);
+                    Log.e("Error 500--", "" + response.body());
+                } else {
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.all_field_correct, RegisterActivity.this);
                 }
 
             }
@@ -262,7 +276,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<RegisterResponseModal> call, Throwable t) {
                 // responseTV.setText("Error found is : " + t.getMessage());
                 loadingPB.setVisibility(View.GONE);
-                AppUtils.showToast(getString(R.string.something_wrong), RegisterActivity.this);
+                AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.something_went_wrong, RegisterActivity.this);
             }
         });
 
@@ -296,6 +310,9 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         } else if (etPassword.length() < 8) {
             etPassword.setError(getString(R.string.error_pass_minimum));
+            return false;
+        } else if (!etPassword.getText().toString().matches(Const.passwordRegex)) {
+            etPassword.setError(getString(R.string.pass_regex));
             return false;
         }
 
@@ -335,7 +352,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (!checkBox.isChecked()) {
-            Toast.makeText(this, getString(R.string.error_checkbox), Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, getString(R.string.error_checkbox), Toast.LENGTH_SHORT).show();
+            AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,getString(R.string.error_checkbox),RegisterActivity.this);
             return false;
         }
         // after all validation return true.
