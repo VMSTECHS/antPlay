@@ -38,7 +38,14 @@ public class Const {
     public static String something_went_wrong = "Something went wrong";
     public static String try_again = "Try Again Later";
     public static String no_records = "No Records Found";
+    public static String no_vm_found = "No VM Found";
     public static String password_error = "No active account found with the given credentials";
+    public static String all_field_correct = "Please enter all fields correctly";
+    public static String check_mobile_email_not_registered = "Please check your mobile number or email address. It might be already Registered.";
+    public static String check_state_city_not_correct = "State, City and PinCode Should be correct. It might be wrong.";
+
+    //Regex
+    public static String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$";
 
 
 

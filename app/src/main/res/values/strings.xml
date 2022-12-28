@@ -43,6 +43,7 @@
     <string name="error_checkbox">Please check the checkbox</string>
     <string name="error_invalidEmail">Invalid email address</string>
     <string name="error_pass_minimum">Password must be minimum 8 characters</string>
+    <string name="pass_regex">Password Should contains 1 small letter, 1 special character,1 number</string>
     <string name="error_Confirmpass_minimum">Confirm Password must be minimum 8 characters</string>
     <string name="choose_new_pc">CHOOSE A NEW PC</string>
     <string name="next_in_queue">You are next in queue </string>

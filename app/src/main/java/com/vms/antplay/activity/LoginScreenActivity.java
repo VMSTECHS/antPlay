@@ -158,10 +158,10 @@ public class LoginScreenActivity extends AppCompatActivity {
                 } else if (response.code() == 401) {
                     loadingPB.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
-                    AppUtils.showToast(Const.password_error, LoginScreenActivity.this);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.password_error, LoginScreenActivity.this);
                 } else {
                     loadingPB.setVisibility(View.GONE);
-                    AppUtils.showToast(Const.no_records, LoginScreenActivity.this);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.no_records, LoginScreenActivity.this);
 
                 }
             }
@@ -170,7 +170,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponseModel> call, Throwable t) {
                 Log.e(TAG, "" + t);
                 loadingPB.setVisibility(View.GONE);
-                AppUtils.showToast(Const.something_went_wrong, LoginScreenActivity.this);
+                AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.something_went_wrong, LoginScreenActivity.this);
             }
         });
 
