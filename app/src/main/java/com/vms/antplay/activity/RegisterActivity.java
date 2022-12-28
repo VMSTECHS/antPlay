@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Open WebView here
                 Intent intent = new Intent(RegisterActivity.this, GeneralWebViewActivity.class);
-                intent.putExtra(Const.REDIRECT_URL,Const.TERMS_AND_CONDITION_URL);
+                intent.putExtra(Const.REDIRECT_URL, Const.TERMS_AND_CONDITION_URL);
                 startActivity(intent);
             }
         });
@@ -160,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
                 st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+                // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -252,14 +252,7 @@ public class RegisterActivity extends AppCompatActivity {
                         loadingPB.setVisibility(View.GONE);
                         //  AppUtils.showToast(response.body().getMessage(), RegisterActivity.this);
                         AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.body().getMessage(), RegisterActivity.this);
-
-                } else if (response.code() == 400) {
-                    AppUtils.showToast(Const.no_records, RegisterActivity.this);
-                    Log.e("Error 400--", "" + response.body());
-                } else {
-                    AppUtils.showToast(Const.no_records, RegisterActivity.this);
                     }
-
                 } else if (response.code() == 400) {
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.check_mobile_email_not_registered, RegisterActivity.this);
                     Log.e("Error 400--", "" + response.body());
@@ -352,8 +345,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (!checkBox.isChecked()) {
-          //  Toast.makeText(this, getString(R.string.error_checkbox), Toast.LENGTH_SHORT).show();
-            AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,getString(R.string.error_checkbox),RegisterActivity.this);
+            //  Toast.makeText(this, getString(R.string.error_checkbox), Toast.LENGTH_SHORT).show();
+            AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, getString(R.string.error_checkbox), RegisterActivity.this);
             return false;
         }
         // after all validation return true.
