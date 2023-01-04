@@ -217,13 +217,7 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
     @Override
     public void onResume() {
         super.onResume();
-        updateVmTime(SharedPreferenceUtils.getLong(getContext(),Const.REMAINING_TIME));
-    }
-
-    public void updateVmTime(long remainingSeconds) {
-        Log.d("TIME", calculateSeconds(remainingSeconds));
-        // SharedPreferenceUtils.getLong(getContext(),Const.REMAINING_TIME);
-        txtTimer.setText(calculateSeconds(remainingSeconds));
+        txtTimer.setText(calculateSeconds(SharedPreferenceUtils.getLong(getContext(),Const.REMAINING_TIME)));
     }
 
     private String calculateSeconds(long remainingSeconds) {
@@ -236,8 +230,6 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
                 minutes = minutes % 60;
             }
         }
-
-
         return hours + ":" + minutes;
     }
 }

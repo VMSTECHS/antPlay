@@ -23,4 +23,5 @@ public class AppUtils {
         sb.getView().setBackgroundColor(ContextCompat.getColor(context, color));
         sb.show();
     }
+
 }

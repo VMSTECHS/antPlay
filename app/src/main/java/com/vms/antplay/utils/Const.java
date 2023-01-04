@@ -51,6 +51,8 @@ public class Const {
      * Intent Constants
      * ****/
     public static String REDIRECT_URL="redirectURL";
+    public static String COUNTDOWN_INTENT="countdown";
+    public static final String COUNTDOWN_BR = "com.vms.antplay.countdown_timer";
 
     /*****
      * Intent Values
@@ -64,5 +66,12 @@ public class Const {
      * Preference Constants
      * ****/
     public static String REMAINING_TIME="remainingTime";
+
+
+    /*****
+     * Timer Constants
+     * ****/
+    public static long MAX_TIME = 600000;
+    public static int MAX_PROGRESS = 30;
 
 }

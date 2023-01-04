@@ -1,6 +1,10 @@
 package com.vms.antplay.activity;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +37,8 @@ import com.vms.antplay.fragments.SettingsFragment;
 import com.vms.antplay.interfaces.VmTimeListener;
 import com.vms.antplay.model.ImageModel;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
+import com.vms.antplay.timer.TimerBroadcastService;
+import com.vms.antplay.timer.TimerListener;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
@@ -44,7 +50,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener, ExternalWalletListener {
+public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener, ExternalWalletListener, TimerListener {
 
     private String TAG = "ANT_PLAY";
     ViewPager simpleViewPager;
@@ -119,6 +125,10 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
             }
         });
 
+        //countDownTimer();
+        startService(new Intent(MainActivity.this, TimerBroadcastService.class));
+
+
 
     }
 
@@ -185,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.STATE, response.body().getState());
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.CITY, response.body().getCity());
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.USER_NAME, response.body().getUsername());
-                    Log.d(TAG, "" + response.body().getPhoneNumber()+" "+response.body().getEmail());
+                    Log.d(TAG, "" + response.body().getPhoneNumber() + " " + response.body().getEmail());
 
                 } else {
                     Log.e(TAG, "Else condition");
@@ -202,21 +212,45 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
     }
 
+    BroadcastReceiver timerBroadCastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateTimer(intent);
+        }
+    };
+
+    private void updateTimer(Intent intent) {
+        if (intent.getExtras() != null) {
+            long millisUntilFinished = intent.getLongExtra(Const.COUNTDOWN_INTENT, 0);
+            Log.d("TIMER", "Countdown seconds remaining (Broad Cast): " + millisUntilFinished / 1000);
+            long remainingSec = millisUntilFinished/1000;
+            remainingSec++;
+            //txtProgress.setText(String.valueOf(remainingSec));
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("TIME","MainActivity Resumed");
+        Log.d("TIME", "MainActivity Resumed");
+        registerReceiver(timerBroadCastReceiver, new IntentFilter(Const.COUNTDOWN_BR));
+        Log.d("TIMER", "Registered broacast receiver");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("TIME","MainActivity Stopped");
+        Log.d("TIME", "MainActivity Stopped");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("TIME","MainActivity Destroyed");
+        Log.d("TIME", "MainActivity Destroyed");
+    }
+
+    @Override
+    public void remainingTime(long remainingTimeInMillis) {
+        Log.d("TIMER", "Countdown seconds remaining (Listener): " + remainingTimeInMillis / 1000);
     }
 }
