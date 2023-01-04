@@ -98,6 +98,7 @@ public class OnBoardingActivity extends AppCompatActivity implements View.OnClic
                 Intent intent = new Intent(OnBoardingActivity.this, LoginActivity.class);
                 startActivity(intent);
                 updateSharedPreferences(false);
+                finish();
                 // Toast.makeText(OnBoardingActivity.this, "Close This Activity", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txtNext:

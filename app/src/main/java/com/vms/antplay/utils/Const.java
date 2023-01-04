@@ -18,6 +18,13 @@ public class Const {
     public static String PREMIUM_SKU="antplay_250_hours";
     public static String BASIC_PLAN_1="basic-plan-1";
     public static String SUBSCRIPTION = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjm7sjWPMIHx/i6fchZh+zftM8u3spnkb887DiEsGIh9g1d0ag6jr801i1Njfxf0iCDvNKrUeg9Bt3CSGP89YL7m3ToWtkAosM8lVetjYb9NBGazFmqZn4R2dq5WwSZRef3uMZTykJaakmV9EqBOFJkidupMr8+IHsfyDzMVG/cFnUZQA9z0e+mNi6ZDP56+ZzmBQgrlOkcmRiNBHtt2WFQjvBNBlkZWeq10KMc3iLR8t+pZapbhloVBivPAXeevZWhWq+dfIwRDlY8rjRB27+Cqq6js5aGUbgvo74fuBlC+kED7zz1uT3QdGrIBNMOpFQkMmcwwntEhj1ktq+u+fmwIDAQAB";
+    public static final String LIVE_BASE_URL = "https://api.antplay.tech/api/";
+    public static final Integer ERROR_CODE_500 = 500;
+    public static final String ERROR_CODE_500_SERVER_ERROR = "500 Internal Server Error";
+    public static final Integer ERROR_CODE_400 = 400;
+    public static final Integer ERROR_CODE_404 = 404;
+    public static final Integer SUCCESS_CODE_200 = 200;
+
 
     /****
      * RazorPay Test Credentials
@@ -43,9 +50,13 @@ public class Const {
     public static String all_field_correct = "Please enter all fields correctly";
     public static String check_mobile_email_not_registered = "Please check your mobile number or email address. It might be already Registered.";
     public static String check_state_city_not_correct = "State, City and PinCode Should be correct. It might be wrong.";
+    public static String already_have_plan = "You already have an Active Subscription, To Subscribe to a New Plan, Please Cancel your Active Subscription and Try Again";
 
-    //Regex
+    /*****
+     * Regex
+     * ****/
     public static String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$";
+    public static String phoneRegex = "^[1-9][0-9]{9,10}$";
 
     /*****
      * Intent Constants
@@ -60,6 +71,7 @@ public class Const {
     public static String TERMS_AND_CONDITION_URL="https://antplay.tech/termsAndConditionsForApp";
     public static String PRIVACY_POLICY_URL="https://antplay.tech/privacyPolicyForApp";
     public static String ABOUT_US_URL="https://antplay.tech/aboutUsForApp";
+    public static String FAQ_URL="https://antplay.tech/faqForApp";
 
 
     /*****

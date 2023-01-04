@@ -27,7 +27,7 @@ import com.vms.antplay.utils.TcpClient;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLogin, btnRegister, btnGoogleLogin;
+    Button btnLogin, btnRegister, btnGoogleLogin, btn_otp;
     GoogleSignInOptions gso;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 1001;
@@ -43,12 +43,21 @@ public class LoginActivity extends AppCompatActivity {
 
         btnGoogleLogin = (Button) findViewById(R.id.continueWithGoogle);
         btnLogin = (Button) findViewById(R.id.btn_login);
+        btn_otp = (Button) findViewById(R.id.continueWithOTP);
         btnRegister = (Button) findViewById(R.id.btn_register);
         tv_tandC = (TextView) findViewById(R.id.tv_termsandc_login);
 
 
 
         setSignInClient();
+
+        btn_otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, LoginWithOTP.class);
+                startActivity(i);
+            }
+        });
 
         tv_tandC.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -40,7 +40,7 @@
 
                     <ImageView
                         android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:src="@drawable/payment_sucess"
                         app:tint="@color/white" />
                 </LinearLayout>

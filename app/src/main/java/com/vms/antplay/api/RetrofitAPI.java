@@ -18,11 +18,13 @@ import com.vms.antplay.model.responseModal.LoginResponseModel;
 import com.vms.antplay.model.requestModal.RegisterRequestModal;
 import com.vms.antplay.model.responseModal.PaymentHistory_modal;
 import com.vms.antplay.model.responseModal.RegisterResponseModal;
+import com.vms.antplay.model.responseModal.SendOTPResponse;
 import com.vms.antplay.model.responseModal.ShutDownVMResponseModal;
 import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
 import com.vms.antplay.model.responseModal.StartVMResponseModal;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.model.responseModal.UserUpdateResponseModal;
+import com.vms.antplay.model.responseModal.VerifyOTPResponseModal;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface RetrofitAPI {
 
@@ -70,6 +74,12 @@ public interface RetrofitAPI {
 
     @POST("startvm/")
     Call<StartVMResponseModal> startVM(@Body StartVMRequestModal startVMRequestModal);
+
+    @POST("verifyOTPView/")
+    Call<VerifyOTPResponseModal> verifyOTP(@Query("phone_number") String phone, @Query("otp") String otp);
+
+    @GET
+    Call<SendOTPResponse> sendOTP(@Url String url);
 
 
 
