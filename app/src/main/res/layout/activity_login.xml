@@ -53,13 +53,23 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/continueWithGoogle"
+            android:id="@+id/continueWithOTP"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="@drawable/btngradient"
             android:fontFamily="sans-serif"
+            android:text="@string/login_with_otp"
+            android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/continueWithGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/btngradient"
+            android:fontFamily="sans-serif"
             android:text="@string/continue_with_google"
             android:textColor="@color/white"/>
+
 
         <TextView
             android:id="@+id/tv_termsandc_login"

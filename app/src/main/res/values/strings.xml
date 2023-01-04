@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AntPlay Design</string>
     <string name="continue_with_google">Continue with Google</string>
+    <string name="login_with_otp">Login with OTP</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="email">Email</string>
@@ -43,6 +44,7 @@
     <string name="error_password">Password is required</string>
     <string name="error_checkbox">Please check the checkbox</string>
     <string name="error_invalidEmail">Invalid email address</string>
+    <string name="error_invalidPhone">Invalid phone number</string>
     <string name="error_pass_minimum">Password must be minimum 8 characters</string>
     <string name="pass_regex">Password Should contains 1 small letter, 1 special character,1 number</string>
     <string name="error_Confirmpass_minimum">Confirm Password must be minimum 8 characters</string>
@@ -175,6 +177,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="subscribe">Subscribe</string>
+    <string name="active_plan">Active Plan</string>
     <string name="payment_hours">\" Hours\"</string>
     <string name="subscription_plan">Subscription Plan</string>
 
@@ -185,6 +188,9 @@
     Starts
     *****************
     -->
+    <string name="are_you_sure">Are you sure, you want to logout ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="nick_name">Nick Name</string>
     <string name="ip_address">IP Address</string>
     <string name="port">Port</string>
@@ -277,6 +283,12 @@
     <string name="username_caption">Username</string>
     <string name="username_hint">For Windows Authentication</string>
     <string name="privacy_policy">Privacy policy</string>
+    <string name="verify_otp_text">Didn’t  get code ? We can resend it in</string>
+    <string name="otp_send">Send Otp</string>
+    <string name="otp_verify">Verify</string>
+    <string name="enter_registered_mobile">Please, Enter Registered Mobile Number"</string>
+    <string name="enter_otp">Please enter 6 digit OTP</string>
+    <string name="error_wrong_mobile_otp">Enter valid Mobile Number and OTP</string>
     <!--
         *****************
         VNC Strings Ends

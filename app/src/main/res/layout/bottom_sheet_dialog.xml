@@ -104,6 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
         android:text="Another time"
+        android:visibility="gone"
         android:fontFamily="sans-serif"
         android:textAllCaps="true"
         android:textColor="@color/white"

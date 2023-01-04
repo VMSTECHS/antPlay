@@ -34,6 +34,17 @@ public class BillingPlan {
     @SerializedName("price")
     @Expose
     private Double price;
+    @SerializedName("subscribed_status")
+    @Expose
+    private Boolean subscribedStatus;
+
+    public Boolean getSubscribedStatus() {
+        return subscribedStatus;
+    }
+
+    public void setSubscribedStatus(Boolean subscribedStatus) {
+        this.subscribedStatus = subscribedStatus;
+    }
 
     public Integer getId() {
         return id;

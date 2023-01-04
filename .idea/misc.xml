@@ -5,23 +5,36 @@
       <map>
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/drawable/bg_edt_text.xml" value="0.191" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/drawable/btngradient.xml" value="0.227" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2295" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/drawable/ic_launcher_foreground_new.xml" value="0.2295" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/drawable/otp_border.xml" value="0.2295" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout-sw600dp/activity_profile.xml" value="0.33" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_change_password.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_forget_password.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_general_web_view.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_login.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_login_screen.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_login_with_otp.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_main.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_payment_history.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_payment_plan.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_profile.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_register.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_terms_and_condition.xml" value="0.3625" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_verify_otp.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/activity_webview_for_payment.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/computers_available_list.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/fragment_computer.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/fragment_faq_fargment.xml" value="0.3625" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/fragment_p_c_setting.xml" value="0.3625" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/item_payment_plan.xml" value="0.3625" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/notification.xml" value="0.3572916666666667" />
-        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/paymenthistory_adapter.xml" value="0.3625" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/paymenthistory_adapter.xml" value="0.5" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/vnc_activity_main.xml" value="0.3569230769230769" />
         <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/layout/vnc_canvas.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2295" />
+        <entry key="..\:/Users/rakes/Downloads/antPlayNew - Copy/antPlayNew - Copy/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2295" />
       </map>
     </option>
   </component>

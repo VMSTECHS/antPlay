@@ -24,6 +24,8 @@ import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,8 +37,8 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
     List<BillingPlan> paymentPlansList;
     Context context;
     int hours = 0, amount = 0;
-
     PaymentInitiationInterface paymentInitiationInterface;
+    ArrayList<String> mylist = new ArrayList<String>();
 
 
     public PaymentPlanAdapter(Context context, List<BillingPlan> paymentPlansList, PaymentInitiationInterface paymentInitiationInterface) {
@@ -64,15 +66,29 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
         holder.tv_rams.setText(paymentPlansList.get(position).getRam() + " RAM ");
         holder.tv_ssds.setText(paymentPlansList.get(position).getSsd() + " SSD ");
         //  holder.tv_mbps.setText(paymentPlansList.get(position).get());
+
+        mylist.add(paymentPlansList.get(position).getSubscribedStatus().toString());
+        Log.e("hello array - ", "" + mylist);
+
+        if (paymentPlansList.get(position).getSubscribedStatus().equals(true)) {
+            //   holder.txtSubscribe.setText("UNSUBSCRIBE");
+            holder.txtActivePlan.setVisibility(View.VISIBLE);
+            holder.txtSubscribe.setVisibility(View.GONE);
+        }
         holder.txtSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getPrice(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getHourLimit());
-                //  paymentInitiationInterface.onPaymentInitiated(2.00,899);
-                Log.e("hi get id--", ""+paymentPlansList.get(position).getId());
-                // Call api for start payment//
-                callStartPayment(String.valueOf(paymentPlansList.get(position).getId()));
+              /*    paymentInitiationInterface.onPaymentInitiated(paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getPrice(),paymentPlansList.get(holder.getAbsoluteAdapterPosition()).getHourLimit());
+                  paymentInitiationInterface.onPaymentInitiated(2.00,899);*/
 
+                Log.e("hi get id--", "" + paymentPlansList.get(position).getId());
+
+                if (mylist.contains("true")) {
+                    AppUtils.showSnack(v, R.color.black, Const.already_have_plan, context);
+                } else {
+                    // Call api for start payment
+                    callStartPayment(String.valueOf(paymentPlansList.get(position).getId()));
+                }
 
             }
         });
@@ -128,7 +144,7 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
     public class PaymentPlanViewHolder extends RecyclerView.ViewHolder {
         private TextView txtPlanName, txtPlaneAmount, txtValidity, txtDurationInHours;
         private TextView tv_gpus, tv_cpus, tv_rams, tv_ssds, tv_mbps;
-        private TextView txtSubscribe;
+        private TextView txtSubscribe, txtActivePlan;
 
         public PaymentPlanViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,6 +160,7 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
             tv_mbps = itemView.findViewById(R.id.tv_mbp);
 
             txtSubscribe = itemView.findViewById(R.id.txtSubscribe);
+            txtActivePlan = itemView.findViewById(R.id.active_plan);
 
 
         }

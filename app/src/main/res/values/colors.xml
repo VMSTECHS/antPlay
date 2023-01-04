@@ -14,7 +14,7 @@
     <color name="colorAccentDark_light">#FC90FBD0</color>
     <color name="transparent_green">#CB4DD59E</color>
     <color name="line_color">#646464</color>
-
+    <color name="green_button">#59BE45</color>
     <color name="transparent">#0D040303</color>
     <color name="black_trans">#C90B0A0A</color>
     <color name="black_trans_50pc">#AB0B0A0A</color>

@@ -1,0 +1,159 @@
+package com.vms.antplay.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.vms.antplay.R;
+import com.vms.antplay.api.APIClient;
+import com.vms.antplay.api.RetrofitAPI;
+import com.vms.antplay.model.responseModal.VerifyOTPResponseModal;
+import com.vms.antplay.utils.AppUtils;
+import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.GenericTextWatcher;
+import com.vms.antplay.utils.SharedPreferenceUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class VerifyOTP extends AppCompatActivity {
+
+    EditText otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four,otp_textbox_five,otp_textbox_six, et_newPassword, et_confirmPassword;
+    TextView tv_verifyotp, tv_back, tv_timer, tv_sec, tv_resend;
+    ImageView img_back;
+    LinearLayout linearLayout;
+    String getMobile;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_verify_otp);
+
+        otp_textbox_one = findViewById(R.id.otp_edit_box1);
+        otp_textbox_two = findViewById(R.id.otp_edit_box2);
+        otp_textbox_three = findViewById(R.id.otp_edit_box3);
+        otp_textbox_four = findViewById(R.id.otp_edit_box4);
+        otp_textbox_five = findViewById(R.id.otp_edit_box5);
+        otp_textbox_six = findViewById(R.id.otp_edit_box6);
+        tv_back = findViewById(R.id.txtBack);
+        img_back = findViewById(R.id.imgBack);
+        linearLayout = findViewById(R.id.linear_timer);
+        tv_timer = findViewById(R.id.tv_timer);
+        tv_sec = findViewById(R.id.tv_second);
+        tv_resend = findViewById(R.id.tv_resend);
+        tv_verifyotp = (TextView) findViewById(R.id.verifyOTP);
+        getMobile = getIntent().getStringExtra("mobile");
+        Log.e("mobile get number", getMobile);
+
+
+        EditText[] edit = {otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six};
+
+        otp_textbox_one.addTextChangedListener(new GenericTextWatcher(otp_textbox_one, edit));
+        otp_textbox_two.addTextChangedListener(new GenericTextWatcher(otp_textbox_two, edit));
+        otp_textbox_three.addTextChangedListener(new GenericTextWatcher(otp_textbox_three, edit));
+        otp_textbox_four.addTextChangedListener(new GenericTextWatcher(otp_textbox_four, edit));
+        otp_textbox_five.addTextChangedListener(new GenericTextWatcher(otp_textbox_five, edit));
+        otp_textbox_six.addTextChangedListener(new GenericTextWatcher(otp_textbox_six, edit));
+
+        callTimer();
+
+        tv_resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayout.setVisibility(View.VISIBLE);
+                tv_resend.setVisibility(View.GONE);
+                callTimer();
+            }
+        });
+
+        tv_verifyotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validateOTPTextFields()) {
+                    callVerifyOTP();
+                } else {
+
+                }
+            }
+        });
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private void callVerifyOTP() {
+        String otp = otp_textbox_one.getText().toString()+otp_textbox_two.getText().toString()+otp_textbox_three.getText().toString()+otp_textbox_four.getText().toString()+otp_textbox_five.getText().toString()+otp_textbox_six.getText().toString();
+        Log.e("otp get", otp);
+        RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
+        Call<VerifyOTPResponseModal> call = retrofitAPI.verifyOTP(getMobile,otp);
+        call.enqueue(new Callback<VerifyOTPResponseModal>() {
+            @Override
+            public void onResponse(Call<VerifyOTPResponseModal> call, Response<VerifyOTPResponseModal> response) {
+                if (response.body().getSuccess().equals("True")){
+                    SharedPreferenceUtils.saveString(VerifyOTP.this, Const.ACCESS_TOKEN, response.body().getData().getAccess());
+                    Intent i = new Intent(VerifyOTP.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+                else if (response.code() == Integer.parseInt(Const.ERROR_CODE_500_SERVER_ERROR)){
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,getString(R.string.error_wrong_mobile_otp), VerifyOTP.this);
+                }
+                else {
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,response.body().getMessage(), VerifyOTP.this);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<VerifyOTPResponseModal> call, Throwable t) {
+                AppUtils.showToast(Const.something_went_wrong, VerifyOTP.this);
+
+            }
+        });
+
+    }
+
+    private boolean validateOTPTextFields() {
+        if (otp_textbox_one.getText().length() < 1 || otp_textbox_two.getText().length() < 1 || otp_textbox_three.getText().length() < 1 || otp_textbox_four.getText().length() < 1 || otp_textbox_five.getText().length() < 1 || otp_textbox_six.getText().length() < 1) {
+            Toast.makeText(VerifyOTP.this, getResources().getString(R.string.enter_otp), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private void callTimer() {
+        new CountDownTimer(40000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                tv_timer.setText(String.valueOf(millisUntilFinished / 1000));
+                // logic to set the EditText could go here
+            }
+
+            public void onFinish() {
+                tv_resend.setVisibility(View.VISIBLE);
+                linearLayout.setVisibility(View.GONE);
+                //tv_timer.setText("Resend!");
+            }
+
+        }.start();
+
+    }
+}

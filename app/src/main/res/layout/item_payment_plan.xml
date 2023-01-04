@@ -188,6 +188,22 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_11sdp" />
+            <TextView
+                android:id="@+id/active_plan"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_below="@id/txtSubscribe"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@drawable/payment_button_bg"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="@string/active_plan"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp" />
 
 
         </RelativeLayout>

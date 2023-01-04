@@ -1,8 +1,10 @@
 package com.vms.antplay.activity;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -20,9 +22,10 @@ import org.w3c.dom.Text;
 public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout,
-            linearPayment, linearEdit, linearDiscord, linearInstagram,linearPrivacyPolicy;
+            linearPayment, linearEdit, linearDiscord, linearInstagram, linearPrivacyPolicy;
 
     TextView tv_changePassword, tv_manageSubs, txtUserID;
+    AlertDialog.Builder builder;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -30,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccentDark_light, this.getTheme()));
-
+        builder = new AlertDialog.Builder(this);
         backLinear = (LinearLayout) findViewById(R.id.back_linear);
         logoutLinear = (LinearLayout) findViewById(R.id.logout_linear);
         linearAgree = (LinearLayout) findViewById(R.id.linear_agreements);
@@ -68,9 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
+                logoutMethod();
             }
         });
 
@@ -90,7 +91,7 @@ public class ProfileActivity extends AppCompatActivity {
                /* Intent i = new Intent(ProfileActivity.this, Agreement_User.class);
                 startActivity(i);*/
                 Intent intent = new Intent(ProfileActivity.this, GeneralWebViewActivity.class);
-                intent.putExtra(Const.REDIRECT_URL,Const.TERMS_AND_CONDITION_URL);
+                intent.putExtra(Const.REDIRECT_URL, Const.TERMS_AND_CONDITION_URL);
                 startActivity(intent);
 
             }
@@ -100,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, GeneralWebViewActivity.class);
-                intent.putExtra(Const.REDIRECT_URL,Const.PRIVACY_POLICY_URL);
+                intent.putExtra(Const.REDIRECT_URL, Const.PRIVACY_POLICY_URL);
                 startActivity(intent);
             }
         });
@@ -135,7 +136,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);*/
 
                 Intent intent = new Intent(ProfileActivity.this, GeneralWebViewActivity.class);
-                intent.putExtra(Const.REDIRECT_URL,Const.ABOUT_US_URL);
+                intent.putExtra(Const.REDIRECT_URL, Const.ABOUT_US_URL);
                 startActivity(intent);
             }
         });
@@ -153,6 +154,30 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void logoutMethod() {
+        builder.setMessage(getResources().getString(R.string.are_you_sure))
+                .setCancelable(false)
+                .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                        // Toast.makeText(getApplicationContext(),getResources().getString(R.string.yes), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        // Toast.makeText(getApplicationContext(),getResources().getString(R.string.no), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle(getResources().getString(R.string.logout));
+        alert.show();
     }
 
     private void setData() {
