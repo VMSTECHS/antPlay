@@ -60,6 +60,7 @@ public class Const {
     public static String check_state_city_not_correct = "State, City and PinCode Should be correct. It might be wrong.";
     public static String already_have_plan = "You already have an Active Subscription, To Subscribe to a New Plan, Please Cancel your Active Subscription and Try Again";
 
+    public static String NOT_REGISTERED_EMAIL="Entered e-mail is not registered with us, Please provide a valid e-mail";
     /*****
      * Regex
      * ****/

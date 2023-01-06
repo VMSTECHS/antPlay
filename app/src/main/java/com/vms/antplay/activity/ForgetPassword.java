@@ -95,14 +95,12 @@ public class ForgetPassword extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Intent i = new Intent(ForgetPassword.this, LoginScreenActivity.class);
-                                    startActivity(i);
                                     finish();
                                 }
                             });
 
                     AlertDialog alert = builder.create();
-                    alert.setTitle("Success");
+                    alert.setTitle("Reset Password");
                     alert.show();
 
 
@@ -111,7 +109,7 @@ public class ForgetPassword extends AppCompatActivity {
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.message(), ForgetPassword.this);
                 } else if (response.code() == Const.ERROR_CODE_500) {
                     loadingPB.setVisibility(View.GONE);
-                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.message(), ForgetPassword.this);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.NOT_REGISTERED_EMAIL, ForgetPassword.this);
                 } else if (response.code() == Const.ERROR_CODE_400) {
                     loadingPB.setVisibility(View.GONE);
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, getString(R.string.wrong_email_id), ForgetPassword.this);
