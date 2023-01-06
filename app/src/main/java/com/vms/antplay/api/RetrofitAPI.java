@@ -72,7 +72,7 @@ public interface RetrofitAPI {
     Call<ForgotPassResponseModal> forgotPassword(@Body ForgotPassRequestModal forgotPassRequestModal);
 
     @POST("shutdownvm/")
-    Call<ShutDownVMResponseModal> shoutDownVM(@Body ShutDownVMRequestModal shutDownVMRequestModal);
+    Call<ShutDownVMResponseModal> shoutDownVM(@Header("Authorization") String Token,@Body ShutDownVMRequestModal shutDownVMRequestModal);
 
     @POST("startvm/")
     Call<StartVMResponseModal> startVM(@Body StartVMRequestModal startVMRequestModal);
@@ -85,7 +85,6 @@ public interface RetrofitAPI {
 
     @POST("updatevm/")
     Call<UpdateVmResponseModal> updateVM(@Header("Authorization") String Token,@Body UpdateVmRequestModal updateVmRequestModal);
-
 
 
 

@@ -297,6 +297,13 @@
     <string name="wrong_email_id">Please check your email id. It might be empty/wrong.</string>
     <string name="working_on_this">Currently This Service is in Progress.</string>
     <string name="error_greater_18">Age Should be greater than or equal to 18.</string>
+    <string name="verify_phone">Verify Phone</string>
+    <string name="verification_cade_sent_to">We have sent a 6 digit verification code on</string>
+
+    <string name="shutdown_vm">Shutdown Virtual Machine</string>
+    <string name="do_you_want_to_shutdown">Are you sure! you want to shutdown your Virtual Machine?</string>
+    <string name="proceed">Proceed</string>
+    <string name="cancel">Cancel</string>
     <!--
         *****************
         VNC Strings Ends

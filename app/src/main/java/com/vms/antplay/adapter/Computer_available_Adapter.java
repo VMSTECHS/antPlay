@@ -9,32 +9,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
 
-import com.vms.antplay.activity.MainActivity;
-import com.vms.antplay.interfaces.VMConnectionRequestListener;
+import com.vms.antplay.interfaces.ShutdownVMListener;
 import com.vms.antplay.model.responseModal.GetVMResponseModal;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 import com.vms.antplay.vnc.MainVNCActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_available_Adapter.MyViewHolder> {
 
     private Context context;
     private List<GetVMResponseModal.Datum> computer_availableModals;
+    private ShutdownVMListener vmTimeListener;
 
 
-    public Computer_available_Adapter(Context context, List<GetVMResponseModal.Datum> computer_availableModals) {
+    public Computer_available_Adapter(Context context, List<GetVMResponseModal.Datum> computer_availableModals, ShutdownVMListener vmTimeListener) {
         this.context = context;
         this.computer_availableModals = computer_availableModals;
+        this.vmTimeListener = vmTimeListener;
     }
 
     @NonNull
@@ -61,6 +60,14 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
                 context.startActivity(intent);
             }
         });
+
+        holder.btnShutdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Call Shutdown VM API here
+                vmTimeListener.shutDownVMRequest(modal.getVmid());
+            }
+        });
     }
 
     @Override
@@ -73,7 +80,7 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
         TextView computerName;
         ImageView computerImage;
         TextView computerDesc;
-        Button btn_share;
+        Button btn_share,btnShutdown;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +89,7 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
             computerDesc = (TextView) itemView.findViewById(R.id.comp_desc);
             computerImage = (ImageView) itemView.findViewById(R.id.comp_image);
             btn_share = (Button) itemView.findViewById(R.id.comp_btn);
+            btnShutdown = (Button) itemView.findViewById(R.id.comp_btn_shutdown);
         }
     }
 }

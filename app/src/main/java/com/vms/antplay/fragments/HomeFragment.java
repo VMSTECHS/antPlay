@@ -220,6 +220,7 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
     }
 
     private String calculateSeconds(long remainingSeconds) {
+        String timeString;
         long hours = 0;
         long minutes = 0;
         if (remainingSeconds > 0) {
@@ -229,6 +230,11 @@ public class HomeFragment extends Fragment implements PaymentInitiationInterface
                 minutes = minutes % 60;
             }
         }
-        return hours + ":" + minutes;
+        if (minutes<10){
+            timeString = hours + ":0" + minutes;
+        }else {
+            timeString = hours + ":" + minutes;
+        }
+        return timeString;
     }
 }

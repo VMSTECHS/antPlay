@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class VerifyOTP extends AppCompatActivity {
 
     EditText otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four,otp_textbox_five,otp_textbox_six, et_newPassword, et_confirmPassword;
-    TextView tv_verifyotp, tv_back, tv_timer, tv_sec, tv_resend;
+    TextView tv_verifyotp, tv_back, tv_timer, tv_sec, tv_resend,txtDidNotReceiveOTP,txtVerificationCodeSentTo;
     ImageView img_back;
     LinearLayout linearLayout;
     String getMobile;
@@ -55,8 +55,14 @@ public class VerifyOTP extends AppCompatActivity {
         tv_sec = findViewById(R.id.tv_second);
         tv_resend = findViewById(R.id.tv_resend);
         tv_verifyotp = (TextView) findViewById(R.id.verifyOTP);
-        getMobile = getIntent().getStringExtra("mobile");
-        Log.e("mobile get number", getMobile);
+        txtVerificationCodeSentTo = (TextView) findViewById(R.id.txtCodeHasSent);
+        txtDidNotReceiveOTP = (TextView) findViewById(R.id.tv_didnot_received);
+        if (getIntent().hasExtra("mobile")){
+            getMobile = getIntent().getStringExtra("mobile");
+        }
+        String verificationCodeSent = getResources().getString(R.string.verification_cade_sent_to)+" "+getMobile;
+        txtVerificationCodeSentTo.setText(verificationCodeSent);
+       // Log.e("mobile get number", getMobile);
 
 
         EditText[] edit = {otp_textbox_one, otp_textbox_two, otp_textbox_three, otp_textbox_four, otp_textbox_five, otp_textbox_six};
@@ -76,7 +82,8 @@ public class VerifyOTP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 linearLayout.setVisibility(View.VISIBLE);
-                tv_resend.setVisibility(View.GONE);
+                tv_resend.setVisibility(View.INVISIBLE);
+                txtDidNotReceiveOTP.setVisibility(View.VISIBLE);
                 callTimer();
             }
         });
@@ -155,7 +162,8 @@ public class VerifyOTP extends AppCompatActivity {
 
             public void onFinish() {
                 tv_resend.setVisibility(View.VISIBLE);
-                linearLayout.setVisibility(View.GONE);
+                linearLayout.setVisibility(View.INVISIBLE);
+                txtDidNotReceiveOTP.setVisibility(View.INVISIBLE);
                 //tv_timer.setText("Resend!");
             }
 
