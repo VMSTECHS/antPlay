@@ -16,7 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vms.antplay.R;
 
+import com.vms.antplay.activity.MainActivity;
+import com.vms.antplay.interfaces.VMConnectionRequestListener;
 import com.vms.antplay.model.responseModal.GetVMResponseModal;
+import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.SharedPreferenceUtils;
 import com.vms.antplay.vnc.MainVNCActivity;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
 
     private Context context;
     private List<GetVMResponseModal.Datum> computer_availableModals;
+
 
     public Computer_available_Adapter(Context context, List<GetVMResponseModal.Datum> computer_availableModals) {
         this.context = context;
@@ -50,6 +55,8 @@ public class Computer_available_Adapter extends RecyclerView.Adapter<Computer_av
             @Override
             public void onClick(View view) {
                 //Toast.makeText(context, "Clicked"+position, Toast.LENGTH_SHORT).show();
+                SharedPreferenceUtils.saveLong(context, Const.VM_ID, modal.getVmid());
+                SharedPreferenceUtils.saveLong(context, Const.REMAINING_TIME,modal.getTimeRemaining());
                 Intent intent = new Intent(context, MainVNCActivity.class);
                 context.startActivity(intent);
             }

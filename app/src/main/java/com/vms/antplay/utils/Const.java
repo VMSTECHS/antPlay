@@ -14,6 +14,7 @@ public class Const {
     public static String STATE="state";
     public static String CITY="city";
     public static String USER_NAME="username";
+    public static String USER_EXPIRY_DATE="userExpiryDate";
     public static String BASIC_SKU="antplay_30_hours";
     public static String PREMIUM_SKU="antplay_250_hours";
     public static String BASIC_PLAN_1="basic-plan-1";
@@ -65,6 +66,11 @@ public class Const {
     public static String COUNTDOWN_INTENT="countdown";
     public static final String COUNTDOWN_BR = "com.vms.antplay.countdown_timer";
 
+    public static String COUNTDOWN_TIMER_INTENT="countdownTimer";
+    public static String COUNTDOWN_TIMER_RUNNING="countdownTimerRunning";
+    public static String COUNTDOWN_TIMER_FINISHED="countdownTimerFinished";
+
+
     /*****
      * Intent Values
      * ****/
@@ -78,12 +84,19 @@ public class Const {
      * Preference Constants
      * ****/
     public static String REMAINING_TIME="remainingTime";
+    public static String VM_ID="vmId";
 
 
     /*****
      * Timer Constants
      * ****/
-    public static long MAX_TIME = 600000;
+    public static long MAX_TIME = 432000000; // 5x24x60x60x1000 = 432,000,000 milliseconds = 5 days
     public static int MAX_PROGRESS = 30;
+
+    /*****
+     * Notification Message
+     * ****/
+    public static String NOTIFICATION_TITLE = "Cloud Machine Running"; // 5x24x60x60x1000 = 432,000,000 milliseconds = 5 days
+    public static String NOTIFICATION_MESSAGE = "Cloud machine is running, don't forgot to disconnect your machine if you are not using it";
 
 }

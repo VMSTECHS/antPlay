@@ -29,6 +29,8 @@ public class UserDetailsModal {
     private String mState;
     @SerializedName("username")
     private String mUsername;
+    @SerializedName("expire")
+    private String mExpire;
 
     public String getAddress() {
         return mAddress;
@@ -126,4 +128,11 @@ public class UserDetailsModal {
         mUsername = username;
     }
 
+    public String getExpire() {
+        return mExpire;
+    }
+
+    public void setExpire(String mExpire) {
+        this.mExpire = mExpire;
+    }
 }

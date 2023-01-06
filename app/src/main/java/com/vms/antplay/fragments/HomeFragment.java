@@ -33,7 +33,6 @@ import com.vms.antplay.activity.SpeedTestActivity;
 import com.vms.antplay.adapter.ImageAdapter;
 import com.vms.antplay.dialog.BottomSheetDialog;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
-import com.vms.antplay.interfaces.VmTimeListener;
 import com.vms.antplay.model.ImageModel;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;

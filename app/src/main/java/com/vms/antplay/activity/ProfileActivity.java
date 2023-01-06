@@ -17,8 +17,6 @@ import com.vms.antplay.R;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
-import org.w3c.dom.Text;
-
 public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout,
@@ -188,8 +186,16 @@ public class ProfileActivity extends AppCompatActivity {
         String state = SharedPreferenceUtils.getString(ProfileActivity.this, Const.STATE);
         String city = SharedPreferenceUtils.getString(ProfileActivity.this, Const.CITY);
         String userName = SharedPreferenceUtils.getString(ProfileActivity.this, Const.USER_NAME);
+        String expiryDate = SharedPreferenceUtils.getString(ProfileActivity.this, Const.USER_EXPIRY_DATE);
 
         txtUserID.setText(userName);
+        decodeDate(Long.parseLong(expiryDate));
 
+    }
+
+    private void decodeDate(long expiryDate) {
+        long originalSecond = expiryDate/10000000;
+        long constToAdd = 11*30*60;
+        long totalDays = originalSecond+constToAdd;
     }
 }

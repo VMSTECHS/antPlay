@@ -73,6 +73,20 @@
         android:textColor="@color/white"
         android:textSize="15sp" />
 
+    <TextView
+        android:id="@+id/txtDisConnect"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/txtConnect"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_button"
+        android:gravity="center"
+        android:text="Disconnect"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
 
 
 

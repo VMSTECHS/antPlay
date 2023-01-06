@@ -7,6 +7,7 @@ import com.vms.antplay.model.requestModal.LoginRequestModal;
 import com.vms.antplay.model.requestModal.ShutDownVMRequestModal;
 import com.vms.antplay.model.requestModal.StartPaymentRequestModal;
 import com.vms.antplay.model.requestModal.StartVMRequestModal;
+import com.vms.antplay.model.requestModal.UpdateVmRequestModal;
 import com.vms.antplay.model.requestModal.UserUpdateRequestModal;
 import com.vms.antplay.model.responseModal.BillingPlansResponse;
 import com.vms.antplay.model.responseModal.ChangePasswordResponseModal;
@@ -22,6 +23,7 @@ import com.vms.antplay.model.responseModal.SendOTPResponse;
 import com.vms.antplay.model.responseModal.ShutDownVMResponseModal;
 import com.vms.antplay.model.responseModal.StartPaymentResponseModal;
 import com.vms.antplay.model.responseModal.StartVMResponseModal;
+import com.vms.antplay.model.responseModal.UpdateVmResponseModal;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
 import com.vms.antplay.model.responseModal.UserUpdateResponseModal;
 import com.vms.antplay.model.responseModal.VerifyOTPResponseModal;
@@ -80,6 +82,10 @@ public interface RetrofitAPI {
 
     @GET
     Call<SendOTPResponse> sendOTP(@Url String url);
+
+    @POST("updatevm/")
+    Call<UpdateVmResponseModal> updateVM(@Header("Authorization") String Token,@Body UpdateVmRequestModal updateVmRequestModal);
+
 
 
 

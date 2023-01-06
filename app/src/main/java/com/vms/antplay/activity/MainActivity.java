@@ -14,19 +14,21 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 
 import com.google.android.material.tabs.TabLayout;
 import com.razorpay.ExternalWalletListener;
 import com.razorpay.PaymentData;
-import com.razorpay.PaymentResultListener;
 import com.razorpay.PaymentResultWithDataListener;
 import com.vms.antplay.R;
-import com.vms.antplay.adapter.PagerAdapter;
 import com.vms.antplay.api.APIClient;
 import com.vms.antplay.api.RetrofitAPI;
 import com.vms.antplay.fragments.ArcadeFragment;
@@ -34,23 +36,22 @@ import com.vms.antplay.fragments.ComputerFragment;
 import com.vms.antplay.fragments.FaqFargment;
 import com.vms.antplay.fragments.HomeFragment;
 import com.vms.antplay.fragments.SettingsFragment;
-import com.vms.antplay.interfaces.VmTimeListener;
-import com.vms.antplay.model.ImageModel;
+import com.vms.antplay.interfaces.VMConnectionRequestListener;
 import com.vms.antplay.model.responseModal.UserDetailsModal;
-import com.vms.antplay.timer.TimerBroadcastService;
-import com.vms.antplay.timer.TimerListener;
+
+import com.vms.antplay.timer.BackgroundTimerWorker;
+import com.vms.antplay.timer.TimerBackgroundService;
 import com.vms.antplay.utils.AppUtils;
 import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener, ExternalWalletListener, TimerListener {
+public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener, ExternalWalletListener {
 
     private String TAG = "ANT_PLAY";
     ViewPager simpleViewPager;
@@ -126,9 +127,8 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
         });
 
         //countDownTimer();
-        startService(new Intent(MainActivity.this, TimerBroadcastService.class));
-
-
+        //startService(new Intent(getApplicationContext(), TimerBackgroundService.class));
+        //startServiceViaWorker();
 
     }
 
@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.STATE, response.body().getState());
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.CITY, response.body().getCity());
                     SharedPreferenceUtils.saveString(MainActivity.this, Const.USER_NAME, response.body().getUsername());
+                    SharedPreferenceUtils.saveString(MainActivity.this, Const.USER_EXPIRY_DATE, response.body().getExpire());
                     Log.d(TAG, "" + response.body().getPhoneNumber() + " " + response.body().getEmail());
 
                 } else {
@@ -212,7 +213,36 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
     }
 
-    BroadcastReceiver timerBroadCastReceiver = new BroadcastReceiver() {
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(timerBroadCastReceiver, new IntentFilter(Const.COUNTDOWN_BR));
+        Log.i(TAG, "Registered broadcast receiver");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(timerBroadCastReceiver);
+        Log.i(TAG, "Unregistered broadcast receiver");
+    }
+
+    @Override
+    protected void onStop() {
+        try {
+            unregisterReceiver(timerBroadCastReceiver);
+        } catch (Exception e) {
+            // Receiver was probably already stopped in onPause()
+        }
+        super.onStop();
+        Log.d("TIME", "MainActivity Stopped");
+    }
+
+
+
+
+    final private BroadcastReceiver timerBroadCastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             updateTimer(intent);
@@ -221,36 +251,14 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
 
     private void updateTimer(Intent intent) {
         if (intent.getExtras() != null) {
-            long millisUntilFinished = intent.getLongExtra(Const.COUNTDOWN_INTENT, 0);
-            Log.d("TIMER", "Countdown seconds remaining (Broad Cast): " + millisUntilFinished / 1000);
+            long millisUntilFinished = intent.getLongExtra(Const.COUNTDOWN_TIMER_INTENT, 0);
+            Log.d("TIMER", "Countdown seconds remaining (Broad Cast On Home): " + millisUntilFinished / 1000);
             long remainingSec = millisUntilFinished/1000;
             remainingSec++;
             //txtProgress.setText(String.valueOf(remainingSec));
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("TIME", "MainActivity Resumed");
-        registerReceiver(timerBroadCastReceiver, new IntentFilter(Const.COUNTDOWN_BR));
-        Log.d("TIMER", "Registered broacast receiver");
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("TIME", "MainActivity Stopped");
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("TIME", "MainActivity Destroyed");
-    }
-
-    @Override
-    public void remainingTime(long remainingTimeInMillis) {
-        Log.d("TIMER", "Countdown seconds remaining (Listener): " + remainingTimeInMillis / 1000);
-    }
 }
