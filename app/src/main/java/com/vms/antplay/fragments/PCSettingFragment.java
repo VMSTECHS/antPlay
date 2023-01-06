@@ -30,7 +30,6 @@ public class PCSettingFragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,15 +69,13 @@ public class PCSettingFragment extends Fragment {
                                     "No answer has been selected",
                                     Toast.LENGTH_SHORT)
                             .show();
-                }
-                else {
+                } else {
 
-                    RadioButton radioButton1 = (RadioButton)radioGroup.findViewById(selectedId);
+                    RadioButton radioButton1 = (RadioButton) radioGroup.findViewById(selectedId);
 
                     Snackbar.make(radioGroup, "Switch state checked " + radioButton1.getText(), Snackbar.LENGTH_LONG)
-                        .setAction("ACTION", null).show();
+                            .setAction("ACTION", null).show();
                 }
-
 
 
             }
@@ -94,15 +91,13 @@ public class PCSettingFragment extends Fragment {
                                     "No answer has been selected",
                                     Toast.LENGTH_SHORT)
                             .show();
-                }
-                else {
+                } else {
 
-                    RadioButton radioButton1 = (RadioButton)radioGroup.findViewById(selectedId);
+                    RadioButton radioButton1 = (RadioButton) radioGroup.findViewById(selectedId);
 
                     Snackbar.make(radioGroup, "Switch state checked " + radioButton1.getText(), Snackbar.LENGTH_LONG)
-                        .setAction("ACTION", null).show();
+                            .setAction("ACTION", null).show();
                 }
-
 
 
             }
@@ -118,15 +113,13 @@ public class PCSettingFragment extends Fragment {
                                     "No answer has been selected",
                                     Toast.LENGTH_SHORT)
                             .show();
-                }
-                else {
+                } else {
 
-                    RadioButton radioButton1 = (RadioButton)radioGroup.findViewById(selectedId);
+                    RadioButton radioButton1 = (RadioButton) radioGroup.findViewById(selectedId);
 
                     Snackbar.make(radioGroup, "Switch state checked " + radioButton1.getText(), Snackbar.LENGTH_LONG)
-                        .setAction("ACTION", null).show();
+                            .setAction("ACTION", null).show();
                 }
-
 
 
             }

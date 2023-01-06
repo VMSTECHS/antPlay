@@ -27,6 +27,11 @@ public class Const {
     public static final Integer ERROR_CODE_400 = 400;
     public static final Integer ERROR_CODE_404 = 404;
     public static final Integer SUCCESS_CODE_200 = 200;
+    public static final String city_should_not_empty = "City should not be empty";
+    public static final String address_should_not_empty = "Address should not be empty";
+    public static final String enter_valid_picCode = "Enter 6 digit Valid PinCode ";
+    public static final String enter_valid_data = "Enter Valid Data ";
+    public static final String profile_updated_success = "Profile Updated Successfully ";
 
 
     /****

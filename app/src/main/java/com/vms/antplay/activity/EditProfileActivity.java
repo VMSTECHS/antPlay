@@ -216,8 +216,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (response.code() == Const.SUCCESS_CODE_200) {
                     progressBar.setVisibility(View.GONE);
                     getUserDetails();
-                    finish();
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,Const.profile_updated_success,EditProfileActivity.this);
+                    finish();
+
                 } else if (response.code() == Const.ERROR_CODE_400) {
                     progressBar.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
