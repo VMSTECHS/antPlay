@@ -289,6 +289,13 @@
     <string name="enter_registered_mobile">Please, Enter Registered Mobile Number"</string>
     <string name="enter_otp">Please enter 6 digit OTP</string>
     <string name="error_wrong_mobile_otp">Enter valid Mobile Number and OTP</string>
+    <string name="verify_phone">Verify Phone</string>
+    <string name="verification_cade_sent_to">We have sent a 6 digit verification code on</string>
+
+    <string name="shutdown_vm">Shutdown Virtual Machine</string>
+    <string name="do_you_want_to_shutdown">Are you sure! you want to shutdown your Virtual Machine?</string>
+    <string name="proceed">Proceed</string>
+    <string name="cancel">Cancel</string>
     <!--
         *****************
         VNC Strings Ends
