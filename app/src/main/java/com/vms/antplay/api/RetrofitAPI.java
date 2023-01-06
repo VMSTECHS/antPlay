@@ -57,7 +57,7 @@ public interface RetrofitAPI {
     Call<PaymentHistory_modal> getPaymentHistory(@Header("Authorization") String Token);
 
     @PUT("change_password")
-    Call<ChangePasswordResponseModal> changePassword(@Body ChangePasswordRequestModal changePasswordRequestModal);
+    Call<ChangePasswordResponseModal> changePassword(@Header("Authorization") String Token,@Body ChangePasswordRequestModal changePasswordRequestModal);
 
     @POST("start_payment/")
     Call<StartPaymentResponseModal> startPayment(@Header("Authorization") String Token,@Body StartPaymentRequestModal startPaymentRequestModal);

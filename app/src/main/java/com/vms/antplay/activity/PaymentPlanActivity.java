@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -63,6 +64,7 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
     List<BillingPlan> paymentPlansList = new ArrayList<>();
     RecyclerView recyclerPaymentPlan;
     ImageView imgBack;
+    LinearLayout linearLayout_back;
     private ProgressBar loadingPB;
     //-----------Billing----------------
     private BillingClient billingClient;
@@ -79,12 +81,12 @@ public class PaymentPlanActivity extends AppCompatActivity implements PaymentIni
         setContentView(R.layout.activity_payment_plan);
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccentDark_light, this.getTheme()));
         recyclerPaymentPlan = findViewById(R.id.rvPaymentPlans);
-        imgBack = findViewById(R.id.imgBackPayment);
+        linearLayout_back = findViewById(R.id.rlHeaderPayment);
         loadingPB = (ProgressBar) findViewById(R.id.loading_getPaymentPlanHistory);
 
         callGetPlanAPI();
 
-        imgBack.setOnClickListener(new View.OnClickListener() {
+        linearLayout_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

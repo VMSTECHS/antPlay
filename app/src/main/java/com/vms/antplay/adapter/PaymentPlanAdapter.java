@@ -62,9 +62,9 @@ public class PaymentPlanAdapter extends RecyclerView.Adapter<PaymentPlanAdapter.
         holder.txtValidity.setText(paymentPlansList.get(position).getTerm() + " Days");
 
         holder.tv_gpus.setText(paymentPlansList.get(position).getGpu());
-        holder.tv_cpus.setText(paymentPlansList.get(position).getCpu() + " CPU ");
-        holder.tv_rams.setText(paymentPlansList.get(position).getRam() + " RAM ");
-        holder.tv_ssds.setText(paymentPlansList.get(position).getSsd() + " SSD ");
+        holder.tv_cpus.setText(paymentPlansList.get(position).getCpu() + " vCPU ");
+        holder.tv_rams.setText(paymentPlansList.get(position).getRam() + " GB RAM ");
+        holder.tv_ssds.setText(paymentPlansList.get(position).getSsd() + " GB SSD ");
         //  holder.tv_mbps.setText(paymentPlansList.get(position).get());
 
         mylist.add(paymentPlansList.get(position).getSubscribedStatus().toString());

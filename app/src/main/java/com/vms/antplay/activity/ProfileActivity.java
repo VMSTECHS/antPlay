@@ -159,6 +159,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferenceUtils.saveUserLoggedIn(ProfileActivity.this, Const.IS_LOGGED_IN, false);
                         Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
                         startActivity(i);
                         finish();

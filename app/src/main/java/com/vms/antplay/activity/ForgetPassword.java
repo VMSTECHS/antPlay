@@ -40,7 +40,7 @@ public class ForgetPassword extends AppCompatActivity {
     boolean isAllFieldChecked = false;
     private ProgressBar loadingPB;
     AlertDialog.Builder builder;
-    private String  TAG = "ForgotPassword Screen";
+    private String TAG = "ForgotPassword Screen";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +49,9 @@ public class ForgetPassword extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_forget_password);
         builder = new AlertDialog.Builder(this);
-        etEmailForget =(EditText) findViewById(R.id.et_emailForget);
-        btnForgetPass =(Button) findViewById(R.id.btn_resetPass);
-        tvTermsCondition =(TextView) findViewById(R.id.tv_termsAndCondition_forget);
+        etEmailForget = (EditText) findViewById(R.id.et_emailForget);
+        btnForgetPass = (Button) findViewById(R.id.btn_resetPass);
+        tvTermsCondition = (TextView) findViewById(R.id.tv_termsAndCondition_forget);
         loadingPB = (ProgressBar) findViewById(R.id.loadingForgot_progress_xml);
 
         tvTermsCondition.setOnClickListener(new View.OnClickListener() {
@@ -66,9 +66,9 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 isAllFieldChecked = checkEmail();
-                if(isAllFieldChecked){
+                if (isAllFieldChecked) {
                     // Call Reset Password API
-                  //  Toast.makeText(ForgetPassword.this, "Thank You", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(ForgetPassword.this, "Thank You", Toast.LENGTH_SHORT).show();
                     callForgotPass(etEmailForget.getText().toString());
                 }
             }
@@ -84,13 +84,13 @@ public class ForgetPassword extends AppCompatActivity {
         call.enqueue(new Callback<ForgotPassResponseModal>() {
             @Override
             public void onResponse(Call<ForgotPassResponseModal> call, Response<ForgotPassResponseModal> response) {
-                if (response.isSuccessful()) {
+                if (response.code() == Const.SUCCESS_CODE_200) {
                     loadingPB.setVisibility(View.GONE);
                     Log.d(TAG, "" + response.body().getMessage());
-                   String emailLink =  response.body().getData().getEmailBody();
-                   String[] splitString = emailLink.split("password-reset/");
-                   Log.e("Hello email link forgot",""+splitString[0]+", "+splitString[1]);
-                   Log.e("Hello  forgotnew--",""+splitString[1]);
+                    String emailLink = response.body().getData().getEmailBody();
+                    String[] splitString = emailLink.split("password-reset/");
+                    /*Log.e("Hello email link forgot",""+splitString[0]+", "+splitString[1]);
+                    Log.e("Hello  forgot_new--",""+splitString[1]);*/
                     builder.setMessage("We have sent you a link on your Email to reset your password")
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -106,7 +106,15 @@ public class ForgetPassword extends AppCompatActivity {
                     alert.show();
 
 
-
+                } else if (response.code() == Const.ERROR_CODE_404) {
+                    loadingPB.setVisibility(View.GONE);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.message(), ForgetPassword.this);
+                } else if (response.code() == Const.ERROR_CODE_500) {
+                    loadingPB.setVisibility(View.GONE);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, response.message(), ForgetPassword.this);
+                } else if (response.code() == Const.ERROR_CODE_400) {
+                    loadingPB.setVisibility(View.GONE);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, getString(R.string.wrong_email_id), ForgetPassword.this);
                 } else {
                     loadingPB.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");

@@ -12,42 +12,38 @@
         android:layout_height="match_parent"
         android:background="@color/transparent_green" />
 
-    <RelativeLayout
-        android:id="@+id/rlHeaderPayment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp">
+    <LinearLayout
+        android:id="@+id/rlHeaderNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imgBackPayment"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingEnd="@dimen/_2sdp"
-            android:paddingBottom="@dimen/_15sdp"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
             android:src="@drawable/backarrow" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/imgBackPayment"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:text="@string/title_notifications"
+            android:text="@string/back"
             android:textColor="@color/white"
-            android:textSize="@dimen/tab_header_text"
+            android:textSize="@dimen/_12sdp"
             android:textStyle="normal" />
-    </RelativeLayout>
-
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPaymentPlans"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rlHeaderPayment"
-        android:layout_marginTop="@dimen/_5sdp"/>
+        android:layout_below="@id/rlHeaderNotification"
+        android:layout_marginTop="@dimen/_5sdp" />
 
 
 </RelativeLayout>

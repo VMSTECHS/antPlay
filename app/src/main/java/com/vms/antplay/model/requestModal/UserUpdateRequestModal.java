@@ -29,7 +29,7 @@ public class UserUpdateRequestModal {
     @Expose
     private String pincode;
 
-    public UserUpdateRequestModal(String email, String phone_number, String address, String state, String city, String pincode) {
+    public UserUpdateRequestModal( String address, String state, String city, String pincode) {
         this.email = email;
         this.phone_number = phone_number;
         this.address = address;

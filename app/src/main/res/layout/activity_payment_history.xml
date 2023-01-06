@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/backgroundimage"
     tools:context=".fragments.GamePadFragment">
 
@@ -18,24 +18,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:id="@+id/back_linear_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="@dimen/_10sdp"
                 android:layout_height="@dimen/_10sdp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:src="@drawable/backarrow" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginLeft="5dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/back"
                 android:textColor="@color/white"
@@ -55,8 +56,8 @@
                 android:layout_height="@dimen/_17sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                app:tint="@color/white"
-                android:src="@drawable/paymenthistory" />
+                android:src="@drawable/paymenthistory"
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,23 +70,24 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerView_payment"
             android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:alpha="0.9"
-            android:backgroundTint="@color/transparent"
-            android:layout_marginTop="@dimen/_5sdp">
+            android:backgroundTint="@color/transparent">
 
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/loading_getPaymentHistory"
         style="?android:attr/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 </RelativeLayout>

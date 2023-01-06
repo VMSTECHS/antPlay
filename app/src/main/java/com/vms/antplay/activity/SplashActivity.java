@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.vms.antplay.R;
+import com.vms.antplay.utils.Const;
 import com.vms.antplay.utils.SharedPreferenceUtils;
 
 import java.util.prefs.Preferences;
@@ -58,17 +59,22 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(isNotFirstTime){
-                    // This method will be execute once the timer is over
-                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                Intent i;
+                if (SharedPreferenceUtils.getUserLoggedIn(SplashActivity.this, Const.IS_LOGGED_IN)){
+                    Log.e("is logged in already--",""+SharedPreferenceUtils.getUserLoggedIn(SplashActivity.this, Const.IS_LOGGED_IN));
+                    i = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(i);
-                    finish();
+                }
+                else if(isNotFirstTime){
+                    // This method will be execute once the timer is over
+                    i = new Intent(SplashActivity.this, LoginActivity.class);
                 }else {
                     // This method will be execute once the timer is over
-                    Intent i = new Intent(SplashActivity.this, OnBoardingActivity.class);
-                    startActivity(i);
-                    finish();
+                    i = new Intent(SplashActivity.this, OnBoardingActivity.class);
                 }
+                startActivity(i);
+                finish();
+
 
             }
         }, 4000);
