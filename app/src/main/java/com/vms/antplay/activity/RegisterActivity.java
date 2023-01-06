@@ -177,18 +177,18 @@ public class RegisterActivity extends AppCompatActivity {
                 //  Integer intValue = myLong.intValue();
                 if (isAllFieldsChecked) {
                     // we can call Api here
-                    st_fname = etFirstname.getText().toString();
-                    st_lastname = etLastname.getText().toString();
-                    st_email = etEmail.getText().toString();
-                    st_phone = etPhone.getText().toString();
-                    st_middleName = etFirstname.getText().toString();
+                    st_fname = etFirstname.getText().toString().trim();
+                    st_lastname = etLastname.getText().toString().trim();
+                    st_email = etEmail.getText().toString().trim();
+                    st_phone = etPhone.getText().toString().trim();
+                    st_middleName = etFirstname.getText().toString().trim();
                     st_isSubscribed = "false";
                     st_isNewUser = "true";
                     st_LastLogin = "false";
-                    st_password = etConfirmPass.getText().toString();
+                    st_password = etConfirmPass.getText().toString().trim();
                     st_address = etAddress.getText().toString();
-                    st_age = etAge.getText().toString();
-                    st_city = etCity.getText().toString();
+                    st_age = etAge.getText().toString().trim();
+                    st_city = etCity.getText().toString().trim();
                     st_pincode = etPincode.getText().toString();
 
 
@@ -279,26 +279,48 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean CheckAllFields() {
         //String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         String emailPattern = "^(?:\\d{10}|\\w+@\\w+\\.\\w{2,3})$";
-
+        Log.e("hello first--", "" + etFirstname.getText().toString().trim() + "check");
+        if (etFirstname.getText().toString().contains(" ")) {
+            etFirstname.setError(getString(R.string.remove_whitespace));
+            return false;
+        }
         if (etFirstname.length() == 0) {
             etFirstname.setError(getString(R.string.error_firstname));
             return false;
         }
+        if (etLastname.getText().toString().contains(" ")) {
+            etLastname.setError(getString(R.string.remove_whitespace));
+            return false;
+        }
+
         if (etLastname.length() == 0) {
             etLastname.setError(getString(R.string.error_lastname));
             return false;
         }
 
+        if (etPhone.getText().toString().contains(" ")) {
+            etPhone.setError(getString(R.string.remove_whitespace));
+            return false;
+        }
         if (etPhone.length() == 0) {
             etPhone.setError(getString(R.string.error_phone));
             return false;
         }
-        if (etEmail.length() == 0) {
+        if (etEmail.getText().toString().contains(" ")) {
+            etEmail.setError(getString(R.string.remove_whitespace));
+            return false;
+        } else if (etEmail.length() == 0) {
             etEmail.setError(getString(R.string.error_email));
+            return false;
+        } else if (!etEmail.getText().toString().matches(emailPattern)) {
+            etEmail.setError(getString(R.string.error_invalidEmail));
             return false;
         }
 
-        if (etPassword.length() == 0) {
+        if (etPassword.getText().toString().contains(" ")) {
+            etPassword.setError(getString(R.string.remove_whitespace));
+            return false;
+        } else if (etPassword.length() == 0) {
             etPassword.setError(getString(R.string.error_password));
             return false;
         } else if (etPassword.length() < 8) {
@@ -309,7 +331,10 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if (etConfirmPass.length() == 0) {
+        if (etConfirmPass.getText().toString().contains(" ")) {
+            etConfirmPass.setError(getString(R.string.remove_whitespace));
+            return false;
+        } else if (etConfirmPass.length() == 0) {
             etConfirmPass.setError(getString(R.string.error_confirmPass));
             return false;
         } else if (etConfirmPass.length() < 8) {
@@ -320,35 +345,31 @@ public class RegisterActivity extends AppCompatActivity {
             etConfirmPass.setError(getString(R.string.error_password_not_match));
             return false;
         }
-        if (etAge.length() == 0) {
+        if (etAge.getText().toString().contains(" ")) {
+            etAge.setError(getString(R.string.remove_whitespace));
+            return false;
+        } else if (etAge.length() == 0) {
             etAge.setError(getString(R.string.error_age));
             return false;
-        } else if (Integer.parseInt(etAge.getText().toString())<18){
+        } else if (Integer.parseInt(etAge.getText().toString()) < 18) {
             etAge.setError(getString(R.string.error_greater_18));
             return false;
         }
-        if (etAddress.length() == 0) {
+        if (etAddress.getText().toString().trim().length()==0) {
             etAddress.setError(getString(R.string.error_address));
+            return false;
+        }
+        if (etCity.getText().toString().trim().length()==0) {
+            etCity.setError(getString(R.string.error_city));
+            return false;
+        }
+
+        if ( etPincode.getText().toString().contains(" ")) {
+            etPincode.setError(getString(R.string.remove_whitespace));
             return false;
         }
         if (etPincode.length() == 0) {
             etPincode.setError(getString(R.string.error_pinCode));
-            return false;
-        }
-//        if (etState.length() == 0) {
-//            etState.setError(getString(R.string.error_state));
-//            return false;
-//        }
-
-        if (etCity.length() == 0) {
-            etPincode.setError(getString(R.string.error_city));
-            return false;
-        }
-        if (etEmail.length() == 0) {
-            etEmail.setError(getString(R.string.error_email));
-            return false;
-        } else if (!etEmail.getText().toString().matches(emailPattern)) {
-            etEmail.setError(getString(R.string.error_invalidEmail));
             return false;
         }
 
