@@ -76,6 +76,8 @@ public class VerifyOTP extends AppCompatActivity {
 
         callTimer();
 
+
+
         tv_resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,15 +114,19 @@ public class VerifyOTP extends AppCompatActivity {
         call.enqueue(new Callback<VerifyOTPResponseModal>() {
             @Override
             public void onResponse(Call<VerifyOTPResponseModal> call, Response<VerifyOTPResponseModal> response) {
-                if (response.body().getSuccess().equals("True")){
-                    SharedPreferenceUtils.saveString(VerifyOTP.this, Const.ACCESS_TOKEN, response.body().getData().getAccess());
-                    Intent i = new Intent(VerifyOTP.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
+                if (response.isSuccessful()) {
+                    if (response.body().getSuccess().equals("True")) {
+                        SharedPreferenceUtils.saveUserLoggedIn(VerifyOTP.this, Const.IS_LOGGED_IN, true);
+                        SharedPreferenceUtils.saveString(VerifyOTP.this, Const.ACCESS_TOKEN, response.body().getData().getAccess());
+                        Intent i = new Intent(VerifyOTP.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
                 }
-                else if (response.code() == Integer.parseInt(Const.ERROR_CODE_500_SERVER_ERROR)){
-                    AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,getString(R.string.error_wrong_mobile_otp), VerifyOTP.this);
+                else if (response.code() == Const.ERROR_CODE_500 || response.code() == Const.ERROR_CODE_400||response.code() == Const.ERROR_CODE_404){
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,getString(R.string.error_wrong_otp), VerifyOTP.this);
                 }
+
                 else {
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,response.body().getMessage(), VerifyOTP.this);
                 }

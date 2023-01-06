@@ -87,8 +87,8 @@ public class LoginScreenActivity extends AppCompatActivity {
         // etEmail.setText("AntplayOrchestrator");
         // etPass.setText("Acro@#208a");
         //etEmail.setText("Vikas.antplay@gmail.com");
-       /* etEmail.setText("hsvm620@gmail.com");
-        etPass.setText("Abc@1234");*/
+        etEmail.setText("hsvm620@gmail.com");
+        etPass.setText("Abc@1234");
 
         etEmail.setText("vikas.antplay@gmail.com");
         etPass.setText("Antplay@123");
@@ -156,6 +156,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     loadingPB.setVisibility(View.GONE);
                     Log.d(TAG, "" + response.body().getAccess());
+                    SharedPreferenceUtils.saveUserLoggedIn(LoginScreenActivity.this, Const.IS_LOGGED_IN, true);
                     SharedPreferenceUtils.saveString(LoginScreenActivity.this, Const.ACCESS_TOKEN, response.body().getAccess());
                     Intent i = new Intent(LoginScreenActivity.this, MainActivity.class);
                     startActivity(i);

@@ -70,5 +70,17 @@ public class SharedPreferenceUtils {
         return sharedPreferences.getString(key, null);
     }
 
+    public static void saveUserLoggedIn(Context context, String isLoggedIn, boolean b) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(isLoggedIn, b);
+        editor.apply();
+    }
+
+    public static boolean getUserLoggedIn(Context context, String key) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(key, Boolean.parseBoolean(""));
+    }
+
 
 }

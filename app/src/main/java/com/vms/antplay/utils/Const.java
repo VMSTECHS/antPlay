@@ -7,6 +7,7 @@ public class Const {
     public static String razorPayMerchantId = "KEVxW3g3K0GfQr";
 
     public static String ACCESS_TOKEN="access_token";
+    public static String IS_LOGGED_IN="logged_in";
     public static String FULL_NAME="full_name";
     public static String USER_EMAIL="email";
     public static String PHONE="phone_number";
@@ -14,6 +15,7 @@ public class Const {
     public static String STATE="state";
     public static String CITY="city";
     public static String USER_NAME="username";
+    public static String PIN_CODE="pincode";
     public static String USER_EXPIRY_DATE="userExpiryDate";
     public static String BASIC_SKU="antplay_30_hours";
     public static String PREMIUM_SKU="antplay_250_hours";
@@ -56,7 +58,11 @@ public class Const {
     /*****
      * Regex
      * ****/
-    public static String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$";
+    //public static String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$";
+    public static String passwordRegex = "^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+    public static String pinCodeRegex = "^[1-9][0-9]{5}$";
+
+
     public static String phoneRegex = "^[1-9][0-9]{9,10}$";
 
     /*****

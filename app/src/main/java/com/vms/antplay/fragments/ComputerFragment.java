@@ -85,8 +85,6 @@ public class ComputerFragment extends Fragment implements ShutdownVMListener {
         return view;
 
     }
-
-
     private void callGetVmApi() {
         Log.e("hello get token--", "" + SharedPreferenceUtils.getString(getContext(), Const.ACCESS_TOKEN));
         loadingPB.setVisibility(View.VISIBLE);

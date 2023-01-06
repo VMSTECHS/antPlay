@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.vms.antplay.R;
 import com.vms.antplay.api.APIClient;
@@ -29,6 +30,7 @@ public class LoginWithOTP extends AppCompatActivity {
     Button btn_lestGo;
     boolean isPhoneNumberEntered = false;
     ProgressBar progressBar;
+    TextView tv_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,16 @@ public class LoginWithOTP extends AppCompatActivity {
         edt_phone = findViewById(R.id.et_phone_otp);
         btn_lestGo = findViewById(R.id.btn_letsGo_otp);
         progressBar = findViewById(R.id.progress_sendOTP);
+        tv_register = findViewById(R.id.tv_signupHere_loginWithOTP);
+
+        tv_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginWithOTP.this, RegisterActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         btn_lestGo.setOnClickListener(new View.OnClickListener() {
             @Override

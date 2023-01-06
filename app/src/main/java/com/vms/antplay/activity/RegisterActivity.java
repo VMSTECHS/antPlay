@@ -323,6 +323,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (etAge.length() == 0) {
             etAge.setError(getString(R.string.error_age));
             return false;
+        } else if (Integer.parseInt(etAge.getText().toString())<18){
+            etAge.setError(getString(R.string.error_greater_18));
+            return false;
         }
         if (etAddress.length() == 0) {
             etAddress.setError(getString(R.string.error_address));
@@ -336,6 +339,11 @@ public class RegisterActivity extends AppCompatActivity {
 //            etState.setError(getString(R.string.error_state));
 //            return false;
 //        }
+
+        if (etCity.length() == 0) {
+            etPincode.setError(getString(R.string.error_city));
+            return false;
+        }
         if (etEmail.length() == 0) {
             etEmail.setError(getString(R.string.error_email));
             return false;

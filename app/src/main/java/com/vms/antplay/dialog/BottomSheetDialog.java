@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.vms.antplay.R;
 import com.vms.antplay.interfaces.PaymentInitiationInterface;
+import com.vms.antplay.utils.AppUtils;
 
 public class BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     SeekBar priceSeekbar;
@@ -184,10 +185,12 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 
                 break;
             case R.id.txtPurchase:
-                paymentInitiationInterface.onPaymentInitiated(Double.valueOf(Integer.valueOf(hours)),amount);
-               // Toast.makeText(getContext(), "Purchased Successfully", Toast.LENGTH_SHORT).show();
+              //  paymentInitiationInterface.onPaymentInitiated(Double.valueOf(Integer.valueOf(hours)),amount);
+                Toast.makeText(getContext(), getString(R.string.working_on_this), Toast.LENGTH_SHORT).show();
+               // AppUtils.showSnack(v,R.color.black,getString(R.string.working_on_this),getContext());
                 break;
 
         }
     }
+
 }

@@ -42,11 +42,14 @@
 
     <string name="error_username">Username is required</string>
     <string name="error_password">Password is required</string>
+    <string name="error_old_password">Enter Old Password</string>
+    <string name="error_new_password">Enter New Password</string>
+    <string name="error_confirm_password">Enter Confirm Password</string>
     <string name="error_checkbox">Please check the checkbox</string>
     <string name="error_invalidEmail">Invalid email address</string>
     <string name="error_invalidPhone">Invalid phone number</string>
     <string name="error_pass_minimum">Password must be minimum 8 characters</string>
-    <string name="pass_regex">Password Should contains 1 small letter, 1 special character,1 number</string>
+    <string name="pass_regex">Password Should contains 1 upper letter,1 small letter, 1 special character,1 number</string>
     <string name="error_Confirmpass_minimum">Confirm Password must be minimum 8 characters</string>
     <string name="choose_new_pc">CHOOSE A NEW PC</string>
     <string name="next_in_queue">You are next in queue </string>
@@ -289,6 +292,11 @@
     <string name="enter_registered_mobile">Please, Enter Registered Mobile Number"</string>
     <string name="enter_otp">Please enter 6 digit OTP</string>
     <string name="error_wrong_mobile_otp">Enter valid Mobile Number and OTP</string>
+    <string name="error_wrong_otp">Enter valid OTP</string>
+    <string name="wrong_old_pass">Please check your Old Password. It might be wrong.</string>
+    <string name="wrong_email_id">Please check your email id. It might be empty/wrong.</string>
+    <string name="working_on_this">Currently This Service is in Progress.</string>
+    <string name="error_greater_18">Age Should be greater than or equal to 18.</string>
     <string name="verify_phone">Verify Phone</string>
     <string name="verification_cade_sent_to">We have sent a 6 digit verification code on</string>
 
