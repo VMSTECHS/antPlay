@@ -1,7 +1,5 @@
 package com.vms.antplay.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Const {
     public static String razorPayMerchantId = "KEVxW3g3K0GfQr";

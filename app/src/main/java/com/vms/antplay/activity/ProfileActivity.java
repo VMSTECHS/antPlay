@@ -9,20 +9,24 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vms.antplay.R;
 import com.vms.antplay.utils.Const;
+import com.vms.antplay.utils.DateFormatterHelper;
 import com.vms.antplay.utils.SharedPreferenceUtils;
+
+import java.lang.reflect.Array;
 
 public class ProfileActivity extends AppCompatActivity {
 
     LinearLayout backLinear, logoutLinear, linear_Change, linearAgree, linearWebsite, linearAbout,
             linearPayment, linearEdit, linearDiscord, linearInstagram, linearPrivacyPolicy;
 
-    TextView tv_changePassword, tv_manageSubs, txtUserID;
+    TextView tv_changePassword, tv_manageSubs, txtUserID,txtExpiryDate;
     AlertDialog.Builder builder;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -44,6 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
         linearEdit = (LinearLayout) findViewById(R.id.linear_edit);
         tv_manageSubs = (TextView) findViewById(R.id.tv_manageSubscription);
         txtUserID = (TextView) findViewById(R.id.txtUserEmailID);
+        txtExpiryDate = (TextView) findViewById(R.id.txtExpiryDate);
         linearPrivacyPolicy = (LinearLayout) findViewById(R.id.linear_privacyPolicy);
 
         setData();
@@ -189,14 +194,103 @@ public class ProfileActivity extends AppCompatActivity {
         String userName = SharedPreferenceUtils.getString(ProfileActivity.this, Const.USER_NAME);
         String expiryDate = SharedPreferenceUtils.getString(ProfileActivity.this, Const.USER_EXPIRY_DATE);
 
+        if (expiryDate!=null){
+            txtExpiryDate.setText(getDateFromSec(Long.parseLong(expiryDate)));
+        }
         txtUserID.setText(userName);
-        decodeDate(Long.parseLong(expiryDate));
+        //txtExpiryDate.setText(getDateFromSec(Long.parseLong(expiryDate)));
+        //getDateFromSec(Long.parseLong(expiryDate));
+       // getDateFromSec(42076800);
 
     }
 
-    private void decodeDate(long expiryDate) {
-        long originalSecond = expiryDate/10000000;
-        long constToAdd = 11*30*60;
-        long totalDays = originalSecond+constToAdd;
+
+    long days = 0;
+    long month = 0;
+    long year = 0;
+    int[] daysOfMonths = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    private String getDateFromSec(long expiryDateInSec) {
+        String dayStr, monthStr, yearStr;
+        long secInDay = 24 * 60 * 60;
+        boolean dayStarted = false;
+        // converting seconds into days
+        days = expiryDateInSec / secInDay;
+
+        //if some seconds are more
+        if (expiryDateInSec % secInDay != 0) {
+            dayStarted = true;
+        }
+        if (dayStarted || expiryDateInSec == 0) {
+            days += 1;
+        }
+        //getting year
+        days += 4;
+        year = getYear(days);
+
+        // getting month
+        month = getMonthCount(days);
+        if (month < 10) {
+            monthStr = "0" + month;
+        } else {
+            monthStr = String.valueOf(month);
+        }
+
+        if (days < 10) {
+            dayStr = "0" + days;
+        } else {
+            dayStr = String.valueOf(days);
+        }
+
+        // construct date
+        String date = year + "-" + monthStr + "-" + dayStr+" 00:00:00";
+       return DateFormatterHelper.parseDate(date,DateFormatterHelper.DATE_FORMAT_TWO);
+    }
+
+
+    private long getYear(long totalDays) {
+        long expiryYear = 1600;
+        long dayCount;
+        while (true) {
+            expiryYear += 1;
+            dayCount = dayInYear(expiryYear);
+            if (totalDays >= dayCount) {
+                totalDays -= dayCount;
+                days -= dayCount;
+            } else {
+                break;
+            }
+        }
+        return expiryYear;
+    }
+
+    private long getMonthCount(long daysCount) {
+        long expiryMonth = 0;
+        if (daysCount == 0) {
+            return 1;
+        } else {
+            expiryMonth = 1;
+            if (dayInYear(year) == 366) {
+                daysOfMonths[1] = 29;
+            }
+            for (int day : daysOfMonths) {
+                if (day < daysCount) {
+                    expiryMonth += 1;
+                    daysCount -= day;
+                    days -= day;
+                } else {
+                    break;
+                }
+            }
+        }
+        return expiryMonth;
+    }
+
+    private int dayInYear(long yearCount) {
+        if (yearCount % 4 == 0) {
+            return 366;
+        } else {
+            return 365;
+        }
     }
 }

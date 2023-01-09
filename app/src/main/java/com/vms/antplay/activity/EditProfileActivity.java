@@ -193,7 +193,6 @@ public class EditProfileActivity extends AppCompatActivity {
         if (email != null) {
             edTxtEmail.setText(email);
         }
-
         if (city != null) {
             edTxtCity.setText(city);
         }
@@ -246,7 +245,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 } else {
                     progressBar.setVisibility(View.GONE);
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.something_went_wrong, EditProfileActivity.this);
-
                 }
             }
 
