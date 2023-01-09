@@ -88,7 +88,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean CheckAllFields() {
-        if (edTxtOldPassword.length() == 0) {
+        if (edTxtOldPassword.getText().toString().trim().length() == 0) {
             edTxtOldPassword.setError(getString(R.string.error_old_password));
             return false;
         }
@@ -98,7 +98,7 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
 //            return false;
 //        }
 
-        if (edTxtNewPassword.length()<8) {
+        if (edTxtNewPassword.getText().toString().trim().length()<8) {
             edTxtNewPassword.setError(getString(R.string.error_pass_minimum));
             return false;
         } else if (!edTxtNewPassword.getText().toString().matches(Const.passwordRegex)) {

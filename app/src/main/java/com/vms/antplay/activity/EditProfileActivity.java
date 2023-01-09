@@ -40,7 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private String TAG = "ANT_PLAY";
     LinearLayout linearLayout;
-    EditText edTxtName, edTxtUserName, edTxtPhoneNumber, edTxtEmail, edTxtAge, edTxtCity, edTxtAddress, edTxtState,editTextPinCode;
+    EditText edTxtName, edTxtUserName, edTxtPhoneNumber, edTxtEmail, edTxtAge, edTxtCity, edTxtAddress, edTxtState, editTextPinCode;
     Button buttonUpdateProfile;
     Spinner spinnerStateList;
     private ProgressBar progressBar;
@@ -69,7 +69,7 @@ public class EditProfileActivity extends AppCompatActivity {
         buttonUpdateProfile = findViewById(R.id.buttonUpdateProfile);
         progressBar = (ProgressBar) findViewById(R.id.progressBarEditProfile);
 
-       // setData();
+        // setData();
         populateStateList();
         linearLayout = (LinearLayout) findViewById(R.id.back_linear_edit);
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -82,15 +82,16 @@ public class EditProfileActivity extends AppCompatActivity {
         buttonUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edTxtCity.getText().toString().isEmpty()){
-                    AppUtils.showSnack(v,R.color.black,Const.city_should_not_empty,EditProfileActivity.this);
-                } else if(edTxtAddress.getText().toString().isEmpty()){
-                    AppUtils.showSnack(v,R.color.black,Const.address_should_not_empty,EditProfileActivity.this);
-                }
-                else if(!editTextPinCode.getText().toString().matches(Const.pinCodeRegex)){
-                    AppUtils.showSnack(v,R.color.black,Const.enter_valid_picCode,EditProfileActivity.this);
-                }
-                else {
+               /* if (edTxtCity.getText().toString().trim().length() ==0 ) {
+                    edTxtCity.setError(getString(R.string.remove_whitespace));
+                }*/
+                if (edTxtCity.getText().toString().trim().length() == 0) {
+                    AppUtils.showSnack(v, R.color.black, Const.city_should_not_empty, EditProfileActivity.this);
+                } else if (edTxtAddress.getText().toString().trim().length() == 0) {
+                    AppUtils.showSnack(v, R.color.black, Const.address_should_not_empty, EditProfileActivity.this);
+                } else if (!editTextPinCode.getText().toString().matches(Const.pinCodeRegex)) {
+                    AppUtils.showSnack(v, R.color.black, Const.enter_valid_picCode, EditProfileActivity.this);
+                } else {
                     updateUserProfile();
                 }
 
@@ -159,7 +160,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+                // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -178,7 +179,7 @@ public class EditProfileActivity extends AppCompatActivity {
         String city = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.CITY);
         String userName = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.USER_NAME);
         String pinCode = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.PIN_CODE);
-        Log.d(TAG, "" + phoneNumber+" "+email);
+        Log.d(TAG, "" + phoneNumber + " " + email);
         edTxtName.setText(fullName);
         edTxtUserName.setText(userName);
         edTxtPhoneNumber.setText(phoneNumber);
@@ -188,10 +189,10 @@ public class EditProfileActivity extends AppCompatActivity {
         edTxtAddress.setText(address);
         editTextPinCode.setText(pinCode);
 
-      //  spinnerStateList.setSelection(state.);
+        //  spinnerStateList.setSelection(state.);
 
-        for (int i =0;i<stateList.size();i++){
-            if (stateList.get(i).equals(state)){
+        for (int i = 0; i < stateList.size(); i++) {
+            if (stateList.get(i).equals(state)) {
                 spinnerStateList.setSelection(i);
             }
         }
@@ -205,9 +206,9 @@ public class EditProfileActivity extends AppCompatActivity {
         String access_token = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.ACCESS_TOKEN);
         RetrofitAPI retrofitAPI = APIClient.getRetrofitInstance().create(RetrofitAPI.class);
         UserUpdateRequestModal updateRequestModal = new UserUpdateRequestModal(
-                edTxtAddress.getText().toString(),
+                edTxtAddress.getText().toString().trim(),
                 st_state,
-                edTxtCity.getText().toString(),
+                edTxtCity.getText().toString().trim(),
                 editTextPinCode.getText().toString());
         Call<UserUpdateResponseModal> call = retrofitAPI.userUpdate("Bearer " + access_token, updateRequestModal);
         call.enqueue(new Callback<UserUpdateResponseModal>() {
@@ -216,20 +217,18 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (response.code() == Const.SUCCESS_CODE_200) {
                     progressBar.setVisibility(View.GONE);
                     getUserDetails();
-                    AppUtils.showSnack(getWindow().getDecorView().getRootView(),R.color.black,Const.profile_updated_success,EditProfileActivity.this);
+                    AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.profile_updated_success, EditProfileActivity.this);
                     finish();
 
                 } else if (response.code() == Const.ERROR_CODE_400) {
                     progressBar.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.enter_valid_data, EditProfileActivity.this);
-                }
-                else if (response.code() == Const.ERROR_CODE_500) {
+                } else if (response.code() == Const.ERROR_CODE_500) {
                     progressBar.setVisibility(View.GONE);
                     Log.e(TAG, "Else condition");
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.enter_valid_data, EditProfileActivity.this);
-                }
-                else {
+                } else {
                     progressBar.setVisibility(View.GONE);
                     AppUtils.showSnack(getWindow().getDecorView().getRootView(), R.color.black, Const.something_went_wrong, EditProfileActivity.this);
 

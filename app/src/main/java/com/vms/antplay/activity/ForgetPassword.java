@@ -131,7 +131,7 @@ public class ForgetPassword extends AppCompatActivity {
 
     private boolean checkEmail() {
         String emailPattern = "^(?:\\d{10}|\\w+@\\w+\\.\\w{2,3})$";
-        if (etEmailForget.length() == 0) {
+        if (etEmailForget.getText().toString().trim().length() == 0) {
             etEmailForget.setError(getString(R.string.error_email));
             return false;
         } else if (!etEmailForget.getText().toString().matches(emailPattern)) {

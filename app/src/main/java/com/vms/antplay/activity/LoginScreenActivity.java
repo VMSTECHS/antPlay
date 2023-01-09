@@ -87,11 +87,11 @@ public class LoginScreenActivity extends AppCompatActivity {
         // etEmail.setText("AntplayOrchestrator");
         // etPass.setText("Acro@#208a");
         //etEmail.setText("Vikas.antplay@gmail.com");
-        etEmail.setText("hsvm620@gmail.com");
-        etPass.setText("Abc@1234");
+       /* etEmail.setText("hsvm620@gmail.com");
+        etPass.setText("Abc@1234");*/
 
-//        etEmail.setText("vikas.antplay@gmail.com");
-//        etPass.setText("Antplay@123");
+        etEmail.setText("vikas.antplay@gmail.com");
+        etPass.setText("Antplay@123");
 
        /* etEmail.setText("rake1@vmstechs.com");
         etPass.setText("Rakesh@1234");*/
@@ -188,7 +188,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         String emailPattern = "^(?:\\d{10}|\\w+@\\w+\\.\\w{2,3})$";
 
-        if (etEmail.length() == 0) {
+        if (etEmail.getText().toString().trim().length() == 0) {
             etEmail.setError(getString(R.string.error_email));
             return false;
         } else if (!etEmail.getText().toString().matches(emailPattern)) {
@@ -196,7 +196,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             return false;
         }
 
-        if (etPass.length() == 0) {
+        if (etPass.getText().toString().trim().length() == 0) {
             etPass.setError(getString(R.string.error_password));
             return false;
         } else if (etPass.length() < 8) {
