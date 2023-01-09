@@ -69,7 +69,7 @@ public class EditProfileActivity extends AppCompatActivity {
         buttonUpdateProfile = findViewById(R.id.buttonUpdateProfile);
         progressBar = (ProgressBar) findViewById(R.id.progressBarEditProfile);
 
-        // setData();
+       // setData();
         populateStateList();
         linearLayout = (LinearLayout) findViewById(R.id.back_linear_edit);
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +160,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 st_state = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-                // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
+               // Toast.makeText(parent.getContext(), "Selected: " + st_state, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -179,17 +179,23 @@ public class EditProfileActivity extends AppCompatActivity {
         String city = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.CITY);
         String userName = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.USER_NAME);
         String pinCode = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.PIN_CODE);
-        Log.d(TAG, "" + phoneNumber + " " + email);
+        Log.d(TAG, "" + phoneNumber+" "+email);
         edTxtName.setText(fullName);
         edTxtUserName.setText(userName);
         edTxtPhoneNumber.setText(phoneNumber);
         edTxtEmail.setText(email);
 //        edTxtAge.setText("28");
-        edTxtCity.setText(city);
-        edTxtAddress.setText(address);
-        editTextPinCode.setText(pinCode);
+        if (city != null) {
+            edTxtCity.setText(city);
+        }
+        if (address != null) {
+            edTxtAddress.setText(address);
+        }
+        if (pinCode != null) {
+            editTextPinCode.setText(pinCode);
+        }
 
-        //  spinnerStateList.setSelection(state.);
+      //  spinnerStateList.setSelection(state.);
 
         for (int i = 0; i < stateList.size(); i++) {
             if (stateList.get(i).equals(state)) {
