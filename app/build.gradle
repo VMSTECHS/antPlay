@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 // Add the following line:
     id 'com.google.gms.google-services'  // Google Services plugin
+
+    // Add the Crashlytics Gradle plugin
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -94,6 +97,11 @@ dependencies {
     // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
+
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
     /*RazorPay*/
     implementation 'com.razorpay:checkout:1.6.24'

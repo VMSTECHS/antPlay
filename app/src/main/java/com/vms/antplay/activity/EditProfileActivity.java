@@ -179,13 +179,20 @@ public class EditProfileActivity extends AppCompatActivity {
         String userName = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.USER_NAME);
         String pinCode = SharedPreferenceUtils.getString(EditProfileActivity.this, Const.PIN_CODE);
         Log.d(TAG, "" + phoneNumber+" "+email);
+        if (fullName!=null)
         edTxtName.setText(fullName);
+        if (userName!=null)
         edTxtUserName.setText(userName);
+        if (phoneNumber!=null)
         edTxtPhoneNumber.setText(phoneNumber);
+        if (email!=null)
         edTxtEmail.setText(email);
 //        edTxtAge.setText("28");
+        if (city!=null)
         edTxtCity.setText(city);
+        if (address!=null)
         edTxtAddress.setText(address);
+        if (pinCode!=null)
         editTextPinCode.setText(pinCode);
 
       //  spinnerStateList.setSelection(state.);
